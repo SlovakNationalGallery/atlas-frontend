@@ -120,7 +120,7 @@ app.use(createPinia())
 const localeStore = useLocaleStore()
 app.use(i18nVue, {
     lang: localeStore.locale,
-    resolve: (lang) => import(`../lang/${lang}.json`),
+    resolve: (lang) => import(`./lang/${lang}.json`),
 })
 
 const historyStore = useHistoryStore()
