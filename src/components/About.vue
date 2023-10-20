@@ -12,7 +12,7 @@
                             </h1>
                         </div>
                         <div>
-                            <img src="../../img/about-ester.png" />
+                            <img src="../img/about-ester.png" />
                         </div>
                     </div>
 
@@ -87,7 +87,7 @@
 
                         <img
                             class="mt-8 max-w-[8rem]"
-                            src="../../img/eea_grants.png"
+                            src="../img/eea_grants.png"
                             alt="Iceland Lichtenstein Norway grants"
                         />
                     </template>
