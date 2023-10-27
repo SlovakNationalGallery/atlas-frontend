@@ -1,0 +1,23 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Copy files via SSH
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: webumenia.sk
+          username: lab_sng
+          key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          source: dist/*
+          strip_components: 2
+          target: /var/www/new.atlas.sng.sk
