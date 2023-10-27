@@ -40,7 +40,7 @@
         </div>
         <div class="relative h-full border-black px-4 pb-24 pt-8">
             <div class="absolute -top-8 inline-block rounded-md bg-black p-1.5" v-if="item.code">
-                <img class="h-9 w-9" :src="`/img/${item.code}.svg`" :alt="item.code" />
+                <img class="h-9 w-9" :src="codeImage" :alt="item.code" />
             </div>
             <h2 class="text-1.5xl font-bold">{{ item.title }}</h2>
             <h3 class="text-lg text-gray-dark">{{ item.author }} · {{ item.dating }}</h3>
@@ -140,4 +140,9 @@ onMounted(async () => {
             bucketlistStore.get(defaultBucketlist.id) || (await bucketlistStore.load(defaultBucketlist.id))
     }
 })
+
+const codeImage = computed(() => {
+    return `${import.meta.env.VITE_API_URL}/img/${item.value.code}.svg`
+})
+
 </script>
