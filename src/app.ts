@@ -1,27 +1,27 @@
 import './bootstrap'
 import './css/style.css'
 
+import App from './App.vue'
+
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router/auto'
 import { i18nVue } from 'laravel-vue-i18n'
 import { createPinia } from 'pinia'
 import * as Sentry from '@sentry/vue'
 
-import App from './App.vue'
-import { useHistoryStore } from './stores/HistoryStore'
-import { useLocaleStore } from './stores/LocaleStore'
-
+import { useLocaleStore } from '@/stores/LocaleStore'
+import { useHistoryStore } from '@/stores/HistoryStore'
 
 const history = createWebHistory()
 const router = createRouter({
-    history,
+  history,
+  scrollBehavior(to, from, savedPosition) {
+    if (to.path === '/') {
+      return savedPosition as any
+    }
 
-    scrollBehavior(to, from, savedPosition) {
-        if (to.path === '/') {
-            return savedPosition
-        }
-        return { top: 0 }
-    },
+    return false
+  },
 })
 
 const app = createApp(App)
@@ -33,8 +33,8 @@ app.use(createPinia())
 
 const localeStore = useLocaleStore()
 app.use(i18nVue, {
-    lang: localeStore.locale,
-    resolve: (lang) => import(`./lang/${lang}.json`),
+  lang: localeStore.locale,
+  resolve: (lang: string) => import(`./lang/${lang}.json`),
 })
 
 const historyStore = useHistoryStore()

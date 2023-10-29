@@ -1,9 +1,18 @@
 <template>
-    <InteractionItem :icon="SvgHeartSmall" iconClass="fill-current" :label="$t('Saved')" v-bind="props" />
+  <InteractionItem
+    :icon="SvgHeartSmall"
+    icon-class="fill-current"
+    :label="$t('Saved')"
+    v-bind="props"
+    item=""
+  />
 </template>
 
-<script setup>
-import InteractionItem from './InteractionItem.vue'
+<script setup lang="ts">
+import SvgHeartSmall from '@/components/svg/SvgHeartSmall.vue'
+import InteractionItem from '@/components/interactions/InteractionItem.vue'
 
-const props = defineProps(['item'])
+const props = defineProps<{
+  item: any //TODO: add model
+}>()
 </script>

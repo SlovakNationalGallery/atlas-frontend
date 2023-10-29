@@ -1,14 +1,16 @@
 <template>
-    <slot v-if="item" :item="item"></slot>
+  <slot v-if="item" :item="item"></slot>
 </template>
 
-<script setup>
+<script setup lang="ts">
+const props = defineProps<{
+  id: string
+}>()
 
-const props = defineProps(['id'])
-const item = ref(null)
+const item = ref<any | null>(null) // TODO: add model
 
 onMounted(async () => {
-    const itemStore = useItemStore()
-    item.value = itemStore.get(props.id) || (await itemStore.load(props.id))
+  const itemStore = useItemStore()
+  item.value = itemStore.get(props.id) || (await itemStore.load(props.id))
 })
 </script>
