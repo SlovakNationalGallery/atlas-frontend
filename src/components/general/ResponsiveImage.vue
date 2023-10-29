@@ -3,7 +3,9 @@
 </template>
 
 <script setup lang="ts">
+import type { IImage } from '@/models/_Interfaces'
+
 defineProps<{
-  image: any //TODO: add model
+  image: IImage
 }>()
 </script>

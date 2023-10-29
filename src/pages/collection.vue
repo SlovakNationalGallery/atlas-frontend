@@ -10,13 +10,6 @@
 import Bucketlist from '@/components/bucketlist/Bucketlist.vue'
 import Timeline from '@/components/timeline/Timeline.vue'
 
-const route = useRoute()
 const itemStore = useItemStore()
 const bucketlistId = import.meta.env.VITE_DEFAULT_BUCKETLIST
-
-onMounted(async () => {
-  if (route.params.id) {
-    itemStore.fetch(route.params.id)
-  }
-})
 </script>

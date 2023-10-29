@@ -11,8 +11,10 @@
 </template>
 
 <script setup lang="ts">
+import type { IImage } from '@/models/_Interfaces'
+
 defineProps<{
-  image: any //TODO: add model
+  image: IImage
 }>()
 
 const img = ref<any | null>(null)

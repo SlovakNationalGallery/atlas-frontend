@@ -3,11 +3,13 @@
 </template>
 
 <script setup lang="ts">
+import Item from '@/models/Item'
+
 const props = defineProps<{
   id: string
 }>()
 
-const item = ref<any | null>(null) // TODO: add model
+const item = ref<Item | null>(null)
 
 onMounted(async () => {
   const itemStore = useItemStore()

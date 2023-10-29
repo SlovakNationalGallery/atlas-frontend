@@ -26,16 +26,18 @@
 <script setup lang="ts">
 import ItemImage from '@/components/general/ItemImage.vue'
 import CodePanel from '@/components/layout/CodePanel.vue'
+import Item from '@/models/Item'
+import Bucketlist from '@/models/Bucketlist'
 
-const route = useRoute()
 const bucketlistStore = useBucketlistStore()
 const itemStore = useItemStore()
 
-const item = ref<any | null>(null) // TODO: add model
-const bucketlist = ref<any | null>(null) // TODO: add model
+const item = ref<Item | null>(null)
+const bucketlist = ref<Bucketlist | null>(null)
 
 onMounted(async () => {
-  const id = route.params.id
+  const { id } = useParams()
+
   item.value = await itemStore.load(id)
   const defaultBucketlist = item.value.bucketlists.find(
     (bucketlist) => bucketlist.id === import.meta.env.VITE_DEFAULT_BUCKETLIST

@@ -17,8 +17,9 @@
 <script setup lang="ts">
 import ResponsiveImageWithSizes from '@/components/general/ResponsiveImageWithSizes.vue'
 import Thumbnail from '@/components/general/Thumbnail.vue'
+import Item from '@/models/Item'
 
 defineProps<{
-  item: any // TODO: add model
+  item: Item
 }>()
 </script>

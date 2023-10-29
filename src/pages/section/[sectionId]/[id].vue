@@ -8,18 +8,20 @@
         <p class="mt-1 text-2xl font-medium leading-snug">
           {{
             $t(':found of :all artworks found', {
-              found: found.length,
-              all: bucketlist.items.length,
+              found: String(found?.length ?? 0),
+              all: String(bucketlist.items.length ?? 0),
             })
           }}
         </p>
       </div>
       <div class="flex items-center">
-        <router-link
-          tag="button"
-          :to="unlocked ? `/reward/${bucketlist.id}` : '/collection'"
-          class="rounded-xl border-2 bg-green px-4 py-3 text-center font-bold capitalize leading-none"
-          >{{ $t(unlocked ? 'reward' : 'list') }}</router-link
+        <router-link :to="unlocked ? `/reward/${bucketlist.id}` : '/collection'">
+          <button
+            type="button"
+            class="rounded-xl border-2 bg-green px-4 py-3 text-center font-bold capitalize leading-none"
+          >
+            {{ $t(unlocked ? 'reward' : 'list') }}
+          </button></router-link
         >
       </div>
     </article>
@@ -76,7 +78,7 @@
           <AuthorDetails :item="item" />
         </template>
       </Collapsible>
-      <Collapsible v-if="item.video_embed" class="my-4">
+      <Collapsible v-if="item.video_embed && item.video_thumbnail" class="my-4">
         <template #summary>
           <VideoSummary
             :thumbnail="item.video_thumbnail"
@@ -87,8 +89,8 @@
         <template #content>
           <ResponsiveVideoEmbed
             :src="item.video_embed"
-            :width="item.video_aspect_ratio.width"
-            :height="item.video_aspect_ratio.height"
+            :width="item.video_aspect_ratio?.width"
+            :height="item.video_aspect_ratio?.height"
           />
         </template>
       </Collapsible>
@@ -124,22 +126,25 @@ import AuthorSummary from '@/components/author/AuthorSummary.vue'
 import AuthorDetails from '@/components/author/AuthorDetails.vue'
 import HistoryBack from '@/components/misc/HistoryBack.vue'
 import ConfirmButton from '@/components/forms/ConfirmButton.vue'
+import Bucketlist from '@/models/Bucketlist'
+import Item from '@/models/Item'
 
 const route = useRoute()
 const bucketlistStore = useBucketlistStore()
 const interactionStore = useInteractionStore()
 const itemStore = useItemStore()
 
-const item = ref<any | null>(null) // TODO: add model
-const bucketlist = ref<any | null>(null) // TODO: add model
+const item = ref<Item | null>(null)
+const bucketlist = ref<Bucketlist | null>(null)
 
 const found = computed(() =>
-  bucketlist.value.items.filter((item) => interactionStore.isItemViewed(item.id))
+  bucketlist.value?.items.filter((item) => interactionStore.isItemViewed(item.id))
 )
-const unlocked = computed(() => found.value.length === bucketlist.value.items.length)
+const unlocked = computed(() => found.value?.length === bucketlist.value?.items.length)
 
 onMounted(async () => {
-  const id = route.params.id
+  const { id } = useParams()
+
   item.value = await itemStore.load(id)
   interactionStore.addItemViewed(item.value.id)
   const defaultBucketlist = item.value.bucketlists.find(
@@ -153,6 +158,6 @@ onMounted(async () => {
 })
 
 const codeImage = computed(() => {
-  return `${import.meta.env.VITE_API_URL}/img/${item.value.code}.svg`
+  return `${import.meta.env.VITE_API_URL}/img/${item.value?.code}.svg`
 })
 </script>

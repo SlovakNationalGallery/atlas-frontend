@@ -1,6 +1,7 @@
 <template>
   <div role="link" class="relative" @click="visible = true">
     <ResponsiveImage
+      v-if="story.video_thumbnail"
       class="w-full cursor-pointer rounded-xl object-cover"
       :image="story.video_thumbnail"
     />
@@ -20,8 +21,8 @@
     <div class="relative max-h-full w-full md:max-w-sm">
       <ResponsiveVideoEmbed
         :src="story.video_embed"
-        :width="story.video_aspect_ratio.width"
-        :height="story.video_aspect_ratio.height"
+        :width="story.video_aspect_ratio?.width"
+        :height="story.video_aspect_ratio?.height"
       />
       <button
         type="button"
@@ -37,9 +38,10 @@
 <script setup lang="ts">
 import ResponsiveImage from '@/components/general/ResponsiveImage.vue'
 import ResponsiveVideoEmbed from '@/components/general/ResponsiveVideoEmbed.vue'
+import Story from '@/models/Story'
 
 defineProps<{
-  story: any //TODO: add model
+  story: Story
 }>()
 const visible = ref(false)
 </script>

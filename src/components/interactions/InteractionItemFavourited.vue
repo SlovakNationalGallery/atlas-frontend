@@ -4,15 +4,15 @@
     icon-class="fill-current"
     :label="$t('Saved')"
     v-bind="props"
-    item=""
   />
 </template>
 
 <script setup lang="ts">
 import SvgHeartSmall from '@/components/svg/SvgHeartSmall.vue'
 import InteractionItem from '@/components/interactions/InteractionItem.vue'
+import Item from '@/models/Item'
 
 const props = defineProps<{
-  item: any //TODO: add model
+  item: Item
 }>()
 </script>

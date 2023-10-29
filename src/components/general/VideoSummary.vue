@@ -13,10 +13,12 @@
 </template>
 
 <script setup lang="ts">
+import type { IImage } from '@/models/_Interfaces'
+
 import ResponsiveImage from '@/components/general/ResponsiveImage.vue'
 
 defineProps<{
-  thumbnail: any //TODO: add model
+  thumbnail: IImage
   title?: string
   subtitle?: string
 }>()

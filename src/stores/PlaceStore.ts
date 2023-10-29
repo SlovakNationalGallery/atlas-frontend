@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
-import { useStorage } from '@vueuse/core'
+
+import Place from '@/models/Place'
 
 export const usePlaceStore = defineStore('PlaceStore', {
   state: () => ({
-    places: useStorage('places', {}),
+    places: {} as Record<string, Place>,
   }),
   actions: {
     get(id: string) {
@@ -13,11 +13,11 @@ export const usePlaceStore = defineStore('PlaceStore', {
       }
     },
     async load(id: string) {
-      const response = await axios.get(`/api/places/${id}`)
-      return (this.places[id] = response.data.data)
+      return (this.places[id] = await Place.load(id))
     },
     clearCache() {
       this.places = {}
     },
   },
+  persist: true,
 })

@@ -21,7 +21,7 @@
 <script setup lang="ts">
 defineProps<{
   alt: string
-  offsetTop: number
+  offsetTop?: number
   src: string
   srcset: string
 }>()

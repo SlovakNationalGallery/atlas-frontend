@@ -13,7 +13,9 @@
 </template>
 
 <script setup lang="ts">
+import Place from '@/models/Place'
+
 defineProps<{
-  place: any //TODO: add model
+  place: Place
 }>()
 </script>

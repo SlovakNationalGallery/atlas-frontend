@@ -13,10 +13,14 @@
 </template>
 
 <script setup lang="ts">
+import type { Component } from 'vue'
+
+import Item from '@/models/Item'
+
 defineProps<{
-  item: any //TODO: add model
+  item: Item
   label: string
-  icon: any //TODO: add model
+  icon: Component
   iconClass?: string
 }>()
 </script>

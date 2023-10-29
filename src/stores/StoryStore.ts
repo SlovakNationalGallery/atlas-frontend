@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
-import { useStorage } from '@vueuse/core'
+
+import Story from '@/models/Story'
 
 export const useStoryStore = defineStore('StoryStore', {
   state: () => ({
-    stories: useStorage('stories', {}),
+    stories: {} as Record<string, Story>,
   }),
+
   actions: {
     get(id: string) {
       if (id in this.stories) {
@@ -13,11 +14,11 @@ export const useStoryStore = defineStore('StoryStore', {
       }
     },
     async load(id: string) {
-      const response = await axios.get(`/api/stories/${id}`)
-      return (this.stories[id] = response.data.data)
+      return (this.stories[id] = await Story.load(id))
     },
     clearCache() {
       this.stories = {}
     },
   },
+  persist: true,
 })

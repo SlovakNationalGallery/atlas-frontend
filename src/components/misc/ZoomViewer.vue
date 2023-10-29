@@ -5,11 +5,13 @@
 <script setup lang="ts">
 import OpenSeaDragon from 'openseadragon'
 
+import type { IImage } from '@/models/_Interfaces'
+
 const props = defineProps<{
-  tileSources: any[] // TODO: add model
+  tileSources: IImage[]
 }>()
 
-const viewer = ref<OpenSeaDragon | null>(null)
+const viewer = ref<OpenSeadragon.Viewer | null>(null)
 //TODO: navigation for multiple images
 
 onMounted(() => {

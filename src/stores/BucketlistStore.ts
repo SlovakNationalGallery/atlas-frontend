@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
-import { useStorage } from '@vueuse/core'
-import axios from 'axios'
+
+import Bucketlist from '@/models/Bucketlist'
 
 export const useBucketlistStore = defineStore('BucketlistStore', {
   state: () => ({
-    bucketlists: useStorage('bucketlists', {}) as any, // TODO: add model
+    bucketlists: {} as Record<string, Bucketlist>,
   }),
   actions: {
     get(id: string) {
@@ -13,11 +13,11 @@ export const useBucketlistStore = defineStore('BucketlistStore', {
       }
     },
     async load(id: string) {
-      const response = await axios.get(`/api/bucketlists/${id}`)
-      return (this.bucketlists[id] = response.data.data)
+      return (this.bucketlists[id] = await Bucketlist.load(id))
     },
     clearCache() {
-      this.bucketlists = []
+      this.bucketlists = {}
     },
   },
+  persist: true,
 })

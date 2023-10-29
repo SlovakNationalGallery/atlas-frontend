@@ -13,7 +13,9 @@
 </template>
 
 <script setup lang="ts">
+import Item from '@/models/Item'
+
 defineProps<{
-  item: any // TODO: add model
+  item: Item
 }>()
 </script>

@@ -1,4 +1,3 @@
-import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 
 const getBrowserLocale = () => {
@@ -14,6 +13,7 @@ const getBrowserLocale = () => {
 
 export const useLocaleStore = defineStore('LocaleStore', {
   state: () => ({
-    locale: useStorage('locale', getBrowserLocale()),
+    locale: getBrowserLocale(),
   }),
+  persist: true,
 })

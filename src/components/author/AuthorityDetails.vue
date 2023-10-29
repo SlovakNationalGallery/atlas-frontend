@@ -42,12 +42,14 @@ import axios from 'axios'
 
 import ItemPreview from '@/components/general/ItemPreview.vue'
 import ItemImage from '@/components/general/ItemImage.vue'
+import Authority from '@/models/Authority'
+import Item from '@/models/Item'
 
 const props = defineProps<{
-  authority: any // TODO: add model
+  authority: Authority
 }>()
-const relatedItems = ref<any[]>([]) // TODO: add model
-const previewItem = ref<any | null>(null) // TODO: add model
+const relatedItems = ref<Item[]>([])
+const previewItem = ref<Item | null>(null)
 const isLoading = ref(true)
 
 onMounted(async () => {
@@ -56,7 +58,7 @@ onMounted(async () => {
       const response = await axios.get(
         `/api/related_items/${props.authority.related_items.join(',')}`
       )
-      relatedItems.value = response.data.data
+      relatedItems.value = response.data.data.map((item: any) => new Item(item))
     } catch (error) {
       console.error(error)
     } finally {

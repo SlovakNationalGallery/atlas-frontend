@@ -59,18 +59,21 @@
 </template>
 
 <script setup lang="ts">
+import type { ILink } from '@/models/_Interfaces'
+
+import Story from '@/models/Story'
 import ResponsiveImageWithSizes from '@/components/general/ResponsiveImageWithSizes.vue'
 import StoryVideoLightbox from '@/components/interactions/StoryVideoLightbox.vue'
 
 const props = defineProps<{
-  story: any //TODO: add model
-  linkId?: number
+  story: Story
+  linkId?: string
   active?: boolean
   first?: boolean
 }>()
 
 const emit = defineEmits<{
-  navigate: [link: string]
+  navigate: [link: ILink]
   undo: []
 }>()
 

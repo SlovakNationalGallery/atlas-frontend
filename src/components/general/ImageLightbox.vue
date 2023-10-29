@@ -16,7 +16,7 @@
     </button>
   </div>
   <div
-    v-if="visible"
+    v-if="visible && images"
     class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
     @click="visible = false"
   >
@@ -42,16 +42,18 @@
 </template>
 
 <script setup lang="ts">
+import type { IImage } from '@/models/_Interfaces'
+
 import ZoomViewer from '@/components/misc/ZoomViewer.vue'
 import ItemImage from '@/components/general/ItemImage.vue'
 
 defineProps<{
   alt: string
-  offsetTop: number
   src: string
   srcset: string
-  images: string[]
-  imageAspectRatio: number
+  offsetTop?: number
+  images?: IImage[]
+  imageAspectRatio?: number
   imgClass?: string
 }>()
 

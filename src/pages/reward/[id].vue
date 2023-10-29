@@ -18,13 +18,13 @@
 
 <script setup lang="ts">
 import ImageLightbox from '@/components/general/ImageLightbox.vue'
+import Bucketlist from '@/models/Bucketlist'
 
-const route = useRoute()
 const bucketlistStore = useBucketlistStore()
-const bucketlist = ref<any | null>(null) // TODO: add model
+const bucketlist = ref<Bucketlist | null>(null)
 
 onMounted(async () => {
-  const id = route.params.id
+  const { id } = useParams()
   bucketlist.value = await bucketlistStore.load(id)
 })
 </script>

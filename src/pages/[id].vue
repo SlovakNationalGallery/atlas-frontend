@@ -12,13 +12,14 @@ import Timeline from '@/components/timeline/Timeline.vue'
 
 // TODO: do we need this if we have /collection?
 
-const route = useRoute()
-const itemStore = useItemStore()
+// const itemStore = useItemStore()
 const bucketlistId = import.meta.env.VITE_DEFAULT_BUCKETLIST
 
 onMounted(async () => {
-  if (route.params.id) {
-    itemStore.fetch(route.params.id)
+  const { id } = useParams()
+
+  if (id) {
+    // itemStore.fetch(id)
   }
 })
 </script>

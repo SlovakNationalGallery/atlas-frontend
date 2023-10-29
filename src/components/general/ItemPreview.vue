@@ -41,9 +41,10 @@
 <script setup lang="ts">
 import WebumeniaButton from '@/components/forms/WebumeniaButton.vue'
 import ConfirmButton from '@/components/forms/ConfirmButton.vue'
+import Item from '@/models/Item'
 
 defineProps<{
-  item: any //TODO: add model
+  item: Item
 }>()
 
 const emit = defineEmits<{

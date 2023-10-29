@@ -16,7 +16,9 @@
 </template>
 
 <script setup lang="ts">
+import Authority from '@/models/Authority'
+
 defineProps<{
-  authority: any // TODO: add model
+  authority: Authority
 }>()
 </script>

@@ -17,14 +17,14 @@
   </div>
   <div v-if="place" class="relative h-full border-black px-4 pb-24 pt-8">
     <div v-if="place.code" class="absolute -top-8 inline-block rounded-md bg-black p-1.5">
-      <img class="h-9 w-9" :src="`/img/${place.code}.svg`" :alt="place.code" />
+      <img class="h-9 w-9" :src="codeImage" :alt="place.code" />
     </div>
     <h2 class="text-1.5xl font-bold">{{ place.title }}</h2>
     <div v-if="place.location_formatted" class="text-lg text-gray-dark">
       {{ $t('Location') }}: {{ place.location_formatted }}
     </div>
     <div class="my-4 space-y-4 markdown" v-html="place.description"></div>
-    <Collapsible v-if="place.video_embed" :model-value="true" class="my-4">
+    <Collapsible v-if="place.video_embed && place.video_thumbnail" :model-value="true" class="my-4">
       <template #summary>
         <VideoSummary
           :thumbnail="place.video_thumbnail"
@@ -35,8 +35,8 @@
       <template #content>
         <ResponsiveVideoEmbed
           :src="place.video_embed"
-          :width="place.video_aspect_ratio.width"
-          :height="place.video_aspect_ratio.height"
+          :width="place.video_aspect_ratio?.width"
+          :height="place.video_aspect_ratio?.height"
         />
       </template>
     </Collapsible>
@@ -67,15 +67,21 @@ import StoryButton from '@/components/forms/StoryButton.vue'
 import VideoSummary from '@/components/general/VideoSummary.vue'
 import HistoryBack from '@/components/misc/HistoryBack.vue'
 import ResponsiveVideoEmbed from '@/components/general/ResponsiveVideoEmbed.vue'
+import Place from '@/models/Place'
 
 const route = useRoute()
 const interactionStore = useInteractionStore()
 const placeStore = usePlaceStore()
-const place = ref<any | null>(null) // TODO: add model
+const place = ref<Place | null>(null)
 
 onMounted(async () => {
-  const id = route.params.id
+  const { id } = useParams()
+
   place.value = await placeStore.load(id)
-  interactionStore.addPlaceViewed(place.value.id)
+  place.value?.id && interactionStore.addPlaceViewed(place.value.id)
+})
+
+const codeImage = computed(() => {
+  return `${import.meta.env.VITE_API_URL}/img/${place.value?.code}.svg`
 })
 </script>

@@ -13,7 +13,9 @@
 </template>
 
 <script setup lang="ts">
+import Section from '@/models/Section'
+
 defineProps<{
-  section: any //TODO: add model
+  section: Section
 }>()
 </script>

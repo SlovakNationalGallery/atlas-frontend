@@ -9,8 +9,8 @@
           unlocked
             ? $t('All artworks found')
             : $t(':found of :all artworks found', {
-                found: found.length,
-                all: bucketlist.items.length,
+                found: String(found?.length ?? 0),
+                all: String(bucketlist.items.length ?? 0),
               })
         }}
       </p>
@@ -58,7 +58,7 @@
         </Thumbnail>
       </router-link>
     </div>
-    <div v-if="found.length">
+    <div v-if="found?.length">
       <h3 class="text-1.5xl font-medium leading-6">{{ $t('Found') }}</h3>
       <div class="mt-4 flex flex-col gap-y-4">
         <router-link v-for="item in found" :key="item.id" :to="`/item/${item.id}`">
@@ -82,13 +82,14 @@ import ItemThumbnail from '@/components/general/ItemThumbnail.vue'
 import LockedItemThumbnail from '@/components/bucketlist/LockedItemThumbnail.vue'
 import ResponsiveImageWithSizes from '@/components/general/ResponsiveImageWithSizes.vue'
 import Thumbnail from '@/components/general/Thumbnail.vue'
+import Bucketlist from '@/models/Bucketlist'
 
 const props = defineProps<{
   id: string
 }>()
 const bucketlistStore = useBucketlistStore()
 const interactionStore = useInteractionStore()
-const bucketlist = ref<any | null>(null) // TODO: add model
+const bucketlist = ref<Bucketlist | null>(null)
 
 const found = computed(() => {
   return bucketlist.value?.items.filter((item) => interactionStore.isItemViewed(item.id))
@@ -98,10 +99,10 @@ const notFound = computed(() => {
   return bucketlist.value?.items.filter((item) => !interactionStore.isItemViewed(item.id))
 })
 
-const unlocked = computed(() => !notFound.value.length)
+const unlocked = computed(() => !notFound.value?.length)
 
 onMounted(async () => {
-  bucketlist.value = bucketlistStore.get(props.id)
+  bucketlist.value = bucketlistStore.get(props.id)!
   bucketlist.value = await bucketlistStore.load(props.id)
 })
 </script>
