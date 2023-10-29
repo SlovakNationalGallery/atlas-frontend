@@ -11,9 +11,16 @@ const getBrowserLocale = () => {
   return navigatorLocale.trim().split(/-|_/)[0]
 }
 
-export const useLocaleStore = defineStore('LocaleStore', {
-  state: () => ({
-    locale: getBrowserLocale(),
-  }),
-  persist: true,
-})
+export const useLocaleStore = defineStore(
+  'LocaleStore',
+  () => {
+    const locale = ref(getBrowserLocale())
+
+    return {
+      locale,
+    }
+  },
+  {
+    persist: true,
+  }
+)
