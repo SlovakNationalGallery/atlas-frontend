@@ -20,7 +20,7 @@ export const useInteractionStore = defineStore(
     const activeStory = computed(() => {
       if (active.value !== undefined && active.value.type === 'story') {
         const storiesStore = useStoryStore()
-        return storiesStore.get(active.value!.id)
+        return storiesStore.get(active.value.id)
       }
     })
 
@@ -132,7 +132,7 @@ export const useInteractionStore = defineStore(
     function hasVisitedAllLinks(id: string) {
       const storyStore = useStoryStore()
       const story = storyStore.get(id)
-      return story?.links.every((link) => isVisited(link.story_id))
+      return !story ? true : story?.links.every((link) => isVisited(link.story_id))
     }
 
     function clear() {

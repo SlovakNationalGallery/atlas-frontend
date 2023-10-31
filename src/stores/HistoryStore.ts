@@ -7,13 +7,13 @@ export const useHistoryStore = defineStore('HistoryStore', () => {
     history.value = history
   }
 
-  function getState() {
+  function get() {
     return history.value?.state
   }
 
   return {
     history,
     set,
-    getState,
+    get,
   }
 })

@@ -3,13 +3,13 @@
     <img
       v-if="first"
       class="mx-auto mb-8 h-40 markdown"
-      src="../../img/interaction-intro-ester.svg"
+      src="@/img/interaction-intro-ester.svg"
       alt="Ester"
     />
     <img
       v-else-if="activeOrTransitioning"
       class="h-12 w-12 rounded-xl object-cover"
-      src="../../img/avatar-ester.png"
+      src="@/img/avatar-ester.png"
       alt="Avatar"
     />
 
