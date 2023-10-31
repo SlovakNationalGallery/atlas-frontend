@@ -1,19 +1,11 @@
 import { defineStore } from 'pinia'
 
+import type { RouterHistory } from 'vue-router/auto'
+
 export const useHistoryStore = defineStore('HistoryStore', () => {
-  const history = ref<any>(null)
-
-  function set(history: any) {
-    history.value = history
-  }
-
-  function get() {
-    return history.value?.state
-  }
+  const history = ref<RouterHistory | null>(null)
 
   return {
     history,
-    set,
-    get,
   }
 })
