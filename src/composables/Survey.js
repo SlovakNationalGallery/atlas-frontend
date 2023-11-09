@@ -4,7 +4,6 @@ import { useStorage } from '@vueuse/core'
 import { createPopup } from '@typeform/embed'
 import '@typeform/embed/build/css/popup.css'
 import { getActiveLanguage } from 'laravel-vue-i18n'
-import { useInteractionStore } from '../stores/InteractionStore'
 
 export function useSurvey() {
     const interactionStore = useInteractionStore()

@@ -4,8 +4,7 @@
 </template>
 
 <script setup>
-import Header from './components/Header.vue'
-import { onMounted } from 'vue'
+import Header from './components/layout/Header.vue'
 
 const setViewHeight = () => {
     let vh = window.innerHeight * 0.01
