@@ -2,22 +2,33 @@ import { defineStore } from 'pinia'
 
 import Bucketlist from '@/models/Bucketlist'
 
-export const useBucketlistStore = defineStore('BucketlistStore', {
-  state: () => ({
-    bucketlists: {} as Record<string, Bucketlist>,
-  }),
-  actions: {
-    get(id: string) {
-      if (id in this.bucketlists) {
-        return this.bucketlists[id]
+export const useBucketlistStore = defineStore(
+  'BucketlistStore',
+  () => {
+    const bucketlists = ref<Record<string, Bucketlist>>({})
+
+    function get(id: string) {
+      if (id in bucketlists.value) {
+        return bucketlists.value[id]
       }
-    },
-    async load(id: string) {
-      return (this.bucketlists[id] = await Bucketlist.load(id))
-    },
-    clearCache() {
-      this.bucketlists = {}
-    },
+    }
+
+    async function load(id: string) {
+      return (bucketlists.value[id] = await Bucketlist.load(id))
+    }
+
+    function clearCache() {
+      bucketlists.value = {}
+    }
+
+    return {
+      bucketlists,
+      get,
+      load,
+      clearCache,
+    }
   },
-  persist: true,
-})
+  {
+    persist: true,
+  }
+)

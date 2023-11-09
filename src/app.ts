@@ -40,7 +40,7 @@ app.use(i18nVue, {
   resolve: (lang: string) => import(`./lang/${lang}.json`),
 })
 
-const historyStore = useHistoryStore()
-historyStore.set(history)
+const { history: historyState } = toRefs(useHistoryStore())
+historyState.value = history
 
 app.mount('#app')

@@ -12,7 +12,7 @@
               </h1>
             </div>
             <div>
-              <img src="../../img/about-ester.png" />
+              <img src="@/img/about-ester.png" />
             </div>
           </div>
 
@@ -98,7 +98,7 @@
 
             <img
               class="mt-8 max-w-[8rem]"
-              src="../../img/eea_grants.png"
+              src="@/img/eea_grants.png"
               alt="Iceland Lichtenstein Norway grants"
             />
           </template>
@@ -152,9 +152,9 @@
 </template>
 
 <script setup lang="ts">
-import AboutCollapsible from './AboutCollapsible.vue'
-import CardModal from '../layout/CardModal.vue'
-import ConfirmButton from '../forms/ConfirmButton.vue'
+import AboutCollapsible from '@/components/about/AboutCollapsible.vue'
+import CardModal from '@/components/layout/CardModal.vue'
+import ConfirmButton from '@/components/forms/ConfirmButton.vue'
 
 defineProps<{
   opened: boolean

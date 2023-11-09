@@ -4,10 +4,10 @@
 
 <script setup lang="ts">
 const router = useRouter()
-const historyStore = useHistoryStore()
+const { history } = toRefs(useHistoryStore())
 
 const back = () => {
-  if (historyStore.getState().back) {
+  if (history.value?.state.back) {
     router.back()
   } else {
     router.push('/')

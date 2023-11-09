@@ -1,24 +1,34 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 
 import Section from '@/models/Section'
 
-export const useSectionStore = defineStore('SectionStore', {
-  state: () => ({
-    sections: {} as Record<string, Section>,
-  }),
-  actions: {
-    get(id: string) {
-      if (id in this.sections) {
-        return this.sections[id]
+export const useSectionStore = defineStore(
+  'SectionStore',
+  () => {
+    const sections = ref<Record<string, Section>>({})
+
+    function get(id: string) {
+      if (id in sections.value) {
+        return sections.value[id]
       }
-    },
-    async load(id: string) {
-      return (this.sections[id] = await Section.load(id))
-    },
-    clearCache() {
-      this.sections = {}
-    },
+    }
+
+    async function load(id: string) {
+      return (sections.value[id] = await Section.load(id))
+    }
+
+    function clearCache() {
+      sections.value = {}
+    }
+
+    return {
+      sections,
+      get,
+      load,
+      clearCache,
+    }
   },
-  persist: true,
-})
+  {
+    persist: true,
+  }
+)

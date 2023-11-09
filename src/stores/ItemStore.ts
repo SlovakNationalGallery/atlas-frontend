@@ -3,31 +3,34 @@ import axios from 'axios'
 
 import Item from '@/models/Item'
 
-export const useItemStore = defineStore('ItemStore', {
-  state: () => ({
-    items: {} as Record<string, Item>,
-    collectionLink: null,
-  }),
-  actions: {
-    get(id: string) {
-      if (id in this.items) {
-        return this.items[id]
-      }
-    },
-    async load(id: string) {
-      return (this.items[id] = await Item.load(id))
-    },
-    clearCollectionLink() {
-      this.collectionLink = null
-    },
-    clearCache() {
-      this.items = {}
-    },
-    async getCollectionLink() {
-      const interactionStore = useInteractionStore()
+export const useItemStore = defineStore(
+  'ItemStore',
+  () => {
+    const items = ref<Record<string, Item>>({})
+    const collectionLink = ref<string | null>(null)
 
-      if (this.collectionLink) {
-        return this.collectionLink
+    function get(id: string) {
+      if (id in items.value) {
+        return items.value[id]
+      }
+    }
+
+    async function load(id: string) {
+      return (items.value[id] = await Item.load(id))
+    }
+
+    function clearCollectionLink() {
+      collectionLink.value = null
+    }
+
+    function clearCache() {
+      items.value = {}
+    }
+
+    async function getCollectionLink() {
+      const interactionStore = useInteractionStore()
+      if (collectionLink.value) {
+        return collectionLink.value
       } else {
         const response = (await axios
           .post('/api/collections', {
@@ -37,16 +40,30 @@ export const useItemStore = defineStore('ItemStore', {
             console.log(err)
           })) as any
         const collectionLink = response.data.url
-        this.collectionLink = collectionLink
+        collectionLink.value = collectionLink
         return collectionLink
       }
-    },
-    async fetch() {
-      this.clearCollectionLink()
-      this.items = {}
+    }
+
+    async function fetch() {
+      clearCollectionLink()
+      items.value = {}
       // todo
       // this.viewedIds = (await axios.get(`/api/collections/${collectionId}`)).data
-    },
+    }
+
+    return {
+      items,
+      collectionLink,
+      get,
+      load,
+      clearCollectionLink,
+      clearCache,
+      getCollectionLink,
+      fetch,
+    }
   },
-  persist: true,
-})
+  {
+    persist: true,
+  }
+)
