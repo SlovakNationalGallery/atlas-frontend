@@ -1,19 +1,22 @@
 <template>
-    <Thumbnail>
-        <template #image>
-            <ResponsiveImageWithSizes
-                class="h-full w-full rounded-xl object-cover"
-                :image="{ src: item.image_src, srcset: item.image_srcset }"
-            />
-        </template>
-        <template #title>{{ item.title }}</template>
-        <template #description>{{ item.author }}<br />{{ item.dating }}</template>
-    </Thumbnail>
+  <Thumbnail>
+    <template #image>
+      <ResponsiveImageWithSizes
+        class="h-full w-full rounded-xl object-cover"
+        :image="{ src: item.image_src, srcset: item.image_srcset }"
+      />
+    </template>
+    <template #title>{{ item.title }}</template>
+    <template #description>{{ item.author }}<br />{{ item.dating }}</template>
+  </Thumbnail>
 </template>
 
-<script setup>
-import ResponsiveImageWithSizes from './ResponsiveImageWithSizes.vue'
-import Thumbnail from './Thumbnail.vue'
+<script setup lang="ts">
+import Thumbnail from '@/components/general/Thumbnail.vue'
+import ResponsiveImageWithSizes from '@/components/general/ResponsiveImageWithSizes.vue'
+import Item from '@/models/Item'
 
-const props = defineProps(['item'])
+defineProps<{
+  item: Item
+}>()
 </script>

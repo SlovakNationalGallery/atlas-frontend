@@ -60,3 +60,14 @@
         font-weight: bold;
     }
 }
+
+ /* find better place */
+
+.interactions-enter-active,
+.interactions-leave-active {
+    transition: all 0.7s ease;
+}
+.interactions-enter-from,
+.interactions-leave-to {
+    opacity: 0;
+}

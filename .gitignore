@@ -25,6 +25,8 @@ dist-ssr
 *.sln
 *.sw?
 
+src/app.js
 auto-imports.d.ts
 components.d.ts
-/public/fonts/
+typed-router.d.ts
+/public/fonts/*

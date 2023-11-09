@@ -1,8 +1,11 @@
 <template>
-    <svg class="h-8 w-8 fill-none stroke-current stroke-2 [stroke-linecap:round] [stroke-linejoin:round]">
-        <path d="M16 7C6 7 2 16 2 16C2 16 6 25 16 25C26 25 30 16 30 16C30 16 26 7 16 7Z" />
-        <path
-            d="M16 21C18.7614 21 21 18.7614 21 16C21 13.2386 18.7614 11 16 11C13.2386 11 11 13.2386 11 16C11 18.7614 13.2386 21 16 21Z"
-        />
-    </svg>
+  <svg
+    class="h-8 w-8 fill-none stroke-current stroke-2 [stroke-linecap:round] [stroke-linejoin:round]"
+  >
+    <path d="M16 7C6 7 2 16 2 16C2 16 6 25 16 25C26 25 30 16 30 16C30 16 26 7 16 7Z" />
+    <path
+      d="M16 21C18.7614 21 21 18.7614 21 16C21 13.2386 18.7614 11 16 11C13.2386 11 11 13.2386 11 16C11 18.7614 13.2386 21 16 21Z"
+    />
+  </svg>
 </template>
+

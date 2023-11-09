@@ -1,79 +1,87 @@
 <template>
-    <div class="relative w-full border-b-2 border-black bg-gray-softest" v-if="place">
-        <ImageMovable
-            v-if="route.query.edit"
-            :alt="place.title"
-            :src="place.image.src"
-            :srcset="place.image.srcset"
-            :offset-top="place.offset_top"
+  <div v-if="place" class="relative w-full border-b-2 border-black bg-gray-softest">
+    <ImageMovable
+      v-if="route.query.edit"
+      :alt="place.title"
+      :src="place.image.src"
+      :srcset="place.image.srcset"
+      :offset-top="place.offset_top"
+    />
+    <ImageLightbox
+      v-else
+      :alt="place.title"
+      :src="place.image.src"
+      :srcset="place.image.srcset"
+      :offset-top="place.offset_top"
+    />
+  </div>
+  <div v-if="place" class="relative h-full border-black px-4 pb-24 pt-8">
+    <div v-if="place.code" class="absolute -top-8 inline-block rounded-md bg-black p-1.5">
+      <img class="h-9 w-9" :src="codeImage" :alt="place.code" />
+    </div>
+    <h2 class="text-1.5xl font-bold">{{ place.title }}</h2>
+    <div v-if="place.location_formatted" class="text-lg text-gray-dark">
+      {{ $t('Location') }}: {{ place.location_formatted }}
+    </div>
+    <div class="my-4 space-y-4 markdown" v-html="place.description"></div>
+    <Collapsible v-if="place.video_embed && place.video_thumbnail" :model-value="true" class="my-4">
+      <template #summary>
+        <VideoSummary
+          :thumbnail="place.video_thumbnail"
+          :title="place.video_title"
+          :subtitle="place.video_subtitle"
         />
-        <ImageLightbox
-            v-else
-            :alt="place.title"
-            :src="place.image.src"
-            :srcset="place.image.srcset"
-            :offset-top="place.offset_top"
+      </template>
+      <template #content>
+        <ResponsiveVideoEmbed
+          :src="place.video_embed"
+          :width="place.video_aspect_ratio?.width"
+          :height="place.video_aspect_ratio?.height"
         />
+      </template>
+    </Collapsible>
+    <StoryButton v-if="place.story_id" :story-id="place.story_id" class="my-4" />
+  </div>
+  <div
+    class="pointer-events-none fixed bottom-0 h-24 w-full bg-gradient-to-t from-white to-transparent md:max-w-lg"
+  >
+    <div class="p-4 pt-8">
+      <div class="pointer-events-auto flex space-x-4">
+        <HistoryBack v-slot="{ back }">
+          <ConfirmButton class="group bg-white" @click="back">
+            <SvgBack class="mr-2 group-active:stroke-white" />
+            {{ $t('Back') }}
+          </ConfirmButton>
+        </HistoryBack>
+      </div>
     </div>
-    <div class="relative h-full border-black px-4 pb-24 pt-8" v-if="place">
-        <div class="absolute -top-8 inline-block rounded-md bg-black p-1.5" v-if="place.code">
-            <img class="h-9 w-9" :src="`/img/${place.code}.svg`" :alt="place.code" />
-        </div>
-        <h2 class="text-1.5xl font-bold">{{ place.title }}</h2>
-        <div class="text-lg text-gray-dark" v-if="place.location_formatted">
-            {{ $t('Location') }}: {{ place.location_formatted }}
-        </div>
-        <div class="my-4 space-y-4 markdown" v-html="place.description"></div>
-        <Collapsible v-if="place.video_embed" :open="true" class="my-4">
-            <template v-slot:summary>
-                <VideoSummary
-                    :thumbnail="place.video_thumbnail"
-                    :title="place.video_title"
-                    :subtitle="place.video_subtitle"
-                />
-            </template>
-            <template v-slot:content>
-                <ResponsiveVideoEmbed
-                    :src="place.video_embed"
-                    :width="place.video_aspect_ratio.width"
-                    :height="place.video_aspect_ratio.height"
-                />
-            </template>
-        </Collapsible>
-        <StoryButton :storyId="place.story_id" class="my-4" v-if="place.story_id" />
-    </div>
-    <div class="pointer-events-none fixed bottom-0 h-24 w-full bg-gradient-to-t from-white to-transparent md:max-w-lg">
-        <div class="p-4 pt-8">
-            <div class="pointer-events-auto flex space-x-4">
-                <HistoryBack v-slot="{ back }">
-                    <ConfirmButton class="group bg-white" @click="back">
-                        <SvgBack class="mr-2 group-active:stroke-white" />
-                        {{ $t('Back') }}
-                    </ConfirmButton>
-                </HistoryBack>
-            </div>
-        </div>
-    </div>
+  </div>
 </template>
 
-<script setup>
-import Collapsible from '~/components/general/Collapsible.vue'
-import ConfirmButton from '~/components/forms/ConfirmButton.vue'
-import ImageLightbox from '~/components/general/ImageLightbox.vue'
-import ImageMovable from '~/components/general/ImageMovable.vue'
-import StoryButton from '~/components/forms/StoryButton.vue'
-import VideoSummary from '~/components/general/VideoSummary.vue'
-import HistoryBack from '~/components/misc/HistoryBack.vue'
-import ResponsiveVideoEmbed from '~/components/general/ResponsiveVideoEmbed.vue'
+<script setup lang="ts">
+import Collapsible from '@/components/general/Collapsible.vue'
+import ConfirmButton from '@/components/forms/ConfirmButton.vue'
+import ImageLightbox from '@/components/general/ImageLightbox.vue'
+import ImageMovable from '@/components/general/ImageMovable.vue'
+import StoryButton from '@/components/forms/StoryButton.vue'
+import VideoSummary from '@/components/general/VideoSummary.vue'
+import HistoryBack from '@/components/misc/HistoryBack.vue'
+import ResponsiveVideoEmbed from '@/components/general/ResponsiveVideoEmbed.vue'
+import Place from '@/models/Place'
 
 const route = useRoute()
 const interactionStore = useInteractionStore()
 const placeStore = usePlaceStore()
-const place = ref(null)
+const place = ref<Place | null>(null)
 
 onMounted(async () => {
-    const id = route.params.id
-    place.value = await placeStore.load(id)
-    interactionStore.addPlaceViewed(place.value.id)
+  const { id } = useParams()
+
+  place.value = await placeStore.load(id)
+  place.value?.id && interactionStore.addPlaceViewed(place.value.id)
+})
+
+const codeImage = computed(() => {
+  return `${import.meta.env.VITE_API_URL}/img/${place.value?.code}.svg`
 })
 </script>
