@@ -18,11 +18,6 @@
           :item="itemStore.get(interaction.id)!"
           class="my-4"
         />
-        <InteractionItemViewed
-          v-else-if="interaction.type === 'itemViewed'"
-          :item="itemStore.get(interaction.id)!"
-          class="my-4"
-        />
         <InteractionSectionViewed
           v-else-if="interaction.type === 'sectionViewed'"
           :section="sectionStore.get(interaction.id)!"

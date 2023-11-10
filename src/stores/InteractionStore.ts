@@ -36,24 +36,6 @@ export const useInteractionStore = defineStore(
         .map((interaction) => storiesStore.get(interaction.id))
     })
 
-    const viewedItemIds = computed(() => {
-      return new Set(
-        interactions.value
-          .filter((interaction) => interaction.type === 'itemViewed')
-          .map((interaction) => interaction.id)
-          .slice()
-          .reverse()
-      )
-    })
-
-    const viewedItemsCount = computed(() => {
-      return viewedItemIds.value.size
-    })
-
-    function isItemViewed(id: string) {
-      return viewedItemIds.value.has(id)
-    }
-
     function addStory(id: string) {
       const length = interactions.value.push(
         new Interaction({
@@ -63,33 +45,6 @@ export const useInteractionStore = defineStore(
       )
 
       cursor.value = length - 1
-    }
-
-    function addItemViewed(id: string) {
-      interactions.value.push(
-        new Interaction({
-          type: 'itemViewed',
-          id,
-        })
-      )
-    }
-
-    function addSectionViewed(id: string) {
-      interactions.value.push(
-        new Interaction({
-          type: 'sectionViewed',
-          id,
-        })
-      )
-    }
-
-    function addPlaceViewed(id: string) {
-      interactions.value.push(
-        new Interaction({
-          type: 'placeViewed',
-          id,
-        })
-      )
     }
 
     function selectLink(interaction: Interaction, link: ILink) {
@@ -148,14 +103,7 @@ export const useInteractionStore = defineStore(
       activeStory,
       lastStory,
       stories,
-      viewedItemIds,
-      viewedItemsCount,
-
-      isItemViewed,
       addStory,
-      addItemViewed,
-      addSectionViewed,
-      addPlaceViewed,
       selectLink,
       lastStoryIndex,
       setPreviousActive,

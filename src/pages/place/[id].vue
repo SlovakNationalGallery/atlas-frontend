@@ -70,7 +70,6 @@ import ResponsiveVideoEmbed from '@/components/general/ResponsiveVideoEmbed.vue'
 import Place from '@/models/Place'
 
 const route = useRoute()
-const interactionStore = useInteractionStore()
 const placeStore = usePlaceStore()
 const place = ref<Place | null>(null)
 
@@ -78,7 +77,6 @@ onMounted(async () => {
   const { id } = useParams()
 
   place.value = await placeStore.load(id)
-  place.value?.id && interactionStore.addPlaceViewed(place.value.id)
 })
 
 const codeImage = computed(() => {

@@ -5,7 +5,7 @@ export default class Interaction extends BaseModel {
   public declare name: string
   public declare author: string
   public declare title: string
-  public declare type: 'story' | 'itemFavourited' | 'itemViewed' | 'sectionViewed' | 'placeViewed'
+  public declare type: 'story'
   public declare size: number
 
   public linkId: string | null

@@ -6,8 +6,26 @@ import Item from '@/models/Item'
 export const useItemStore = defineStore(
   'ItemStore',
   () => {
+    //TODO: serialize set to make it persist
+    const itemIds = ref<Set<string>>(new Set())
     const items = ref<Record<string, Item>>({})
     const collectionLink = ref<string | null>(null)
+
+    const viewedItemsCount = computed(() => {
+      return itemIds.value.size
+    })
+
+    function isItemViewed(id: string) {
+      return itemIds.value.has(id)
+    }
+
+    function clear() {
+      itemIds.value.clear()
+    }
+
+    function addItemViewed(id: string) {
+      itemIds.value.add(id)
+    }
 
     function get(id: string) {
       if (id in items.value) {
@@ -28,13 +46,12 @@ export const useItemStore = defineStore(
     }
 
     async function getCollectionLink() {
-      const interactionStore = useInteractionStore()
       if (collectionLink.value) {
         return collectionLink.value
       } else {
         const response = (await axios
           .post('/api/collections', {
-            items: [...interactionStore.viewedItemIds],
+            items: itemIds,
           })
           .catch((err) => {
             console.log(err)
@@ -54,9 +71,16 @@ export const useItemStore = defineStore(
 
     return {
       items,
+      itemIds,
+
+      viewedItemsCount,
+
+      isItemViewed,
+      addItemViewed,
       collectionLink,
       get,
       load,
+      clear,
       clearCollectionLink,
       clearCache,
       getCollectionLink,
