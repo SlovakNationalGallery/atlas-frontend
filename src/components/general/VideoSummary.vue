@@ -4,8 +4,8 @@
       <ResponsiveImage class="h-16 w-16 rounded-xl object-cover" :image="thumbnail" />
     </div>
     <div class="mx-3 self-center">
-      <div class="font-bold">{{ title ?? 'Video' }}</div>
-      <div class="text-sm">
+      <div class="font-bold text-lg">{{ title ?? 'Video' }}</div>
+      <div>
         {{ subtitle ?? $t('Behind the scenes of the exhibition') }}
       </div>
     </div>

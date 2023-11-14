@@ -62,7 +62,7 @@
         <template #summary>
           <AuthoritySummary :authority="authority" />
         </template>
-        <template v-if="authority.biography" #content>
+        <template v-if="authority.biography">
           <AuthorityDetails :authority="authority" />
         </template>
       </Collapsible>
@@ -74,9 +74,7 @@
         <template #summary>
           <AuthorSummary :item="item" />
         </template>
-        <template #content>
-          <AuthorDetails :item="item" />
-        </template>
+        <AuthorDetails :item="item" />
       </Collapsible>
       <Collapsible v-if="item.video_embed && item.video_thumbnail" class="my-4">
         <template #summary>
@@ -86,13 +84,11 @@
             :subtitle="item.video_subtitle"
           />
         </template>
-        <template #content>
-          <ResponsiveVideoEmbed
-            :src="item.video_embed"
-            :width="item.video_aspect_ratio?.width"
-            :height="item.video_aspect_ratio?.height"
-          />
-        </template>
+        <ResponsiveVideoEmbed
+          :src="item.video_embed"
+          :width="item.video_aspect_ratio?.width"
+          :height="item.video_aspect_ratio?.height"
+        />
       </Collapsible>
       <StoryButton v-if="item.story_id" :story-id="item.story_id" class="my-4" />
       <WebumeniaButton :url="item.webumenia_url" class="my-4" />

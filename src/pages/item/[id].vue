@@ -1,30 +1,6 @@
 <template>
   <div v-if="item">
-    <article v-if="bucketlist" class="flex justify-between border-b-2 bg-green/20 p-4 pb-5">
-      <div>
-        <h3 class="font-medium">
-          {{ $t('Scavenger hunt:') }} <span class="italic">{{ bucketlist.title }}</span>
-        </h3>
-        <p class="mt-1 text-2xl font-medium leading-snug">
-          {{
-            $t(':found of :all artworks found', {
-              found: String(found?.length ?? 0),
-              all: String(bucketlist?.items.length ?? 0),
-            })
-          }}
-        </p>
-      </div>
-      <div class="flex items-center">
-        <router-link :to="unlocked ? `/reward/${bucketlist.id}` : '/collection'">
-          <button
-            type="button"
-            class="rounded-xl border-2 bg-green px-4 py-3 text-center font-bold capitalize leading-none"
-          >
-            {{ $t(unlocked ? 'reward' : 'list') }}
-          </button></router-link
-        >
-      </div>
-    </article>
+    <Banner :item="item" />
     <div class="relative w-full border-b-2 border-black bg-gray-softest">
       <ImageMovable
         v-if="route.query.edit"
@@ -62,7 +38,7 @@
         <template #summary>
           <AuthoritySummary :authority="authority" />
         </template>
-        <template v-if="authority.biography" #content>
+        <template v-if="authority.biography">
           <AuthorityDetails :authority="authority" />
         </template>
       </Collapsible>
@@ -74,9 +50,7 @@
         <template #summary>
           <AuthorSummary :item="item" />
         </template>
-        <template #content>
-          <AuthorDetails :item="item" />
-        </template>
+        <AuthorDetails :item="item" />
       </Collapsible>
       <Collapsible v-if="item.video_embed && item.video_thumbnail" class="my-4">
         <template #summary>
@@ -86,13 +60,11 @@
             :subtitle="item.video_subtitle"
           />
         </template>
-        <template #content>
-          <ResponsiveVideoEmbed
-            :src="item.video_embed"
-            :width="item.video_aspect_ratio?.width"
-            :height="item.video_aspect_ratio?.height"
-          />
-        </template>
+        <ResponsiveVideoEmbed
+          :src="item.video_embed"
+          :width="item.video_aspect_ratio?.width"
+          :height="item.video_aspect_ratio?.height"
+        />
       </Collapsible>
       <StoryButton v-if="item.story_id" :story-id="item.story_id" class="my-4" />
       <WebumeniaButton :url="item.webumenia_url" class="my-4" />
@@ -129,37 +101,19 @@ import AuthorDetails from '@/components/author/AuthorDetails.vue'
 import HistoryBack from '@/components/misc/HistoryBack.vue'
 import ConfirmButton from '@/components/forms/ConfirmButton.vue'
 import Item from '@/models/Item'
-import Bucketlist from '@/models/Bucketlist'
+import Banner from '@/components/bucketlist/Banner.vue'
 
 const route = useRoute()
-const bucketlistStore = useBucketlistStore()
 const interactionStore = useInteractionStore()
 const itemStore = useItemStore()
 
 const item = ref<Item>()
-const bucketlist = ref<Bucketlist>()
-
-const found = computed(() =>
-  bucketlist.value?.items.filter((item) => interactionStore.isItemViewed(item.id))
-)
-
-const unlocked = computed(() => found.value?.length === bucketlist.value?.items.length)
 
 onMounted(async () => {
   const { id } = useParams()
 
   item.value = await itemStore.load(id)
   interactionStore.addItemViewed(item.value.id)
-
-  const defaultBucketlist = item.value.bucketlists.find(
-    (bucketlist) => bucketlist.id === import.meta.env.VITE_DEFAULT_BUCKETLIST
-  )
-
-  if (defaultBucketlist) {
-    bucketlist.value =
-      bucketlistStore.get(defaultBucketlist.id) ||
-      (await bucketlistStore.load(defaultBucketlist.id))
-  }
 })
 
 const codeImage = computed(() => {

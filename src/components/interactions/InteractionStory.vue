@@ -45,16 +45,7 @@
       />
       {{ link.title }}
     </button>
-    <button
-      v-show="activeOrTransitioning && !first"
-      type="button"
-      :disabled="!active"
-      class="my-4 flex w-full items-center gap-x-2 rounded-xl text-left text-base leading-8 text-green"
-      @click="emit('undo')"
-    >
-      <SvgArrowUp class="flex-none" />
-      {{ $t('Back to the previous step') }}
-    </button>
+    <BackUp v-show="activeOrTransitioning && !first" :disabled="!active" @click="emit('undo')" />
   </div>
 </template>
 
@@ -64,6 +55,7 @@ import type { ILink } from '@/models/_Interfaces'
 import Story from '@/models/Story'
 import ResponsiveImageWithSizes from '@/components/general/ResponsiveImageWithSizes.vue'
 import StoryVideoLightbox from '@/components/interactions/StoryVideoLightbox.vue'
+import BackUp from '@/components/interactions/BackUp.vue'
 
 const props = defineProps<{
   story: Story

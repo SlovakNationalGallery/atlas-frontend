@@ -42,89 +42,85 @@
 
         <AboutCollapsible :initial-open="true" class="scroll-mt-12 border-b-1 border-gray-softest">
           <template #summary>{{ $t('How to?') }} </template>
-          <template #content>
-            <div class="space-y-4">
-              <ul class="ml-6 list-disc">
-                <li class="pl-2.5">
-                  {{
-                    $t(
-                      'Enter the code next to the artwork into the grid in the app. Feel free to try a random one.'
-                    )
-                  }}
-                </li>
-                <li class="pl-2.5">
-                  {{
-                    $t(
-                      "You'll also find a link to other works by the artist in the artwork's profile."
-                    )
-                  }}
-                </li>
-                <li class="pl-2.5">
-                  {{ $t('You can come back to your artworks later, Atlas remembers them.') }}
-                </li>
-              </ul>
-            </div>
-          </template>
+
+          <div class="space-y-4">
+            <ul class="ml-6 list-disc">
+              <li class="pl-2.5">
+                {{
+                  $t(
+                    'Enter the code next to the artwork into the grid in the app. Feel free to try a random one.'
+                  )
+                }}
+              </li>
+              <li class="pl-2.5">
+                {{
+                  $t(
+                    "You'll also find a link to other works by the artist in the artwork's profile."
+                  )
+                }}
+              </li>
+              <li class="pl-2.5">
+                {{ $t('You can come back to your artworks later, Atlas remembers them.') }}
+              </li>
+            </ul>
+          </div>
         </AboutCollapsible>
         <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
           <template #summary>{{ $t('Settings') }}</template>
-          <template #content>
-            <div class="items-center flex">
-              <div class="grow">{{ $t('Reload the conversation from the beginning') }}</div>
-              <button
-                class="flex-none rounded-xl bg-black py-2 px-3 text-sm font-medium leading-4.5 text-white"
-                @click="shownResetModal = true"
-              >
-                {{ $t('Reset') }}
-              </button>
-            </div>
-          </template>
+
+          <div class="items-center flex">
+            <div class="grow">{{ $t('Reload the conversation from the beginning') }}</div>
+            <button
+              class="flex-none rounded-xl bg-black py-2 px-3 text-sm font-medium leading-4.5 text-white"
+              @click="shownResetModal = true"
+            >
+              {{ $t('Reset') }}
+            </button>
+          </div>
         </AboutCollapsible>
         <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
           <template #summary>{{ $t('About the project') }}</template>
-          <template #content>
-            <div class="space-y-4">
-              <p v-html="$t('about_project_1')"></p>
-              <p v-html="$t('about_project_2')"></p>
-              <p>
-                <a
-                  class="underline hover:no-underline"
-                  href="https://www.sng.sk/sk/vyskum/projekty/ako-porozumiet-digitalnym-zbierkam"
-                  target="_blank"
-                  >{{ $t('More about the project') }}</a
-                >
-              </p>
-            </div>
 
-            <img
-              class="mt-8 max-w-[8rem]"
-              src="@/img/eea_grants.png"
-              alt="Iceland Lichtenstein Norway grants"
-            />
-          </template>
+          <div class="space-y-4">
+            <p v-html="$t('about_project_1')"></p>
+            <p v-html="$t('about_project_2')"></p>
+            <p>
+              <a
+                class="underline hover:no-underline"
+                href="https://www.sng.sk/sk/vyskum/projekty/ako-porozumiet-digitalnym-zbierkam"
+                target="_blank"
+                >{{ $t('More about the project') }}</a
+              >
+            </p>
+          </div>
+
+          <img
+            class="mt-8 max-w-[8rem]"
+            src="@/img/eea_grants.png"
+            alt="Iceland Lichtenstein Norway grants"
+          />
         </AboutCollapsible>
         <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
           <template #summary>{{ $t('Made by') }} lab.SNG</template>
-          <template #content>
-            <ul>
-              <li>Gabriel Balkó: {{ $t('Production') }}</li>
-              <li>Michal Čudrnák: {{ $t('Project lead') }}</li>
-              <li>Dominika Čupková: {{ $t('Video') }}</li>
-              <li>Romana Halgošová: {{ $t('Video') }}</li>
-              <li>Rastislav Chynoranský: {{ $t('Development') }}</li>
-              <li>Zuzana Koblišková: {{ $t('Content, English translation') }}</li>
-              <li>Michaela Kováčová: {{ $t('Content') }}</li>
-              <li>Igor Rjabinin: {{ $t('Development') }}</li>
-              <li>Filip Ruisl: {{ $t('UX design, graphic design') }}</li>
-              <li>František Sebestyén: {{ $t('Development') }}</li>
-              <li>Lukáš Štepanovský: {{ $t('Content, UX design, concept') }}</li>
-              <li>Jana Šuchová: {{ $t('Artist research') }}</li>
-              <li>Barbora Tribulová: {{ $t('Content') }}</li>
-              <li>Katarína Vass: {{ $t('User research') }}</li>
-              <li>Karin Vicianová: {{ $t('Content') }}</li>
-              <li>Ernest Walzel: {{ $t('Development') }}</li>
-            </ul>
-          </template>
+          <ul>
+            <li>Gabriel Balkó: {{ $t('Production') }}</li>
+            <li>Michal Čudrnák: {{ $t('Project lead') }}</li>
+            <li>Dominika Čupková: {{ $t('Video') }}</li>
+            <li>Romana Halgošová: {{ $t('Video') }}</li>
+            <li>Rastislav Chynoranský: {{ $t('Development') }}</li>
+            <li>Mayo Horkovič: {{ $t('Development') }}</li>
+            <li>Zuzana Koblišková: {{ $t('Content, English translation') }}</li>
+            <li>Michaela Kováčová: {{ $t('Content') }}</li>
+            <li>Igor Rjabinin: {{ $t('Development') }}</li>
+            <li>Filip Ruisl: {{ $t('UX design, graphic design') }}</li>
+            <li>František Sebestyén: {{ $t('Development') }}</li>
+            <li>Lukáš Štepanovský: {{ $t('Content, UX design, concept') }}</li>
+            <li>Jana Šuchová: {{ $t('Artist research') }}</li>
+            <li>Barbora Tribulová: {{ $t('Content') }}</li>
+            <li>Katarína Vass: {{ $t('User research') }}</li>
+            <li>Karin Vicianová: {{ $t('Content') }}</li>
+            <li>Ernest Walzel: {{ $t('Development') }}</li>
+          </ul>
         </AboutCollapsible>
       </div>
     </div>

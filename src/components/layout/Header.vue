@@ -1,48 +1,45 @@
 <template>
   <div
-    class="sticky top-0 z-20 flex w-full items-center whitespace-nowrap border-y-2 border-black bg-white"
+    class="header sticky top-0 z-20 flex w-full items-center whitespace-nowrap border-2 border-black bg-white"
+    :class="{ subpage: title && !isOpenedAbout }"
   >
     <HistoryBack v-slot="{ back }">
       <button
         type="button"
-        class="border-r-2"
-        :class="[isFrontpage ? 'border-r-black bg-green p-2' : 'flex-1 border-r-transparent p-3']"
+        class="button border-r-2 border-black bg-blue p-2 text-white"
         @click="isFrontpage ? (isOpenedAbout = !isOpenedAbout) : back()"
       >
-        <SvgBack v-if="route.path !== '/'" />
-        <SvgClose v-else-if="isOpenedAbout" />
-        <SvgLogo v-else />
+        <TransitionScale mode="out-in" :duration="300" :delay="0" appear>
+          <Icon v-if="route.path !== '/'" name="chevron-left" />
+          <Icon v-else-if="isOpenedAbout" name="close" />
+          <Icon v-else name="sng" />
+        </TransitionScale>
       </button>
     </HistoryBack>
-    <h1
-      id="title"
-      class="grow px-2.5 text-1.5xl font-medium"
-      :class="{ 'text-center': !isFrontpage }"
-    >
-      {{ $t(isOpenedAbout ? 'About the App' : title) }}
-      <span v-if="isMyCollection">({{ interactionStore.viewedItemsCount }})</span>
+
+    <h1 id="title" class="grow px-2.5 text-1.5xl font-medium">
+      <TransitionSlide mode="out-in" :duration="300" :delay="0" appear>
+        <div v-if="isOpenedAbout">{{ $t('About the App') }}</div>
+        <div v-else-if="title" class="text-center">{{ title }}</div>
+        <div v-else>{{ $t('Atlas SNG') }}</div>
+      </TransitionSlide>
     </h1>
-    <div v-if="isMyCollection" class="flex-1 border-l-2 border-transparent px-3 text-right">
-      <!-- <button class="rounded-xl bg-green px-3 py-1 text-sm font-bold" @click="scroll('share')">
-                {{ $t('Share') }}
-            </button> -->
-    </div>
-    <LanguageSwitcher v-else-if="isFrontpage" />
-    <ViewedItemsCount
-      v-else
-      class="flex-1 border-l-2 border-l-transparent px-4 py-2"
-      :show-tooltip="isActive"
-    />
+    <ViewedItemsCount class="border-l-2 border-l-transparent px-4 py-2" :show-tooltip="isActive" />
   </div>
 
   <About :opened="isOpenedAbout" />
 </template>
 
 <script setup lang="ts">
+import { TransitionScale, TransitionSlide } from '@morev/vue-transitions'
+
 import ViewedItemsCount from '@/components/misc/ViewedItemsCount.vue'
-import LanguageSwitcher from '@/components/layout/LanguageSwitcher.vue'
 import About from '@/components/about/About.vue'
 import HistoryBack from '@/components/misc/HistoryBack.vue'
+
+const props = defineProps<{
+  title?: string
+}>()
 
 const route = useRoute()
 const interactionStore = useInteractionStore()
@@ -50,10 +47,8 @@ const interactionStore = useInteractionStore()
 const isOpenedAbout = ref(false)
 const isActive = ref(false)
 
-const title = computed(() => (route.meta.title as string) ?? 'Atlas SNG')
-
 const isFrontpage = computed(() => route.path === '/')
-const isMyCollection = computed(() => route.path === '/collection')
+const title = computed(() => props.title ?? route.meta.title)
 
 const displayTooltip = () => {
   isActive.value = true
@@ -62,16 +57,31 @@ const displayTooltip = () => {
   }, 3000)
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const scroll = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({
-    behavior: 'smooth',
-  })
-}
-
 interactionStore.$onAction(({ name }) => {
   if (name === 'addItemViewed' && !interactionStore.viewedItemsCount) {
     displayTooltip()
   }
 })
 </script>
+<style lang="scss" scoped>
+.header {
+  transition: border-color 0.3s ease-in-out;
+
+  .button {
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+      color 0.3s ease-in-out;
+  }
+
+  &.subpage {
+    border-left-color: white;
+    border-right-color: white;
+    border-top-color: white;
+
+    .button {
+      background-color: white !important;
+      border-color: white;
+      color: black;
+    }
+  }
+}
+</style>

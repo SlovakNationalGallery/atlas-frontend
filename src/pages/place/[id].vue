@@ -32,13 +32,11 @@
           :subtitle="place.video_subtitle"
         />
       </template>
-      <template #content>
-        <ResponsiveVideoEmbed
-          :src="place.video_embed"
-          :width="place.video_aspect_ratio?.width"
-          :height="place.video_aspect_ratio?.height"
-        />
-      </template>
+      <ResponsiveVideoEmbed
+        :src="place.video_embed"
+        :width="place.video_aspect_ratio?.width"
+        :height="place.video_aspect_ratio?.height"
+      />
     </Collapsible>
     <StoryButton v-if="place.story_id" :story-id="place.story_id" class="my-4" />
   </div>

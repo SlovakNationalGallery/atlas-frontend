@@ -1,0 +1,44 @@
+:root {
+    --blue: #095CFF;
+    --blue-hover: #214dd1;
+    --white: #FFF;
+    --black: #000;
+    --yellow: #FFC736;
+    --15-black: rgba(0, 0, 0, 0.15);
+    --50-black: rgba(0, 0, 0, 0.5);
+    --15-blue: rgba(26, 27, 255, 0.15);
+    --30-blue: rgba(26, 27, 255, 0.30);
+    --15-blue2: rgba(9, 92, 255, 0.15);
+}
+
+.text-blue {
+    color: var(--blue);
+}
+
+.text-white {
+    color: var(--white);
+}
+
+.text-black {
+    color: var(--black) !important;
+}
+
+.bg-blue {
+    background-color: var(--blue) !important;
+}
+
+.bg-15-blue {
+    background-color: var(--15-blue) !important;
+}
+
+.bg-30-blue {
+    background-color: var(--30-blue) !important;
+}
+
+.bg-white {
+    background-color: var(--white) !important;
+}
+
+.bg-yellow {
+    background-color: var(--yellow) !important;
+}

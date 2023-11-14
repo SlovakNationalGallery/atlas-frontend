@@ -1,18 +1,22 @@
 <template>
-  <div ref="el">
-    <div class="flex cursor-pointer p-4 text-xl" @click="open = !open">
-      <div class="grow">
+  <div ref="el" class="collapsible">
+    <div class="flex cursor-pointer p-4 text-xl" @click="isOpened = !isOpened">
+      <div class="grow font-bold text-xl">
         <slot name="summary"></slot>
       </div>
-      <SvgDownArrow :class="{ 'rotate-180': open }" />
+      <Icon class="icon cursor-pointer" name="chevron-down" :class="{ 'rotate-180': isOpened }" />
     </div>
-    <div v-show="open" class="px-4 pb-4">
-      <slot name="content"></slot>
-    </div>
+    <TransitionExpand>
+      <div v-show="isOpened" class="px-4 pb-4">
+        <slot />
+      </div>
+    </TransitionExpand>
   </div>
 </template>
 
 <script setup lang="ts">
+import { TransitionExpand } from '@morev/vue-transitions'
+
 const props = withDefaults(
   defineProps<{
     initialOpen?: boolean
@@ -23,9 +27,9 @@ const props = withDefaults(
 )
 
 const el = ref<HTMLDivElement | null>(null)
-const open = ref(props.initialOpen)
+const isOpened = ref(props.initialOpen)
 
-watch(open, (value) => {
+watch(isOpened, (value) => {
   if (value) {
     nextTick(() => {
       el.value?.scrollIntoView({
@@ -35,3 +39,10 @@ watch(open, (value) => {
   }
 })
 </script>
+<style scoped lang="scss">
+.collapsible {
+  .icon {
+    transition: transform 0.3s;
+  }
+}
+</style>

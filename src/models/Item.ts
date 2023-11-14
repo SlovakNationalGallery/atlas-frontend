@@ -45,10 +45,6 @@ export default class Item extends BaseModel {
 
   public declare bucketlists: Bucketlist[]
 
-  constructor(o: any) {
-    super(o)
-  }
-
   static load = async (id: string) => {
     const response = await axios.get(`/api/items/${id}`)
     const model = new this(response.data.data)

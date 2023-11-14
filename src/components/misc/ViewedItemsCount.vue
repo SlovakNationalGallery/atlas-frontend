@@ -2,7 +2,7 @@
   <router-link to="/collection" class="relative">
     <div class="flex h-full items-center justify-end">
       <div class="mr-1 text-lg font-bold">{{ interactionStore.viewedItemsCount }}</div>
-      <SvgEye :class="{ '!fill-green': interactionStore.viewedItemsCount }" />
+      <Icon :name="`${interactionStore.viewedItemsCount ? 'eye-filled' : 'eye'}`" />
     </div>
     <Transition
       enter-active-class="transition-all"

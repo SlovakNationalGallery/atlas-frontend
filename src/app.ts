@@ -1,5 +1,7 @@
 import '@/bootstrap'
 import '@/css/style.css'
+import 'virtual:svg-icons-register'
+import '@morev/vue-transitions/styles'
 
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router/auto'
