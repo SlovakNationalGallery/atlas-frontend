@@ -18,7 +18,7 @@ export const useInteractionStore = defineStore(
     })
 
     const activeStory = computed(() => {
-      if (active.value !== undefined && active.value.type === 'story') {
+      if (active.value !== undefined) {
         const storiesStore = useStoryStore()
         return storiesStore.get(active.value.id)
       }
@@ -32,16 +32,12 @@ export const useInteractionStore = defineStore(
       const storiesStore = useStoryStore()
 
       return interactions.value
-        .filter((interaction) => interaction.type === 'story')
         .map((interaction) => storiesStore.get(interaction.id))
     })
 
     function addStory(id: string) {
       const length = interactions.value.push(
-        new Interaction({
-          type: 'story',
-          id,
-        })
+        new Interaction({ id })
       )
 
       cursor.value = length - 1
@@ -53,18 +49,8 @@ export const useInteractionStore = defineStore(
       cursor.value = -1
     }
 
-    function lastStoryIndex(from: number) {
-      let index = typeof from !== 'undefined' ? from : cursor.value
-      while (interactions.value[index].type !== 'story' && index > 0) {
-        index--
-      }
-      return index
-    }
-
     function setPreviousActive(interaction: Interaction) {
-      const index = interactions.value.indexOf(interaction)
-      cursor.value = lastStoryIndex(index - 1)
-
+      cursor.value--
       if (active.value) {
         active.value.linkId = null
       }
@@ -76,7 +62,7 @@ export const useInteractionStore = defineStore(
       const toDelete = interactions.value.indexOf(interaction)
       interactions.value.splice(toDelete, 1)
       if (toDelete <= cursor.value) {
-        cursor.value = lastStoryIndex(cursor.value - 1)
+        cursor.value--
       }
     }
 
@@ -87,7 +73,7 @@ export const useInteractionStore = defineStore(
     function hasVisitedAllLinks(id: string) {
       const storyStore = useStoryStore()
       const story = storyStore.get(id)
-      return !story ? true : story?.links.every((link) => isVisited(link.story_id))
+      return story?.links.every((link) => isVisited(link.story_id))
     }
 
     function clear() {
@@ -105,7 +91,6 @@ export const useInteractionStore = defineStore(
       stories,
       addStory,
       selectLink,
-      lastStoryIndex,
       setPreviousActive,
       remove,
       isVisited,

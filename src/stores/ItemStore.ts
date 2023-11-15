@@ -5,7 +5,7 @@ import Item from '@/models/Item'
 export const useItemStore = defineStore(
   'ItemStore',
   () => {
-    const viewedItemsIds = ref<Set<string>>([])
+    const viewedItemsIds = ref<string[]>([])
     const items = ref<Record<string, Item>>({})
     const collectionLink = ref<string | null>(null)
 

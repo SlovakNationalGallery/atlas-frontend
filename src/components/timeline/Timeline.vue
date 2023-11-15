@@ -5,7 +5,7 @@
       <span>{{ itemStore.viewedItemsCount }}</span>
       <SvgEye :class="{ '!fill-green': itemStore.viewedItemsCount }" />
     </h3>
-    <!-- <template v-if="interactionStore.viewedItemsCount">
+    <!-- <template v-if="storyStore.viewedItemsCount">
             <ShareCollection class="mt-4" />
             <div class="mt-3">
                 {{ $t('Save the link to your artworks and return to them anywhere') }}

@@ -39,8 +39,8 @@
       }"
       @click="emit('navigate', link)"
     >
-      <SvgChatCircle
-        v-if="!activeOrTransitioning || interactionStore.hasVisitedAllLinks(link.story_id)"
+    <SvgChatCircle
+        v-if="!activeOrTransitioning"
         class="flex-none"
       />
       {{ link.title }}
