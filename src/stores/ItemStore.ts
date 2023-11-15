@@ -1,30 +1,30 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-
 import Item from '@/models/Item'
 
 export const useItemStore = defineStore(
   'ItemStore',
   () => {
-    //TODO: serialize set to make it persist
-    const itemIds = ref<Set<string>>(new Set())
+    const viewedItemsIds = ref<Set<string>>([])
     const items = ref<Record<string, Item>>({})
     const collectionLink = ref<string | null>(null)
 
     const viewedItemsCount = computed(() => {
-      return itemIds.value.size
+      return viewedItemsIds.value.length
     })
 
     function isItemViewed(id: string) {
-      return itemIds.value.has(id)
+      return viewedItemsIds.value.includes(id)
     }
 
     function clear() {
-      itemIds.value.clear()
+      viewedItemsIds.value = []
     }
 
     function addItemViewed(id: string) {
-      itemIds.value.add(id)
+      if (!isItemViewed(id)) {
+        viewedItemsIds.value.push(id)
+      }
     }
 
     function get(id: string) {
@@ -51,7 +51,7 @@ export const useItemStore = defineStore(
       } else {
         const response = (await axios
           .post('/api/collections', {
-            items: itemIds,
+            items: viewedItemsIds,
           })
           .catch((err) => {
             console.log(err)
@@ -71,7 +71,7 @@ export const useItemStore = defineStore(
 
     return {
       items,
-      itemIds,
+      viewedItemsIds,
 
       viewedItemsCount,
 

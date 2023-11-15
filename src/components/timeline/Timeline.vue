@@ -26,7 +26,7 @@
           <template #description>{{ $t('The artwork will be saved to your history') }}</template>
         </Thumbnail>
       </router-link>
-      <ItemLoader v-for="id in Object.keys(itemStore.itemIds)" :id="id" v-slot="{ item }" :key="id">
+      <ItemLoader v-for="id in itemStore.viewedItemsIds" :id="id" v-slot="{ item }" :key="id">
         <router-link :to="`/item/${id}`">
           <ItemThumbnail :item="item" />
         </router-link>
