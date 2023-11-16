@@ -25,5 +25,4 @@ defineProps<{
 }>()
 
 const itemStore = useItemStore()
-console.log(itemStore)
 </script>
