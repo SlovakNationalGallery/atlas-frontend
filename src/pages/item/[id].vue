@@ -133,24 +133,21 @@ import Bucketlist from '@/models/Bucketlist'
 
 const route = useRoute()
 const bucketlistStore = useBucketlistStore()
-const interactionStore = useInteractionStore()
 const itemStore = useItemStore()
 
 const item = ref<Item>()
 const bucketlist = ref<Bucketlist>()
 
-const found = computed(() =>
-  bucketlist.value?.items.filter((item) => interactionStore.isItemViewed(item.id))
-)
-
 const unlocked = computed(() => found.value?.length === bucketlist.value?.items.length)
+const found = computed(() =>
+  bucketlist.value?.items.filter((item) => itemStore.isItemViewed(item.id))
+)
 
 onMounted(async () => {
   const { id } = useParams()
 
   item.value = await itemStore.load(id)
-  interactionStore.addItemViewed(item.value.id)
-
+  itemStore.addItemViewed(item.value.id)
   const defaultBucketlist = item.value.bucketlists.find(
     (bucketlist) => bucketlist.id === import.meta.env.VITE_DEFAULT_BUCKETLIST
   )

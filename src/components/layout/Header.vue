@@ -20,7 +20,7 @@
       :class="{ 'text-center': !isFrontpage }"
     >
       {{ $t(isOpenedAbout ? 'About the App' : title) }}
-      <span v-if="isMyCollection">({{ interactionStore.viewedItemsCount }})</span>
+      <span v-if="isMyCollection">({{ itemStore.viewedItemsCount }})</span>
     </h1>
     <div v-if="isMyCollection" class="flex-1 border-l-2 border-transparent px-3 text-right">
       <!-- <button class="rounded-xl bg-green px-3 py-1 text-sm font-bold" @click="scroll('share')">
@@ -45,7 +45,7 @@ import About from '@/components/about/About.vue'
 import HistoryBack from '@/components/misc/HistoryBack.vue'
 
 const route = useRoute()
-const interactionStore = useInteractionStore()
+const itemStore = useItemStore()
 
 const isOpenedAbout = ref(false)
 const isActive = ref(false)
@@ -69,8 +69,8 @@ const scroll = (id: string) => {
   })
 }
 
-interactionStore.$onAction(({ name }) => {
-  if (name === 'addItemViewed' && !interactionStore.viewedItemsCount) {
+itemStore.$onAction(({ name }) => {
+  if (name === 'addItemViewed' && !itemStore.viewedItemsCount) {
     displayTooltip()
   }
 })

@@ -1,8 +1,8 @@
 <template>
   <router-link to="/collection" class="relative">
     <div class="flex h-full items-center justify-end">
-      <div class="mr-1 text-lg font-bold">{{ interactionStore.viewedItemsCount }}</div>
-      <SvgEye :class="{ '!fill-green': interactionStore.viewedItemsCount }" />
+      <div class="mr-1 text-lg font-bold">{{ itemStore.viewedItemsCount }}</div>
+      <SvgEye :class="{ '!fill-green': itemStore.viewedItemsCount }" />
     </div>
     <Transition
       enter-active-class="transition-all"
@@ -24,5 +24,5 @@ defineProps<{
   showTooltip?: boolean
 }>()
 
-const interactionStore = useInteractionStore()
+const itemStore = useItemStore()
 </script>
