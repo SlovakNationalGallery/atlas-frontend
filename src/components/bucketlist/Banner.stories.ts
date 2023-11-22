@@ -22,7 +22,7 @@ const meta = {
   render: (args) => ({
     components: { Banner },
     async setup() {
-      const item = await ItemModel.load('SVK:SNG.O_7025')
+      const item = await ItemModel.load('SVK:SNG.UP-F_1202')
       return { args, item }
     },
     template: '<Banner :item="item" />',

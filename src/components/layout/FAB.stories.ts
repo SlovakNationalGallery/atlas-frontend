@@ -9,11 +9,9 @@ const meta = {
   component: FAB,
   tags: ['autodocs'],
   argTypes: {
-    opened: { control: 'boolean' },
+    isOpened: { control: 'boolean' },
   },
-  args: {
-    opened: true,
-  },
+  args: {},
   decorators: [vueRouter()],
 } satisfies Meta<typeof FAB>
 

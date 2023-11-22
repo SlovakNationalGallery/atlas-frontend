@@ -30,6 +30,6 @@ export const Default: Story = {
     setup() {
       return { args }
     },
-    template: '<CodePanel /> <FAB :opened="true" class="fixed bottom-10 right-10" />',
+    template: '<CodePanel /> <FAB class="fixed bottom-10 right-10" />',
   }),
 }

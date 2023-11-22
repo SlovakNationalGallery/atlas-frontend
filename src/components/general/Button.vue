@@ -45,7 +45,7 @@ const className = computed(() => {
 <style scoped lang="scss">
 .button {
   --color: var(--blue);
-  --color-hover: var(--blue-hover);
+  --color-active: var(--blue-dark);
   --color-disabled: var(--15-blue);
   --text-color: var(--white);
   --text-color-disabled: var(--50-black);
@@ -58,15 +58,15 @@ const className = computed(() => {
 
   &.color-black {
     --color: var(--black);
-    --color-hover: var(--50-black);
+    --color-active: var(--50-black);
     --color-disabled: var(--15-black);
     --text-color: var(--white);
     --text-color-disabled: var(--50-black);
   }
 
-  &:hover {
-    background: var(--color-hover);
-    border-color: var(--color-hover);
+  &:active {
+    background: var(--color-active);
+    border-color: var(--color-active);
   }
 
   &.disabled {
@@ -80,9 +80,10 @@ const className = computed(() => {
     border-color: var(--color);
     color: var(--color);
 
-    &:hover {
-      border-color: var(--color-hover);
-      color: var(--color-hover);
+    &:active {
+      border-color: var(--color-active);
+      color: var(--color-active);
+      background-color: var(--15-blue);
     }
 
     &.disabled {

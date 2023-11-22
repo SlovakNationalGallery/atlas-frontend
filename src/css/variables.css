@@ -1,22 +1,25 @@
 :root {
-    --blue: #095CFF;
-    --blue-hover: #214dd1;
     --white: #FFF;
     --black: #000;
-    --yellow: #FFC736;
-    --15-black: rgba(0, 0, 0, 0.15);
     --50-black: rgba(0, 0, 0, 0.5);
-    --15-blue: rgba(26, 27, 255, 0.15);
-    --30-blue: rgba(26, 27, 255, 0.30);
-    --15-blue2: rgba(9, 92, 255, 0.15);
+    --15-black: rgba(0, 0, 0, 0.15);
+
+    --yellow: #FFC736;
+    --blue: #095CFF;
+    --blue-dark: #084ED9;
+    --15-blue: rgba(9, 92, 255, 15%);
+    --30-blue: rgba(9, 92, 255, 30%);
+
+    --sng-green: #31FF00;
+    --red: #FF1B1C;
 }
 
 .text-blue {
-    color: var(--blue);
+    color: var(--blue) !important;
 }
 
 .text-white {
-    color: var(--white);
+    color: var(--white) !important;
 }
 
 .text-black {
