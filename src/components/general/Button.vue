@@ -4,7 +4,7 @@
     class="button leading-7 rounded-[12px] p-3 flex items-center grow"
     :class="className"
   >
-    <slot name="prefix"><Icon v-if="icon" :name="icon" class="mr-[8px]" /></slot>
+    <slot name="prefix"><Icon v-if="icon" :name="icon" :class="{ 'mr-2': !isIconOnly }" /></slot>
     <div class="text-lg">
       <slot>{{ label }}</slot>
     </div>
@@ -39,6 +39,12 @@ const className = computed(() => {
   props.color && classes.push(`color-${props.color}`)
 
   return classes
+})
+
+const slots = useSlots()
+
+const isIconOnly = computed(() => {
+  return !slots.default && props.icon && !props.label
 })
 </script>
 
