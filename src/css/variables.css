@@ -19,11 +19,15 @@
 }
 
 .text-white {
-    color: var(--white) !important;
+    color: var(--white);
 }
 
 .text-black {
     color: var(--black) !important;
+}
+
+.text-50-black {
+    color: var(--50-black);
 }
 
 .bg-blue {
