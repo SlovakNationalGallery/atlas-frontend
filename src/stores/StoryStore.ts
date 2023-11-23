@@ -29,6 +29,12 @@ export const useStoryStore = defineStore(
     }
   },
   {
-    persist: true,
+    persist: {
+      afterRestore: ({ store }) => {
+        Object.keys(store.stories).forEach((id) => {
+          store.stories[id] = new Story(store.stories[id])
+        })
+      },
+    },
   }
 )
