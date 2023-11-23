@@ -32,12 +32,15 @@
       </template>
     </Carousel>
 
-    <ItemPreview v-if="previewItem" :item="previewItem" @close="closePreview" />
+    <TransitionSlide>
+      <ItemPreview v-if="previewItem" :item="previewItem" @close="closePreview" />
+    </TransitionSlide>
   </div>
 </template>
 
 <script setup lang="ts">
 import axios from 'axios'
+import { TransitionSlide } from '@morev/vue-transitions'
 
 import Carousel from '@/components/misc/Carousel.vue'
 import ItemPreview from '@/components/general/ItemPreview.vue'

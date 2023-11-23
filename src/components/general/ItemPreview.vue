@@ -3,47 +3,49 @@
     class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/70 p-4 outline-none"
     @click="emit('close')"
   >
-    <div
-      :class="{ 'bg-white': isLoading }"
-      class="relative max-h-full w-full rounded-xl md:max-w-lg"
-      @click="emit('close')"
-    >
+    <div class="relative bg-white max-h-full w-full rounded-xl md:max-w-lg" @click="emit('close')">
       <div
-        :class="{ hidden: !isLoading }"
-        class="w-full animate-pulse rounded-t-xl bg-gray-soft"
+        :class="{ 'animate-pulse': isLoading }"
+        class="w-full rounded-t-xl bg-15-blue"
         :style="{ aspectRatio: item.image_aspect_ratio }"
-      ></div>
-      <img
-        :class="{ hidden: isLoading }"
-        class="w-full rounded-t-xl"
-        :alt="item.title"
-        :src="item.image_src"
-        :srcset="item.image_srcset"
-        @load="imageLoaded"
-      />
-      <button
-        type="button"
-        class="absolute top-0 right-0 cursor-pointer rounded-tr-xl bg-white p-1.5"
-        @click.stop="emit('close')"
       >
-        <SvgClose />
-      </button>
-      <div class="rounded-b-xl bg-white px-4 py-6">
-        <h2 class="text-1.5xl font-bold">{{ item.title }}</h2>
-        <h3 class="text-lg text-gray-dark">{{ item.author }}<br />{{ item.dating }}</h3>
-        <WebumeniaButton :url="item.webumenia_url" class="my-4" />
-        <ConfirmButton class="mt-4" @click="emit('close')">{{ $t('Close') }}</ConfirmButton>
+        <TransitionFade appear>
+          <img
+            v-if="!isLoading"
+            class="w-full rounded-t-xl"
+            :alt="item.title"
+            :src="item.image_src"
+            :srcset="item.image_srcset"
+          />
+        </TransitionFade>
       </div>
+
+      <Icon
+        name="close"
+        class="absolute top-3 right-3 bg-white border-2 rounded-xl"
+        @click.stop="emit('close')"
+      />
+      <ItemContent class="bg-white rounded-b-xl py-4" :item="item" hide-description>
+        <Link
+          class="mt-4"
+          external
+          icon="magnifying-glass"
+          title="Viac o diele na Webe Umenia"
+          description="otvor archív SNG"
+          :link="item.webumenia_url"
+        />
+      </ItemContent>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import WebumeniaButton from '@/components/forms/WebumeniaButton.vue'
-import ConfirmButton from '@/components/forms/ConfirmButton.vue'
-import Item from '@/models/Item'
+import { TransitionFade } from '@morev/vue-transitions'
 
-defineProps<{
+import Item from '@/models/Item'
+import ItemContent from '@/components/item/ItemContent.vue'
+
+const props = defineProps<{
   item: Item
 }>()
 
@@ -53,7 +55,15 @@ const emit = defineEmits<{
 
 const isLoading = ref(true)
 
-const imageLoaded = () => {
-  isLoading.value = false
+const preloadImage = async () => {
+  const image = new Image()
+
+  image.src = props.item.image_src
+  image.onload = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 333))
+    isLoading.value = false
+  }
 }
+
+onMounted(preloadImage)
 </script>

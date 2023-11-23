@@ -1,0 +1,46 @@
+<template>
+  <div class="relative w-full border-b-2 border-black bg-gray-softest">
+    <ImageMovable
+      v-if="route.query.edit"
+      :alt="`${item.author}: ${item.title}`"
+      :src="item.image_src"
+      :srcset="item.image_srcset"
+      :offset-top="item.offset_top"
+    />
+    <ImageLightbox
+      v-else
+      :alt="`${item.author}: ${item.title}`"
+      :src="item.image_src"
+      :srcset="item.image_srcset"
+      :offset-top="item.offset_top"
+      :images="item.images"
+      :image-aspect-ratio="item.image_aspect_ratio"
+    />
+    <div
+      v-if="item.code"
+      class="absolute bottom-0 left-4 translate-y-1/2 inline-block rounded-lg bg-white border-2 p-1.5"
+    >
+      <img class="h-8 w-8 invert" :src="codeImage" :alt="item.code" />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Item from '@/models/Item'
+import ImageMovable from '@/components/general/ImageMovable.vue'
+import ImageLightbox from '@/components/general/ImageLightbox.vue'
+
+const props = defineProps<{
+  item: Item
+}>()
+
+const route = useRoute()
+
+const codeImage = computed(() => {
+  return `${import.meta.env.VITE_API_URL}/img/${props.item.code}.svg`
+})
+</script>
+
+<style scoped lang="scss">
+
+</style>

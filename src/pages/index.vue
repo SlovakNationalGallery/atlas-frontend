@@ -36,7 +36,6 @@
       </template>
     </TransitionGroup>
   </div>
-  <CodePanel />
 </template>
 
 <script setup lang="ts">
@@ -45,7 +44,6 @@ import { watchDebounced } from '@vueuse/core'
 import type { ILink } from '@/models/_Interfaces'
 import type { Component } from 'vue'
 
-import CodePanel from '@/components/layout/CodePanel.vue'
 import InteractionItemFavourited from '@/components/interactions/InteractionItemFavourited.vue'
 import InteractionItemViewed from '@/components/interactions/InteractionItemViewed.vue'
 import InteractionSectionViewed from '@/components/interactions/InteractionSectionViewed.vue'

@@ -7,41 +7,34 @@
       :src="src"
       :srcset="srcset"
     ></ItemImage>
-    <button
-      type="button"
-      class="absolute bottom-3 right-3 flex items-center rounded-xl bg-black/70 py-1 px-2 text-sm font-medium text-white"
-    >
-      <SvgArrowsOut class="mr-2" />
-      <span>{{ $t('Enlarge') }}</span>
-    </button>
+    <Icon name="enlarge" class="absolute bottom-3 right-3 bg-white border-2 rounded-xl" />
   </div>
-  <div
-    v-if="visible && images"
-    class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
-    @click="visible = false"
-  >
+  <TransitionSlide mode="out-in">
     <div
-      :class="[
-        images.length ? 'h-full' : 'max-h-full',
-        'relative rounded-xl bg-gray-soft w-full max-w-lg',
-      ]"
-      :style="{ aspectRatio: imageAspectRatio }"
-      @click.stop
+      v-if="visible && images"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+      @click="visible = false"
     >
-      <img v-if="!images.length" :src="src" class="rounded-xl object-contain" />
-      <ZoomViewer v-else :tile-sources="images" />
-      <button
-        type="button"
-        class="absolute top-0 right-0 cursor-pointer rounded-tr-xl bg-white p-1.5"
-        @click.stop="visible = false"
+      <div
+        :class="[images.length ? 'h-full' : 'max-h-full', 'relative bg-gray-soft w-full max-w-lg']"
+        :style="{ aspectRatio: imageAspectRatio }"
+        @click.stop
       >
-        <SvgClose />
-      </button>
+        <img v-if="!images.length" :src="src" class="object-contain" />
+        <ZoomViewer v-else :tile-sources="images" />
+        <Icon
+          name="close"
+          class="absolute top-3 right-3 bg-white border-2 rounded-xl"
+          @click.stop="visible = false"
+        />
+      </div>
     </div>
-  </div>
+  </TransitionSlide>
 </template>
 
 <script setup lang="ts">
+import { TransitionSlide } from '@morev/vue-transitions'
+
 import type { IImage } from '@/models/_Interfaces'
 
 import ZoomViewer from '@/components/misc/ZoomViewer.vue'

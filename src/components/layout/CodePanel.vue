@@ -36,7 +36,6 @@
 <script setup lang="ts">
 import axios from 'axios'
 
-// TODO: peeking anim with gsap
 import CircleButton from '@/components/forms/CircleButton.vue'
 
 const { codePanelOpened } = toRefs(useInteractionStore())
