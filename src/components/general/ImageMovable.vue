@@ -3,6 +3,7 @@
     :data="data"
     class="cursor-move"
     draggable="false"
+    :offset-top="currentOffsetTop"
     @mousemove.stop.prevent="move"
     @mousedown.stop.prevent="moveStart"
   />
