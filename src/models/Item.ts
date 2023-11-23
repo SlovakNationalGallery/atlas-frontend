@@ -21,13 +21,15 @@ export default class Item extends BaseModel {
   public declare description: string
   public declare authorities: Authority[]
 
+  // TODO: cant we have same structure as in Place and Section?
   public declare image_src: string
   public declare image_srcset: string
-  public declare images: IImage[]
   public declare image_aspect_ratio: number
+  public declare offset_top: number
+
+  public declare images: IImage[]
   public declare webumenia_url: string
   public declare code: string
-  public declare offset_top: number
   public declare video_thumbnail: IImage | null
   public declare video_embed: string
   public declare video_aspect_ratio: {
@@ -44,6 +46,10 @@ export default class Item extends BaseModel {
   }
 
   public declare bucketlists: Bucketlist[]
+
+  public get image_alt() {
+    return `${this.author}: ${this.title}`
+  }
 
   static load = async (id: string) => {
     const response = await axios.get(`/api/items/${id}`)

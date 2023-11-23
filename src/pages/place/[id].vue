@@ -1,19 +1,7 @@
 <template>
   <div v-if="place" class="relative w-full border-b-2 border-black bg-gray-softest">
-    <ImageMovable
-      v-if="route.query.edit"
-      :alt="place.title"
-      :src="place.image.src"
-      :srcset="place.image.srcset"
-      :offset-top="place.offset_top"
-    />
-    <ImageLightbox
-      v-else
-      :alt="place.title"
-      :src="place.image.src"
-      :srcset="place.image.srcset"
-      :offset-top="place.offset_top"
-    />
+    <ImageMovable v-if="route.query.edit" :data="place" />
+    <ImageLightbox v-else :item="place" />
   </div>
   <div v-if="place" class="relative h-full border-black px-4 pb-24 pt-8">
     <div v-if="place.code" class="absolute -top-8 inline-block rounded-md bg-black p-1.5">

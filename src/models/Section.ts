@@ -17,6 +17,23 @@ export default class Section extends BaseModel {
   public declare title: string
   public declare image: IImage
   public declare items: Item[]
+  public declare offset_top: number
+
+  public get image_src() {
+    return this.image.src
+  }
+
+  public get image_srcset() {
+    return this.image.srcset
+  }
+
+  public get image_aspect_ratio() {
+    return this.image.aspect_ratio
+  }
+
+  public get image_alt() {
+    return this.title
+  }
 
   static load = async (id: string) => {
     const response = await axios.get(`/api/sections/${id}`)

@@ -1,11 +1,6 @@
 <template>
   <div v-if="section" class="relative w-full border-b-2 border-black bg-gray-softest">
-    <ItemImage
-      v-if="section.image"
-      :alt="section.title"
-      :src="section.image.src"
-      :srcset="section.image.srcset"
-    />
+    <ItemImage v-if="section.image" :data="section" />
     <!-- Add space if section image is missing -->
     <div v-else class="h-12 w-full" />
   </div>
@@ -46,8 +41,8 @@
 <script setup lang="ts">
 import HistoryBack from '@/components/misc/HistoryBack.vue'
 import ConfirmButton from '@/components/forms/ConfirmButton.vue'
-import ItemThumbnail from '@/components/general/ItemThumbnail.vue'
-import ItemImage from '@/components/general/ItemImage.vue'
+import ItemThumbnail from '@/components/item/ItemThumbnail.vue'
+import ItemImage from '@/components/item/ItemImage.vue'
 import Section from '@/models/Section'
 
 // const interactionStore = useInteractionStore()

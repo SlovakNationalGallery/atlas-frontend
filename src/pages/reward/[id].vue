@@ -1,10 +1,7 @@
 <template>
   <div v-if="bucketlist">
     <div class="relative w-full border-b-2 border-black bg-gray-softest">
-      <ImageLightbox
-        :alt="bucketlist.title"
-        :src="bucketlist.image.src"
-        :srcset="bucketlist.image.srcset"
+      <ImageLightbox :item="bucketlist" />
       />
     </div>
     <div class="relative h-full border-black p-4">

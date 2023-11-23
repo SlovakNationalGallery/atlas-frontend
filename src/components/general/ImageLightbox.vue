@@ -1,12 +1,6 @@
 <template>
   <div role="link" class="relative" @click="visible = true">
-    <ItemImage
-      :class="imgClass"
-      :offset-top="offsetTop"
-      :alt="alt"
-      :src="src"
-      :srcset="srcset"
-    ></ItemImage>
+    <ItemImage :data="item" />
     <Icon name="enlarge" class="absolute bottom-3 right-3 bg-white border-2 rounded-xl" />
   </div>
   <TransitionSlide mode="out-in">
@@ -17,10 +11,10 @@
     >
       <div
         :class="[images.length ? 'h-full' : 'max-h-full', 'relative bg-gray-soft w-full max-w-lg']"
-        :style="{ aspectRatio: imageAspectRatio }"
+        :style="{ aspectRatio: item.image_aspect_ratio }"
         @click.stop
       >
-        <img v-if="!images.length" :src="src" class="object-contain" />
+        <img v-if="!images.length" :src="item.image_src" class="object-contain" />
         <ZoomViewer v-else :tile-sources="images" />
         <Icon
           name="close"
@@ -36,17 +30,17 @@
 import { TransitionSlide } from '@morev/vue-transitions'
 
 import type { IImage } from '@/models/_Interfaces'
+import type Section from '@/models/Section'
+import type Item from '@/models/Item'
+import type Place from '@/models/Place'
+import type Bucketlist from '@/models/Bucketlist'
 
+import ItemImage from '@/components/item/ItemImage.vue'
 import ZoomViewer from '@/components/misc/ZoomViewer.vue'
-import ItemImage from '@/components/general/ItemImage.vue'
 
 defineProps<{
-  alt: string
-  src: string
-  srcset: string
-  offsetTop?: number
+  item: Item | Place | Section | Bucketlist
   images?: IImage[]
-  imageAspectRatio?: number
   imgClass?: string
 }>()
 

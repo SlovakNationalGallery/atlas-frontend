@@ -16,6 +16,26 @@ export default class Bucketlist extends BaseModel {
   public declare image: IImage
   public declare items: Item[]
 
+  public get image_src() {
+    return this.image.src
+  }
+
+  public get image_srcset() {
+    return this.image.srcset
+  }
+
+  public get image_aspect_ratio() {
+    return this.image.aspect_ratio
+  }
+
+  public get offset_top() {
+    return 0
+  }
+
+  public get image_alt() {
+    return this.title
+  }
+
   static load = async (id: string) => {
     const response = await axios.get(`/api/bucketlists/${id}`)
     return new this(response.data.data)

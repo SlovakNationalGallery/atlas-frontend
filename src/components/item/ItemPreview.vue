@@ -53,17 +53,5 @@ const emit = defineEmits<{
   close: []
 }>()
 
-const isLoading = ref(true)
-
-const preloadImage = async () => {
-  const image = new Image()
-
-  image.src = props.item.image_src
-  image.onload = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 333))
-    isLoading.value = false
-  }
-}
-
-onMounted(preloadImage)
+const { isLoading } = preloadImage(props.item.image_src)
 </script>

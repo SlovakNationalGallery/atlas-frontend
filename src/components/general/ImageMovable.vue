@@ -1,9 +1,6 @@
 <template>
   <ItemImage
-    :offset-top="currentOffsetTop"
-    :alt="alt"
-    :src="src"
-    :srcset="srcset"
+    :data="data"
     class="cursor-move"
     draggable="false"
     @mousemove.stop.prevent="move"
@@ -11,20 +8,20 @@
   />
   <div
     class="absolute bottom-0 right-0 h-10 w-12 border-1 border-black bg-white px-2 py-1 text-right"
-    :class="{ 'bg-red': ratioImg <= 0.75 && offsetTop !== 0 }"
+    :class="{ 'bg-red': ratioImg <= 0.75 && data.offset_top !== 0 }"
   >
     {{ currentOffsetTop }}
   </div>
 </template>
 
 <script setup lang="ts">
-import ItemImage from '@/components/general/ItemImage.vue'
+import ItemImage from '@/components/item/ItemImage.vue'
+import Item from '@/models/Item'
+import Section from '@/models/Section'
+import Place from '@/models/Place'
 
 const props = defineProps<{
-  alt: string
-  offsetTop: number
-  src: string
-  srcset: string
+  data: Item | Section | Place
 }>()
 
 const isMoving = ref(false)
@@ -50,10 +47,12 @@ const moveEnd = () => {
 }
 
 onMounted(async () => {
-  currentOffsetTop.value = props.offsetTop
-  startOffsetTop.value = props.offsetTop
+  currentOffsetTop.value = props.data.offset_top
+  startOffsetTop.value = props.data.offset_top
+
   const img = new Image()
-  img.src = props.src
+
+  img.src = props.data.image_src
   img.onload = function () {
     ratioImg.value = img.height / img.width
   }

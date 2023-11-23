@@ -4,6 +4,7 @@ export interface IImage {
   width?: number
   height?: number
   deep_zoom_url?: string
+  aspect_ratio?: number
 }
 
 export interface ILink {

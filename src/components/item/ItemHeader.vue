@@ -1,21 +1,8 @@
 <template>
   <div class="relative w-full border-b-2 border-black bg-gray-softest">
-    <ImageMovable
-      v-if="route.query.edit"
-      :alt="`${item.author}: ${item.title}`"
-      :src="item.image_src"
-      :srcset="item.image_srcset"
-      :offset-top="item.offset_top"
-    />
-    <ImageLightbox
-      v-else
-      :alt="`${item.author}: ${item.title}`"
-      :src="item.image_src"
-      :srcset="item.image_srcset"
-      :offset-top="item.offset_top"
-      :images="item.images"
-      :image-aspect-ratio="item.image_aspect_ratio"
-    />
+    <ImageMovable v-if="route.query.edit" :data="item" />
+    <ImageLightbox v-else-if="!locked" :item="item" :images="item.images" />
+    <ItemImage v-else class="grayscale" :data="item" />
     <div
       v-if="item.code"
       class="absolute bottom-0 left-4 translate-y-1/2 inline-block rounded-lg bg-white border-2 p-1.5"
@@ -29,9 +16,11 @@
 import Item from '@/models/Item'
 import ImageMovable from '@/components/general/ImageMovable.vue'
 import ImageLightbox from '@/components/general/ImageLightbox.vue'
+import ItemImage from '@/components/item/ItemImage.vue'
 
 const props = defineProps<{
   item: Item
+  locked?: boolean
 }>()
 
 const route = useRoute()

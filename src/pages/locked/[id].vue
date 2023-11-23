@@ -2,7 +2,7 @@
   <TransitionFade>
     <div v-if="item">
       <Banner class="border-b-2" :item="item" />
-      <ItemHeader :item="item" />
+      <ItemHeader :item="item" locked />
       <ItemContent :item="item" locked class="pb-24 pt-8">
         <CTABanner
           icon="plus"

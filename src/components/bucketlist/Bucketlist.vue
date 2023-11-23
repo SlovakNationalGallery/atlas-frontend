@@ -78,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import ItemThumbnail from '@/components/general/ItemThumbnail.vue'
+import ItemThumbnail from '@/components/item/ItemThumbnail.vue'
 import LockedItemThumbnail from '@/components/bucketlist/LockedItemThumbnail.vue'
 import ResponsiveImageWithSizes from '@/components/general/ResponsiveImageWithSizes.vue'
 import Thumbnail from '@/components/general/Thumbnail.vue'

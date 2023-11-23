@@ -37,8 +37,8 @@
 
 <script setup lang="ts">
 import Thumbnail from '@/components/general/Thumbnail.vue'
-import ItemLoader from '@/components/general/ItemLoader.vue'
-import ItemThumbnail from '@/components/general/ItemThumbnail.vue'
+import ItemLoader from '@/components/item/ItemLoader.vue'
+import ItemThumbnail from '@/components/item/ItemThumbnail.vue'
 
 const interactionStore = useInteractionStore()
 </script>
