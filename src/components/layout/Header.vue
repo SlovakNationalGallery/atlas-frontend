@@ -24,7 +24,10 @@
         <div v-else>{{ $t('Atlas SNG') }}</div>
       </TransitionSlide>
     </h1>
-    <ViewedItemsCount class="border-l-2 border-l-transparent px-4 py-2" />
+    <ViewedItemsCount
+      class="border-l-2 border-l-transparent px-4 py-2"
+      @close="isOpenedAbout = false"
+    />
   </div>
 
   <About :opened="isOpenedAbout" />
