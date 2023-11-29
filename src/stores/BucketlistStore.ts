@@ -32,7 +32,7 @@ export const useBucketlistStore = defineStore(
     persist: {
       afterRestore: ({ store }) => {
         Object.keys(store.bucketlists).forEach((id) => {
-          store.bucketlists[id] = new Bucketlist(store.places[id])
+          store.bucketlists[id] = new Bucketlist(store.bucketlists[id])
         })
       },
     },
