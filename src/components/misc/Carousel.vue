@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel">
+  <div ref="carouselRef" class="carousel">
     <div v-for="item in items" :key="item.key as string" class="slide">
       <component :is="item" />
     </div>
@@ -9,6 +9,15 @@
 <script setup lang="ts">
 const slots = useSlots()
 const items = computed(() => (slots.default!()[0].children || []) as VNode[])
+const carouselRef = ref<HTMLElement | null>(null)
+
+async function scrollToBack() {
+  await nextTick()
+  carouselRef.value?.scrollTo({ left: 0, top: 0, behavior: 'instant' })
+}
+
+watch(items, () => scrollToBack)
+onMounted(scrollToBack)
 </script>
 
 <style lang="scss" scoped>
@@ -17,6 +26,7 @@ const items = computed(() => (slots.default!()[0].children || []) as VNode[])
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  scroll-snap-align: start;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
   scrollbar-width: none;
