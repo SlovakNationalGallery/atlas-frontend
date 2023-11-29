@@ -3,11 +3,16 @@
     <div class="text-lg">Nájdi diela v areáli SNG, odhaľ čo ich spája a získaj zľavu!</div>
 
     <Carousel class="-mx-4 my-4">
-      <div v-for="(item, i) in itemsSorted" :key="i" class="ml-4">
-        <ItemImage :data="item" class="rounded-lg overflow-hidden" />
+      <div v-for="(col, i) in itemsSorted" :key="i" class="ml-4">
+        <router-link :to="col.locked ? col.item.lockedLink : col.item.link">
+          <ItemImage
+            :data="col.item"
+            class="rounded-lg overflow-hidden"
+            :class="{ grayscale: col.locked }"
+          />
+        </router-link>
       </div>
     </Carousel>
-
     <div class="flex items-center">
       <h2 class="text-lg font-medium grow">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h2>
       <div>{{ found.length }}/{{ bucketlist.items.length }} nájdených</div>
@@ -44,8 +49,8 @@ const notFound = computed(() => {
 
 const itemsSorted = computed(() => {
   return [
-    ...found.value.map((i) => ({ ...i, locked: false })),
-    ...notFound.value.map((i) => ({ ...i, locked: true })),
+    ...found.value.map((item) => ({ item, locked: false })),
+    ...notFound.value.map((item) => ({ item, locked: true })),
   ]
 })
 
