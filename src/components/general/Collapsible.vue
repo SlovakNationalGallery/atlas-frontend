@@ -1,6 +1,6 @@
 <template>
   <div class="collapsible border-2 border-black p-3 rounded-xl">
-    <div class="flex" :class="{ 'cursor-pointer': !!slots.content }" @click="isOpened = !isOpened">
+    <div class="flex" :class="{ 'cursor-pointer': !!slots.default }" @click="isOpened = !isOpened">
       <div class="grow">
         <slot name="summary"></slot>
       </div>
