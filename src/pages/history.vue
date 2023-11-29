@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="grow pb-24">
     <Bucketlist :id="bucketlistId" class="border-b-2" />
     <History />
   </div>
