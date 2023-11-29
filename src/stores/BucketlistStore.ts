@@ -31,9 +31,7 @@ export const useBucketlistStore = defineStore(
   {
     persist: {
       afterRestore: ({ store }) => {
-        console.log(store.bucketlists)
         Object.keys(store.bucketlists).forEach((id) => {
-          console.log(id, store.bucketlists[id])
           store.bucketlists[id] = new Bucketlist(store.bucketlists[id])
         })
       },
