@@ -3,6 +3,7 @@
     <div v-if="item">
       <Banner class="border-b-2" :item="item" />
       <ItemHeader :item="item" />
+
       <ItemContent :item="item" class="pb-24 pt-8" :description="item.description">
         <Collapsible
           v-for="authority in item.authorities"
@@ -20,7 +21,7 @@
 
         <Collapsible
           v-if="!item.authorities.length && item.author_description"
-          :model-value="true"
+          v-model="item.isAuthorOpened"
           class="my-4"
         >
           <template #summary>
@@ -29,7 +30,11 @@
           <AuthorDetails :item="item" />
         </Collapsible>
 
-        <Collapsible v-if="item.video_embed && item.video_thumbnail" class="my-4">
+        <Collapsible
+          v-if="item.video_embed && item.video_thumbnail"
+          v-model="item.isVideoOpened"
+          class="my-4"
+        >
           <template #summary>
             <VideoSummary
               :thumbnail="item.video_thumbnail"
@@ -37,6 +42,7 @@
               :subtitle="item.video_subtitle"
             />
           </template>
+
           <ResponsiveVideoEmbed
             :src="item.video_embed"
             :width="item.video_aspect_ratio?.width"
