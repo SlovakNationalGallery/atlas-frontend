@@ -5,7 +5,7 @@
         <div
           class="bg-30-blue w-[64px] rounded-xl text-blue aspect-square flex items-center justify-center"
         >
-          <Icon :name="icon" />
+          <Icon :name="icon ?? 'plus'" />
         </div>
         <div class="text-center">
           <div class="text-2xl font-bold">{{ title }}</div>
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  icon: string
+  icon?: string
   title: string
   description: string
   link: string
