@@ -3,6 +3,7 @@
     <template #image>
       <ResponsiveImageWithSizes
         class="h-full w-full rounded-xl object-cover"
+        :class="{ grayscale: locked }"
         :image="{ src: item.image_src, srcset: item.image_srcset }"
       />
     </template>
@@ -18,5 +19,6 @@ import Item from '@/models/Item'
 
 defineProps<{
   item: Item
+  locked?: boolean
 }>()
 </script>

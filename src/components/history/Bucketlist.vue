@@ -22,7 +22,9 @@
       <div class="h-full bg-black transition-all" :style="{ width }"></div>
     </div>
 
-    <Button label="Otvor pátračku" w-full center />
+    <router-link :to="bucketlist.link">
+      <Button label="Otvor pátračku" w-full center />
+    </router-link>
   </Card>
 </template>
 

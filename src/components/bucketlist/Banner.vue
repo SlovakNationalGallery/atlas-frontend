@@ -15,7 +15,7 @@
       </p>
     </div>
     <div class="flex items-center">
-      <router-link :to="unlocked ? `/reward/${bucketlist.id}` : '/collection'">
+      <router-link :to="bucketlist.link">
         <Button
           color="black"
           class="capitalize"

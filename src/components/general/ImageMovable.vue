@@ -20,9 +20,10 @@ import ItemImage from '@/components/item/ItemImage.vue'
 import Item from '@/models/Item'
 import Section from '@/models/Section'
 import Place from '@/models/Place'
+import Bucketlist from '@/models/Bucketlist'
 
 const props = defineProps<{
-  data: Item | Section | Place
+  data: Item | Section | Place | Bucketlist
 }>()
 
 const isMoving = ref(false)
