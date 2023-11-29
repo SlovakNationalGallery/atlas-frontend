@@ -51,6 +51,14 @@ export default class Item extends BaseModel {
     return `${this.author}: ${this.title}`
   }
 
+  public get link() {
+    return `/item/${this.id}`
+  }
+
+  public get lockedLink() {
+    return `/locked/${this.id}`
+  }
+
   static load = async (id: string) => {
     const response = await axios.get(`/api/items/${id}`)
     const model = new this(response.data.data)

@@ -5,16 +5,16 @@
   </div>
   <TransitionSlide mode="out-in">
     <div
-      v-if="visible && images"
+      v-if="visible"
       class="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
       @click="visible = false"
     >
       <div
-        :class="[images.length ? 'h-full' : 'max-h-full', 'relative bg-gray-soft w-full max-w-lg']"
+        :class="[images?.length ? 'h-full' : 'max-h-full', 'relative bg-gray-soft w-full max-w-lg']"
         :style="{ aspectRatio: item.image_aspect_ratio }"
         @click.stop
       >
-        <img v-if="!images.length" :src="item.image_src" class="object-contain" />
+        <img v-if="!images?.length" :src="item.image_src" class="object-contain" />
         <ZoomViewer v-else :tile-sources="images" />
         <Icon
           name="close"

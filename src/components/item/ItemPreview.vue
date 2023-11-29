@@ -25,7 +25,7 @@
         class="absolute top-3 right-3 bg-white border-2 rounded-xl"
         @click.stop="emit('close')"
       />
-      <ItemContent class="bg-white rounded-b-xl py-4" :item="item" hide-description>
+      <ItemContent class="bg-white rounded-b-xl py-4" :item="item">
         <Link
           class="mt-4"
           external

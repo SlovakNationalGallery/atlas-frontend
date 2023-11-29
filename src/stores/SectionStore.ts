@@ -29,6 +29,12 @@ export const useSectionStore = defineStore(
     }
   },
   {
-    persist: true,
+    persist: {
+      afterRestore: ({ store }) => {
+        Object.keys(store.sections).forEach((id) => {
+          store.sections[id] = new Section(store.sections[id])
+        })
+      },
+    },
   }
 )

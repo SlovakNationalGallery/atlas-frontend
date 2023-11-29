@@ -1,28 +1,34 @@
 <template>
   <div class="relative h-full border-black px-4">
-    <h2 class="text-2xl font-bold">{{ item.title }}</h2>
-    <h3 class="text-lg">{{ item.author }}, {{ item.dating }}</h3>
+    <div class="flex flex-col gap-1">
+      <h3 v-if="item instanceof Section" class="text-lg">
+        {{ $t('Group of :count artworks', { count: String(item.items.length) }) }}
+      </h3>
 
-    <div v-if="item.location_formatted" class="text-lg text-50-black italic">
-      {{ $t('Location') }}: {{ item.location_formatted }}
+      <h2 class="text-2xl font-bold">{{ item.title }}</h2>
+
+      <h3 v-if="item instanceof Item && item.author" class="text-lg">
+        {{ item.author }}, {{ item.dating }}
+      </h3>
+
+      <div v-if="item.location_formatted" class="text-lg text-50-black italic">
+        {{ $t('Location') }}: {{ item.location_formatted }}
+      </div>
+
+      <div v-if="description" class="my-4 space-y-4 markdown text-lg" v-html="description"></div>
     </div>
-
-    <div v-if="!hideDescription" class="my-4 space-y-4 markdown text-lg" v-html="description"></div>
 
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
+import Section from '@/models/Section'
+import Place from '@/models/Place'
 import Item from '@/models/Item'
 
-const props = defineProps<{
-  item: Item
-  locked?: boolean
-  hideDescription?: boolean
+defineProps<{
+  item: Item | Place | Section
+  description?: string
 }>()
-
-const description = computed(() => {
-  return props.locked ? props.item.locked_bucketlist_description : props.item.description
-})
 </script>

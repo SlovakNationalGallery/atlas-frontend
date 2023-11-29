@@ -5,7 +5,7 @@
     </div>
     <span>
       {{ $t('Viewed') }}
-      <router-link class="underline hover:no-underline" :to="`/place/${place.id}`">{{
+      <router-link class="underline hover:no-underline" :to="place.link">{{
         place.title
       }}</router-link>
     </span>

@@ -3,7 +3,12 @@
     <div v-if="item">
       <Banner class="border-b-2" :item="item" />
       <ItemHeader :item="item" locked />
-      <ItemContent :item="item" locked class="pb-24 pt-8">
+      <ItemContent
+        :item="item"
+        locked
+        class="pb-24 pt-8"
+        :description="item.locked_bucketlist_description"
+      >
         <CTABanner
           icon="plus"
           link="#"
@@ -25,6 +30,7 @@ import ItemHeader from '@/components/item/ItemHeader.vue'
 import ItemContent from '@/components/item/ItemContent.vue'
 
 const itemStore = useItemStore()
+const { id } = useParams()
 
 const item = ref<Item>()
 
@@ -37,8 +43,6 @@ definePage({
 })
 
 onMounted(async () => {
-  const { id } = useParams()
-
   item.value = await itemStore.load(id)
 })
 </script>

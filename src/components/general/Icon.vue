@@ -29,7 +29,3 @@ const styleSize = computed(() => {
 })
 </script>
 
-<style scoped lang='scss'>
-
-
-</style>

@@ -1,7 +1,11 @@
 <template>
   <div class="relative w-full border-b-2 border-black bg-gray-softest">
     <ImageMovable v-if="route.query.edit" :data="item" />
-    <ImageLightbox v-else-if="!locked" :item="item" :images="item.images" />
+    <ImageLightbox
+      v-else-if="!locked"
+      :item="item"
+      :images="item instanceof Item ? item.images : undefined"
+    />
     <ItemImage v-else class="grayscale" :data="item" />
     <div
       v-if="item.code"
@@ -13,13 +17,15 @@
 </template>
 
 <script setup lang="ts">
+import Place from '@/models/Place'
 import Item from '@/models/Item'
+import Section from '@/models/Section'
 import ImageMovable from '@/components/general/ImageMovable.vue'
 import ImageLightbox from '@/components/general/ImageLightbox.vue'
 import ItemImage from '@/components/item/ItemImage.vue'
 
 const props = defineProps<{
-  item: Item
+  item: Item | Place | Section
   locked?: boolean
 }>()
 
@@ -30,6 +36,4 @@ const codeImage = computed(() => {
 })
 </script>
 
-<style scoped lang="scss">
 
-</style>

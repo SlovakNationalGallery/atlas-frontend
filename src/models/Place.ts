@@ -41,6 +41,10 @@ export default class Place extends BaseModel {
     return this.title
   }
 
+  public get link() {
+    return `/place/${this.id}`
+  }
+
   static load = async (id: string) => {
     const response = await axios.get(`/api/places/${id}`)
     return new this(response.data.data)

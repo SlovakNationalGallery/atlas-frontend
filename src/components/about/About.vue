@@ -71,6 +71,7 @@
           <div class="items-center flex">
             <div class="grow">{{ $t('Reload the conversation from the beginning') }}</div>
             <button
+              type="button"
               class="flex-none rounded-xl bg-black py-2 px-3 text-sm font-medium leading-4.5 text-white"
               @click="shownResetModal = true"
             >

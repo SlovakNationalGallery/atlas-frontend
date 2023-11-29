@@ -35,6 +35,10 @@ export default class Section extends BaseModel {
     return this.title
   }
 
+  public get link() {
+    return `/section/${this.id}`
+  }
+
   static load = async (id: string) => {
     const response = await axios.get(`/api/sections/${id}`)
     return new this(response.data.data)

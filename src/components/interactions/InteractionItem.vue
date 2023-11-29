@@ -5,7 +5,7 @@
     </div>
     <span>
       {{ label }}
-      <router-link class="underline hover:no-underline" :to="`/item/${item.id}`"
+      <router-link class="underline hover:no-underline" :to="item.link"
         >{{ item.author }} &mdash; {{ item.title }}</router-link
       >
     </span>

@@ -3,7 +3,7 @@
     <div v-if="item">
       <Banner class="border-b-2" :item="item" />
       <ItemHeader :item="item" />
-      <ItemContent :item="item" class="pb-24 pt-8">
+      <ItemContent :item="item" class="pb-24 pt-8" :description="item.description">
         <Collapsible
           v-for="authority in item.authorities"
           :key="authority.id"
@@ -76,6 +76,7 @@ import Item from '@/models/Item'
 
 const interactionStore = useInteractionStore()
 const itemStore = useItemStore()
+const { id } = useParams()
 
 const item = ref<Item>()
 
@@ -88,8 +89,6 @@ definePage({
 })
 
 onMounted(async () => {
-  const { id } = useParams()
-
   item.value = await itemStore.load(id)
   interactionStore.addItemViewed(item.value.id)
 })

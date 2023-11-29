@@ -56,6 +56,7 @@ const itemStore = useItemStore()
 const sectionStore = useSectionStore()
 const storyStore = useStoryStore()
 const placeStore = usePlaceStore()
+const { id } = useParams()
 
 const storyMap = new Map()
 
@@ -100,8 +101,6 @@ const loadStory = async (id: string) => {
 }
 
 onMounted(async () => {
-  const { id } = useParams()
-
   if (id) {
     interactionStore.clear()
     await loadStory(id)

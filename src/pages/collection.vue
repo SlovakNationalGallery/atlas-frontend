@@ -10,6 +10,5 @@
 import Bucketlist from '@/components/bucketlist/Bucketlist.vue'
 import Timeline from '@/components/timeline/Timeline.vue'
 
-const itemStore = useItemStore()
 const bucketlistId = import.meta.env.VITE_DEFAULT_BUCKETLIST
 </script>

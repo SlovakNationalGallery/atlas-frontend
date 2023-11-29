@@ -27,7 +27,7 @@
         </Thumbnail>
       </router-link>
       <ItemLoader v-for="id in interactionStore.viewedItemIds" :id="id" v-slot="{ item }" :key="id">
-        <router-link :to="`/item/${id}`">
+        <router-link :to="item.link">
           <ItemThumbnail :item="item" />
         </router-link>
       </ItemLoader>

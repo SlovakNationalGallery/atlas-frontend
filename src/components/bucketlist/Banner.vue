@@ -3,9 +3,7 @@
     <div>
       <div class="flex items-center">
         <Icon name="scavenger" size="24px" class="mr-1" />
-        <h3 class="font-bold">
-          {{ $t('Scavenger hunt:') }} {{ bucketlist.title }}
-        </h3>
+        <h3 class="font-bold">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h3>
       </div>
       <p class="mt-1 text-xl font-medium leading-snug">
         {{
@@ -59,6 +57,3 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped lang="scss">
-
-</style>
