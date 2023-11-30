@@ -50,7 +50,6 @@ import ItemThumbnail from '@/components/general/ItemThumbnail.vue'
 import ItemImage from '@/components/general/ItemImage.vue'
 import Section from '@/models/Section'
 
-// const interactionStore = useInteractionStore()
 const sectionStore = useSectionStore()
 
 const section = ref<Section | null>(null)
@@ -59,9 +58,6 @@ const { id } = useParams()
 
 onMounted(async () => {
   section.value = await sectionStore.load(id)
-
-  // TODO: where did item come from?
-  // interactionStore.addSectionViewed(item.value.id)
 })
 
 const codeImage = computed(() => {

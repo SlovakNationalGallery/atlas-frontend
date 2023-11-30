@@ -6,8 +6,9 @@ import { getActiveLanguage } from 'laravel-vue-i18n'
 
 export function useSurvey() {
   const interactionStore = useInteractionStore()
-
-  const { viewedItemsCount, stories } = storeToRefs(interactionStore)
+  const itemStore = useItemStore()
+  const { stories } = storeToRefs(interactionStore)
+  const { viewedItemsCount } = storeToRefs(itemStore)
   const isDone = ref(useStorage('isSurveyDone', false))
   const wasExited = ref(useStorage('wasSurveyExited', false))
   const SURVEY_ID =

@@ -42,7 +42,7 @@ const props = defineProps<{
 }>()
 
 const route = useRoute()
-const interactionStore = useInteractionStore()
+const itemStore = useItemStore()
 
 const isOpenedAbout = ref(false)
 const isActive = ref(false)
@@ -57,8 +57,8 @@ const displayTooltip = () => {
   }, 3000)
 }
 
-interactionStore.$onAction(({ name }) => {
-  if (name === 'addItemViewed' && !interactionStore.viewedItemsCount) {
+itemStore.$onAction(({ name }) => {
+  if (name === 'addItemViewed' && !itemStore.viewedItemsCount) {
     displayTooltip()
   }
 })

@@ -104,7 +104,6 @@ import Item from '@/models/Item'
 import Banner from '@/components/bucketlist/Banner.vue'
 
 const route = useRoute()
-const interactionStore = useInteractionStore()
 const itemStore = useItemStore()
 
 const item = ref<Item>()
@@ -113,7 +112,7 @@ onMounted(async () => {
   const { id } = useParams()
 
   item.value = await itemStore.load(id)
-  interactionStore.addItemViewed(item.value.id)
+  itemStore.addItemViewed(item.value.id)
 })
 
 const codeImage = computed(() => {
