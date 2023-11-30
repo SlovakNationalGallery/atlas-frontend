@@ -12,9 +12,6 @@ const meta = {
       options: ['primary', 'outline'],
       control: { type: 'radio' },
     },
-    center: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-    wFull: { control: 'boolean' },
     label: { control: 'text' },
     color: { control: 'text' },
     icon: iconControl(false),
@@ -53,24 +50,5 @@ export const NoIcon: Story = {
 export const Outline: Story = {
   args: {
     variant: 'outline',
-  },
-}
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
-}
-
-export const FullWidth: Story = {
-  args: {
-    wFull: true,
-  },
-}
-
-export const Centered: Story = {
-  args: {
-    wFull: true,
-    center: true,
   },
 }

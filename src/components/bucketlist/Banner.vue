@@ -2,10 +2,8 @@
   <article v-if="bucketlist" class="flex justify-between bg-yellow p-4">
     <div>
       <div class="flex items-center">
-        <Icon name="scavenger" size="24px" class="mr-1" />
-        <h3 class="font-bold">
-          {{ $t('Scavenger hunt:') }} {{ bucketlist.title }}
-        </h3>
+        <Icon name="scavenger" class="w-6 mr-1" />
+        <h3 class="font-bold">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h3>
       </div>
       <p class="mt-1 text-xl font-medium leading-snug">
         {{
@@ -58,7 +56,3 @@ onMounted(async () => {
   }
 })
 </script>
-
-<style scoped lang="scss">
-
-</style>

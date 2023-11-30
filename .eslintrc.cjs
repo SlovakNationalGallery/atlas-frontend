@@ -65,5 +65,6 @@ module.exports = {
     'vue/require-default-prop': 'off',
     'prettier-vue/prettier': ['error'],
     '@typescript-eslint/ban-ts-comment': 'off',
+    'vue/no-empty-component-block': 'error',
   }
 }
