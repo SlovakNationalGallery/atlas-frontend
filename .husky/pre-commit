@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run type-check
+git stash -q --keep-index && npm run type-check && git stash pop -q && npx lint-staged
+
