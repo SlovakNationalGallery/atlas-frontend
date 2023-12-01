@@ -10,7 +10,6 @@
         :description="item.locked_bucketlist_description"
       >
         <CTABanner
-          icon="plus"
           link="#"
           title="Nájdi kód diela v budove"
           description="Nájdi kód diela v budove"
