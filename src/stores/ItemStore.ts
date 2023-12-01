@@ -88,6 +88,12 @@ export const useItemStore = defineStore(
     }
   },
   {
-    persist: true,
+    persist: {
+      afterRestore: ({ store }) => {
+        Object.keys(store.items).forEach((id) => {
+          store.items[id] = new Item(store.items[id])
+        })
+      },
+    },
   }
 )
