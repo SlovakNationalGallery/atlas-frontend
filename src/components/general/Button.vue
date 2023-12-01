@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="button leading-7 rounded-[12px] p-3 flex items-center grow"
+    class="button leading-7 rounded-xl p-3 flex items-center grow transition-all ease-in-out duration-300 border-2 disabled:cursor-not-allowed"
     :class="className"
   >
     <slot name="prefix"><Icon v-if="icon" :name="icon" :class="{ 'mr-2': !isIconOnly }" /></slot>
@@ -17,25 +17,20 @@ import Icon from '@/components/general/Icon.vue'
 
 const props = withDefaults(
   defineProps<{
-    variant?: 'primary' | 'outline'
     icon?: string
-    color?: string
+    variant?: 'primary' | 'outline'
+    color?: 'default' | 'black'
     label?: string
-    center?: boolean
-    disabled?: boolean
-    wFull?: boolean
   }>(),
   {
     variant: 'primary',
+    color: 'default',
   }
 )
 
 const className = computed(() => {
   const classes = []
   props.variant && classes.push(`variant-${props.variant}`)
-  props.center && classes.push('justify-center')
-  props.disabled && classes.push('disabled cursor-not-allowed')
-  props.wFull && classes.push('w-full')
   props.color && classes.push(`color-${props.color}`)
 
   return classes
@@ -50,24 +45,22 @@ const isIconOnly = computed(() => {
 
 <style scoped lang="scss">
 .button {
-  --color: var(--blue);
-  --color-active: var(--blue-dark);
-  --color-disabled: var(--15-blue);
-  --text-color: var(--white);
-  --text-color-disabled: var(--50-black);
+  --color: theme('colors.blue.DEFAULT');
+  --color-active: theme('colors.blue.dark');
+  --color-disabled: theme('colors.blue.softest');
+  --text-color: theme('colors.white');
+  --text-color-disabled: theme('colors.black.soft');
 
-  border: 2px solid var(--color);
+  border-color: var(--color);
   background: var(--color);
   color: var(--text-color);
 
-  transition: all 0.2s ease-in-out;
-
   &.color-black {
-    --color: var(--black);
-    --color-active: var(--50-black);
-    --color-disabled: var(--15-black);
-    --text-color: var(--white);
-    --text-color-disabled: var(--50-black);
+    --color: theme('colors.black.DEFAULT');
+    --color-active: theme('colors.black.soft');
+    --color-disabled: theme('colors.black.softest');
+    --text-color: theme('colors.white');
+    --text-color-disabled: theme('colors.black.soft');
   }
 
   &:active {
@@ -75,7 +68,7 @@ const isIconOnly = computed(() => {
     border-color: var(--color-active);
   }
 
-  &.disabled {
+  &:disabled {
     background: var(--color-disabled);
     border-color: transparent;
     color: var(--text-color-disabled);
@@ -89,10 +82,10 @@ const isIconOnly = computed(() => {
     &:active {
       border-color: var(--color-active);
       color: var(--color-active);
-      background-color: var(--15-blue);
+      background-color: var(--color-disabled);
     }
 
-    &.disabled {
+    &:disabled {
       background: transparent;
       border-color: var(--color-disabled);
       color: var(--text-color-disabled);

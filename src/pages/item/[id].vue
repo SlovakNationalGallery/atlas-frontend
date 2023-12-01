@@ -80,7 +80,7 @@ import AuthorSummary from '@/components/author/AuthorSummary.vue'
 import AuthorityDetails from '@/components/author/AuthorityDetails.vue'
 import Item from '@/models/Item'
 
-const interactionStore = useInteractionStore()
+const route = useRoute()
 const itemStore = useItemStore()
 const { id } = useParams()
 
@@ -96,6 +96,6 @@ definePage({
 
 onMounted(async () => {
   item.value = await itemStore.load(id)
-  interactionStore.addItemViewed(item.value.id)
+  itemStore.addItemViewed(item.value.id)
 })
 </script>

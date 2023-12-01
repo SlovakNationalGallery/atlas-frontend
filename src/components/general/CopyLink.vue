@@ -2,7 +2,7 @@
   <Button w-full variant="outline" @click="onCopy">
     <template #prefix>
       <div class="grow text-lg flex items-center gap-2 text-black">
-        <Icon name="link" size="24" />
+        <Icon name="link" class="w-6" />
         <div>{{ link }}</div>
       </div>
     </template>

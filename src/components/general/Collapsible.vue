@@ -6,8 +6,7 @@
       </div>
       <div v-if="slots.default">
         <Icon
-          :size="24"
-          class="icon cursor-pointer"
+          class="w-6 icon cursor-pointer transition-transform ease-in-out duration-300"
           name="chevron-down"
           :class="{ 'rotate-180': isOpened }"
         />
@@ -25,10 +24,3 @@ import { TransitionExpand } from '@morev/vue-transitions'
 const isOpened = defineModel<boolean>()
 const slots = useSlots()
 </script>
-<style scoped lang="scss">
-.collapsible {
-  .icon {
-    transition: transform 0.3s;
-  }
-}
-</style>

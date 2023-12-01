@@ -36,7 +36,7 @@ import Place from '@/models/Place'
 import ItemHeader from '@/components/item/ItemHeader.vue'
 import ItemContent from '@/components/item/ItemContent.vue'
 
-const interactionStore = useInteractionStore()
+const route = useRoute()
 const placeStore = usePlaceStore()
 const { id } = useParams()
 
@@ -51,6 +51,5 @@ definePage({
 
 onMounted(async () => {
   place.value = await placeStore.load(id)
-  place.value?.id && interactionStore.addPlaceViewed(place.value.id)
 })
 </script>

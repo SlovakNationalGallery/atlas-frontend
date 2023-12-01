@@ -1,7 +1,7 @@
 <template>
   <Button class="rounded-full" @click="codePanelOpened = true">
     <div class="flex font-medium leading-[28px]">
-      <Icon name="code" size="28px" />
+      <Icon name="code" class="w-7" />
       <TransitionExpand axis="x">
         <div v-if="openedState" class="whitespace-nowrap ml-2">Zadaj kód</div>
       </TransitionExpand>

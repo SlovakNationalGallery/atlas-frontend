@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-15-blue rounded-xl py-6 px-4">
+  <div class="bg-blue-softest rounded-xl py-6 px-4">
     <router-link :to="link">
       <div class="flex flex-col gap-6 items-center">
         <div
-          class="bg-30-blue w-[64px] rounded-xl text-blue aspect-square flex items-center justify-center"
+          class="bg-blue-soft w-[64px] rounded-xl text-blue aspect-square flex items-center justify-center"
         >
           <Icon :name="icon" />
         </div>
@@ -27,4 +27,3 @@ defineProps<{
   buttonIcon?: string
 }>()
 </script>
-
