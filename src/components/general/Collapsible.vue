@@ -1,13 +1,12 @@
 <template>
   <div class="collapsible border-2 border-black p-3 rounded-xl">
-    <div class="flex" :class="{ 'cursor-pointer': !!slots.content }" @click="isOpened = !isOpened">
+    <div class="flex" :class="{ 'cursor-pointer': !!slots.default }" @click="isOpened = !isOpened">
       <div class="grow">
         <slot name="summary"></slot>
       </div>
       <div v-if="slots.default">
         <Icon
-          :size="24"
-          class="icon cursor-pointer"
+          class="w-6 icon cursor-pointer transition-transform ease-in-out duration-300"
           name="chevron-down"
           :class="{ 'rotate-180': isOpened }"
         />
@@ -25,10 +24,3 @@ import { TransitionExpand } from '@morev/vue-transitions'
 const isOpened = defineModel<boolean>()
 const slots = useSlots()
 </script>
-<style scoped lang="scss">
-.collapsible {
-  .icon {
-    transition: transform 0.3s;
-  }
-}
-</style>

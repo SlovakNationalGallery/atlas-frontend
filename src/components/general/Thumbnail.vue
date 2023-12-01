@@ -8,7 +8,7 @@
         <h2 class="mr-2 grow text-lg font-medium leading-6 line-clamp-2">
           <slot name="title"></slot>
         </h2>
-        <Icon v-if="props.icon" :name="props.icon" :size="24" />
+        <Icon v-if="props.icon" :name="props.icon" class="w-6" />
       </div>
       <div
         class="text-sm pr-6"
