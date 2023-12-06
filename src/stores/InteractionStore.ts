@@ -7,8 +7,8 @@ import Interaction from '@/models/Interaction'
 export const useInteractionStore = defineStore(
   'InteractionStore',
   () => {
+    const codePanelOpened = ref(false)
     const interactions = ref<Interaction[]>([])
-    const peekCodePanel = ref(true)
     const cursor = ref(-1)
 
     const active = computed(() => {
@@ -81,8 +81,8 @@ export const useInteractionStore = defineStore(
     }
 
     return {
+      codePanelOpened,
       interactions,
-      peekCodePanel,
       cursor,
 
       active,

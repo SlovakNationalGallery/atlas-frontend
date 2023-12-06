@@ -1,12 +1,13 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "typed-router.d.ts","auto-imports.d.ts", "components.d.ts", "manual.d.ts"],
+  "include": ["env.d.ts", ".storybook/*.ts", ".storybook/**/*.ts", "src/**/*", "src/**/*.vue", "typed-router.d.ts","auto-imports.d.ts", "components.d.ts", "manual.d.ts"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "^/*": ["./.storybook/*"],
     }
   }
 }

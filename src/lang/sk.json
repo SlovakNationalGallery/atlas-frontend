@@ -115,6 +115,7 @@
     ":title set": "Séria :title",
     "Scavenger hunt:": "Pátračka mesiaca:",
     ":found of :all artworks found": ":found z :all diel nájdených",
+    ":found/:all artworks found!": ":found/:all diel nájdených!",
     "list": "zoznam",
     "reward": "odmena",
     "Location": "Lokácia",

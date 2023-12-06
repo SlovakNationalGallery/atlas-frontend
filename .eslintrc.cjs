@@ -4,11 +4,12 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 module.exports = {
   root: true,
   'extends': [
-    'eslint:recommended',
-    '@vue/typescript/recommended',
-    'plugin:vue/vue3-recommended',
-    'plugin:prettier-vue/recommended',
-    'prettier',
+      'eslint:recommended',
+      '@vue/typescript/recommended',
+      'plugin:vue/vue3-recommended',
+      'plugin:prettier-vue/recommended',
+      'prettier',
+      'plugin:storybook/recommended'
   ],
   parserOptions: {
     ecmaVersion: 'latest'
@@ -64,5 +65,6 @@ module.exports = {
     'vue/require-default-prop': 'off',
     'prettier-vue/prettier': ['error'],
     '@typescript-eslint/ban-ts-comment': 'off',
+    'vue/no-empty-component-block': 'error',
   }
 }
