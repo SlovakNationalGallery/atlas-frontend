@@ -1,7 +1,7 @@
 <template>
   <Transition :duration="300">
     <div v-if="opened" class="fixed inset-0 z-10 overflow-hidden md:mx-auto md:max-w-lg">
-      <div class="h-full overflow-y-auto bg-white pt-[48px] duration-300 pb-24">
+      <div class="h-full overflow-y-auto bg-white pt-12 duration-300 pb-24">
         <Card class="bg-blue-softest" label="Pomôž nám zlepšiť Atlas">
           <div>
             Atlas neustále vyvíjame na základe odozvy od ľudí ako si aj ty! Máš nápad alebo
