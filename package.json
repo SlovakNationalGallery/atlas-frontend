@@ -28,6 +28,7 @@
     "openseadragon": "^4.1.0",
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "universal-cookie": "^6.1.1",
     "vue": "^3.3.7",
     "vue-router": "^4.2.5",

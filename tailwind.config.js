@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  plugins: [require('tailwind-scrollbar-hide')],
   theme: {
     extend: {
       borderWidth: {
@@ -22,10 +23,17 @@ export default {
       translate: {
         peeking: 'max(-50vw, -16rem)',
       },
+      width: {
+        slide: 'calc(100% / 2.3)',
+      },
     },
     colors: {
       none: 'none',
-      black: '#000',
+      black: {
+        DEFAULT: '#000',
+        soft: 'rgba(0, 0, 0, 50%)',
+        softest: 'rgba(0, 0, 0, 15%)',
+      },
       white: '#fff',
       yellow: '#FFC736',
       blue: {

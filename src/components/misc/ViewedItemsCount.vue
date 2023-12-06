@@ -12,5 +12,5 @@ const emit = defineEmits<{
   close: []
 }>()
 
-const { viewedItemsCount } = toRefs(useInteractionStore())
+const { viewedItemsCount } = toRefs(useItemStore())
 </script>
