@@ -38,15 +38,15 @@ const props = defineProps<{
 }>()
 
 const bucketlistStore = useBucketlistStore()
-const interactionStore = useInteractionStore()
+const itemsStore = useItemStore()
 const bucketlist = ref<Bucketlist | null>(null)
 
 const found = computed(() => {
-  return bucketlist.value?.items.filter((item) => interactionStore.isItemViewed(item.id)) ?? []
+  return bucketlist.value?.items.filter((item) => itemsStore.isItemViewed(item.id)) ?? []
 })
 
 const notFound = computed(() => {
-  return bucketlist.value?.items.filter((item) => !interactionStore.isItemViewed(item.id)) ?? []
+  return bucketlist.value?.items.filter((item) => !itemsStore.isItemViewed(item.id)) ?? []
 })
 
 const itemsSorted = computed(() => {

@@ -1,11 +1,11 @@
 <template>
   <Card label="História" icon="eye">
     <template #actions>
-      <div class="text-blue font-bold text-lg">{{ interactionStore.viewedItemIds.size }} diel</div>
+      <div class="text-blue font-bold text-lg">{{ viewedItemsIds.length }} diel</div>
     </template>
 
-    <Carousel v-if="interactionStore.viewedItemIds.size" class="-mx-4 pr-4">
-      <ItemLoader v-for="id in interactionStore.viewedItemIds" :id="id" v-slot="{ item }" :key="id">
+    <Carousel v-if="viewedItemsIds.length" class="-mx-4 pr-4">
+      <ItemLoader v-for="id in viewedItemsIds" :id="id" v-slot="{ item }" :key="id">
         <router-link :to="item.link" class="mr-4 block">
           <div class="min-w-full ml-4">
             <ItemImage class="mb-1 rounded-lg overflow-hidden" :data="item" />
@@ -33,6 +33,7 @@ import CTABanner from '@/components/general/CTABanner.vue'
 import Carousel from '@/components/misc/Carousel.vue'
 import ItemImage from '@/components/item/ItemImage.vue'
 
-const interactionStore = useInteractionStore()
+// TODO: translations
+const { viewedItemsIds } = toRefs(useItemStore())
 </script>
 

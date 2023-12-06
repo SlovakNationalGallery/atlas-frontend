@@ -29,7 +29,11 @@ export default {
     },
     colors: {
       none: 'none',
-      black: '#000',
+      black: {
+        DEFAULT: '#000',
+        soft: 'rgba(0, 0, 0, 50%)',
+        softest: 'rgba(0, 0, 0, 15%)',
+      },
       white: '#fff',
       yellow: '#FFC736',
       blue: {
