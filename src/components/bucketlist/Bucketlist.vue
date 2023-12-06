@@ -88,15 +88,15 @@ const props = defineProps<{
   id: string
 }>()
 const bucketlistStore = useBucketlistStore()
-const interactionStore = useInteractionStore()
+const itemStore = useItemStore()
 const bucketlist = ref<Bucketlist | null>(null)
 
 const found = computed(() => {
-  return bucketlist.value?.items.filter((item) => interactionStore.isItemViewed(item.id))
+  return bucketlist.value?.items.filter((item) => itemStore.isItemViewed(item.id))
 })
 
 const notFound = computed(() => {
-  return bucketlist.value?.items.filter((item) => !interactionStore.isItemViewed(item.id))
+  return bucketlist.value?.items.filter((item) => !itemStore.isItemViewed(item.id))
 })
 
 const unlocked = computed(() => !notFound.value?.length)

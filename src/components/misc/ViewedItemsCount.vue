@@ -8,5 +8,5 @@
 </template>
 
 <script setup lang="ts">
-const { viewedItemsCount } = toRefs(useInteractionStore())
+const { viewedItemsCount } = toRefs(useItemStore())
 </script>
