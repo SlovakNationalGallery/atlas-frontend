@@ -52,8 +52,6 @@ import BucketlistModel from '@/models/Bucketlist'
 import ItemHeader from '@/components/item/ItemHeader.vue'
 import Lists from '@/components/bucketlist/Lists.vue'
 
-const { id } = useParams()
-
 const bucketlistStore = useBucketlistStore()
 const itemsStore = useItemStore()
 const bucketlist = ref<BucketlistModel | null>(null)
@@ -79,8 +77,7 @@ definePage({
   },
 })
 
-// TODO: translation, also we need locked state of text
-onMounted(async () => {
+useFetchDetail(async (id) => {
   bucketlist.value = await bucketlistStore.load(id)
 })
 </script>

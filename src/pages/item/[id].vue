@@ -80,11 +80,8 @@ import AuthorSummary from '@/components/author/AuthorSummary.vue'
 import AuthorityDetails from '@/components/author/AuthorityDetails.vue'
 import Item from '@/models/Item'
 
-const route = useRoute()
 const itemStore = useItemStore()
-const { id } = useParams()
-
-const item = ref<Item>()
+const item = ref<Item | null>(null)
 
 // TODO: add translations
 
@@ -94,8 +91,9 @@ definePage({
   },
 })
 
-onMounted(async () => {
+useFetchDetail(async (id) => {
+  item.value = null
   item.value = await itemStore.load(id)
-  itemStore.addItemViewed(item.value.id)
+  itemStore.addItemViewed(id)
 })
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <Button class="rounded-full" @click="codePanelOpened = true">
+  <Button class="!rounded-full" @click="codePanelOpened = true">
     <div class="flex font-medium leading-[28px]">
       <Icon name="code" class="w-7" />
       <TransitionExpand axis="x">

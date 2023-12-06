@@ -4,7 +4,7 @@
       <template #actions>
         <LanguageSwitcher />
       </template>
-      <Button w-full center @click="emit('close')">Pokračuj do aplikácie</Button>
+      <Button class="w-full justify-center" @click="emit('close')">Pokračuj do aplikácie</Button>
     </Card>
   </div>
 </template>

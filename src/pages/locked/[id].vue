@@ -29,9 +29,7 @@ import ItemHeader from '@/components/item/ItemHeader.vue'
 import ItemContent from '@/components/item/ItemContent.vue'
 
 const itemStore = useItemStore()
-const { id } = useParams()
-
-const item = ref<Item>()
+const item = ref<Item | null>(null)
 
 // TODO: add translations & banner link
 
@@ -41,7 +39,8 @@ definePage({
   },
 })
 
-onMounted(async () => {
+useFetchDetail(async (id) => {
+  item.value = null
   item.value = await itemStore.load(id)
 })
 </script>

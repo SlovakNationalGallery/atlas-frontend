@@ -23,8 +23,7 @@
     <div class="p-3 border-2 border-t-0">
       <Button
         icon="chat"
-        w-full
-        center
+        class="w-full justify-center"
         :disabled="!active"
         :label="$t(wrong ? 'Try again' : 'Check the code')"
         @click="verifyCode"
@@ -57,18 +56,27 @@ const verifyCode = () => {
       switch (data.data.codeable_type) {
         case 'item':
           router.push(`/item/${id}`)
+          reset()
           break
         case 'section':
           router.push(`/section/${id}`)
+          reset()
           break
         case 'place':
           router.push(`/place/${id}`)
+          reset()
           break
       }
     })
     .catch(() => {
       wrong.value = true
     })
+}
+
+function reset() {
+  code.fill(0)
+  wrong.value = false
+  codePanelOpened.value = false
 }
 
 watch(code, () => {

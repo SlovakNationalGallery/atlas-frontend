@@ -91,7 +91,7 @@ const switchLanguage = (locale: string) => {
     bottom: 0;
     left: 50%;
     width: 0px;
-    background-color: var(--blue);
+    background-color: theme('colors.blue.DEFAULT');
 
     transition: width 0.2s, left 0.2s;
   }

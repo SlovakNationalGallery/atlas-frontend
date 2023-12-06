@@ -11,7 +11,12 @@
           <div class="text-2xl font-bold">{{ title }}</div>
           <div class="mt-2">{{ description }}</div>
         </div>
-        <Button v-if="buttonLabel" w-full center :label="buttonLabel" :icon="buttonIcon" />
+        <Button
+          v-if="buttonLabel"
+          class="w-full justify-center"
+          :label="buttonLabel"
+          :icon="buttonIcon"
+        />
       </div>
     </router-link>
   </div>

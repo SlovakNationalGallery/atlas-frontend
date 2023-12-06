@@ -23,7 +23,7 @@
     </div>
 
     <router-link :to="bucketlist.link">
-      <Button label="Otvor pátračku" w-full center />
+      <Button label="Otvor pátračku" class="w-full justify-center" />
     </router-link>
   </Card>
 </template>

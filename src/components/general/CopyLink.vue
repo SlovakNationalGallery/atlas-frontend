@@ -1,5 +1,5 @@
 <template>
-  <Button w-full variant="outline" @click="onCopy">
+  <Button class="w-full" variant="outline" @click="onCopy">
     <template #prefix>
       <div class="grow text-lg flex items-center gap-2 text-black">
         <Icon name="link" class="w-6" />

@@ -23,11 +23,10 @@ import ItemHeader from '@/components/item/ItemHeader.vue'
 import ItemContent from '@/components/item/ItemContent.vue'
 
 const sectionStore = useSectionStore()
-const { id } = useParams()
+const section = ref<Section | null>(null)
 
-const section = ref<Section>()
-
-onMounted(async () => {
+useFetchDetail(async (id) => {
+  section.value = null
   section.value = await sectionStore.load(id)
 })
 </script>

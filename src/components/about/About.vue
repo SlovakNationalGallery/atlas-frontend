@@ -7,7 +7,7 @@
             Atlas neustále vyvíjame na základe odozvy od ľudí ako si aj ty! Máš nápad alebo
             pripomienku? Daj nám vedieť pomocou krátkeho dotazníka nižšie.
           </div>
-          <Button w-full center class="mt-4" @click="toggleSurvey">
+          <Button class="w-full justify-center mt-4" @click="toggleSurvey">
             {{ isSurveyDone ? $t('Thank you!') : $t('Fill out a brief survey') }}
           </Button>
         </Card>

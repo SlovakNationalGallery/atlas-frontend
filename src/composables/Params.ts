@@ -3,5 +3,5 @@ export function useParams() {
   // this is a workaround while we wait for a fix
 
   const route = useRoute()
-  return route.params as Record<string, string>
+  return computed<Record<string, string>>(() => route.params)
 }

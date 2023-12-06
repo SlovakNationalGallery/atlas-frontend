@@ -36,11 +36,8 @@ import Place from '@/models/Place'
 import ItemHeader from '@/components/item/ItemHeader.vue'
 import ItemContent from '@/components/item/ItemContent.vue'
 
-const route = useRoute()
 const placeStore = usePlaceStore()
-const { id } = useParams()
-
-const place = ref<Place>()
+const place = ref<Place | null>(null)
 
 // TODO: add translations
 definePage({
@@ -49,7 +46,8 @@ definePage({
   },
 })
 
-onMounted(async () => {
+useFetchDetail(async (id) => {
+  place.value = null
   place.value = await placeStore.load(id)
 })
 </script>
