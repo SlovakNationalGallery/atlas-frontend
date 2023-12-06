@@ -10,7 +10,7 @@
         @click="isFrontpage ? (isOpenedAbout = !isOpenedAbout) : back()"
       >
         <TransitionScale mode="out-in" :duration="300" :delay="0" appear>
-          <Icon v-if="route.path !== '/'" name="chevron-left" />
+          <Icon v-if="!isFrontpage" name="chevron-left" />
           <Icon v-else-if="isOpenedAbout" name="close" />
           <Icon v-else name="sng" />
         </TransitionScale>
@@ -45,7 +45,7 @@ const route = useRoute()
 
 const isOpenedAbout = ref(false)
 
-const isFrontpage = computed(() => route.path === '/')
+const isFrontpage = computed(() => route.path === '/homepage' || route.path === '/')
 const title = computed(() => props.title ?? route.meta.title)
 </script>
 <style lang="scss" scoped>

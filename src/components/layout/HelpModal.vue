@@ -43,7 +43,6 @@
 import { Carousel, Slide } from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
-import HelpStep from '@/components/misc/HelpStep.vue'
 
 defineProps({
   visible: Boolean,

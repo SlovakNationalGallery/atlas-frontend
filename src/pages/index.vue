@@ -1,28 +1,33 @@
 <template>
-  <div class="grow pb-24">
+  <div class="grow">
     <HomepageHeader class="border-b-2" />
-    <Bucketlist :id="bucketlistId" class="border-b-2" />
-    <History />
+    <OnBoarding v-if="!onboarding" @close="onboarding = true" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { watchDebounced } from '@vueuse/core'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 import HomepageHeader from '@/components/homepage/HomepageHeader.vue'
-import History from '@/components/homepage/HomepageHistory.vue'
-import Bucketlist from '@/components/history/Bucketlist.vue'
+import OnBoarding from '@/components/homepage/OnBoarding.vue'
 
-const { toggle: toggleSurvey, shouldLaunch: shouldSurveyLaunch } = useSurvey()
-const bucketlistId = import.meta.env.VITE_DEFAULT_BUCKETLIST
+const cookies = useCookies(['onboarding'])
+const onboarding = ref(cookies.get('onboarding'))
+watch(onboarding, (value) => {
+  cookies.set(
+    'onboarding',
+    onboarding.value,
+    // in 24 hours
+    { expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000) }
+  )
 
-watchDebounced(
-  shouldSurveyLaunch,
-  () => {
-    if (shouldSurveyLaunch.value) {
-      toggleSurvey()
-    }
-  },
-  { immediate: true, debounce: 1000 }
-)
+  value && router.push('/homepage')
+})
+
+const router = useRouter()
+onMounted(() => {
+  if (onboarding.value) {
+    router.push('/homepage')
+  }
+})
 </script>

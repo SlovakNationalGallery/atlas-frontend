@@ -1,6 +1,10 @@
 <template>
-  <div class="carousel">
-    <div v-for="item in items" :key="item.key as string" class="slide">
+  <div ref="carouselRef" class="scrollbar-hide flex snap-mandatory snap-x overflow-x-auto">
+    <div
+      v-for="item in items"
+      :key="item.key as string"
+      class="snap-start flex-auto flex-shrink-0 w-slide"
+    >
       <component :is="item" />
     </div>
   </div>
@@ -9,32 +13,13 @@
 <script setup lang="ts">
 const slots = useSlots()
 const items = computed(() => (slots.default!()[0].children || []) as VNode[])
-</script>
+const carouselRef = ref<HTMLElement | null>(null)
 
-<style lang="scss" scoped>
-.carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  .slide {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
-    width: calc(100% / 2.3);
-  }
-
-  // TODO: find better solution
-  &:after {
-    content: '';
-    flex: 0 0 auto;
-    width: 12px;
-  }
+async function scrollToBack() {
+  await nextTick()
+  carouselRef.value?.scrollTo({ left: 0, top: 0, behavior: 'instant' })
 }
-</style>
+
+watch(items, () => scrollToBack)
+onMounted(scrollToBack)
+</script>
