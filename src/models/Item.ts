@@ -47,6 +47,16 @@ export default class Item extends BaseModel {
 
   public declare bucketlists: Bucketlist[]
 
+  public isAuthorOpened: boolean
+  public isVideoOpened: boolean
+
+  constructor(o: any) {
+    super(o)
+
+    this.isAuthorOpened = false
+    this.isVideoOpened = false
+  }
+
   public get image_alt() {
     return `${this.author}: ${this.title}`
   }

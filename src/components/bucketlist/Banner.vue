@@ -2,7 +2,7 @@
   <article v-if="bucketlist" class="flex justify-between bg-yellow p-4">
     <div>
       <div class="flex items-center">
-        <Icon name="scavenger" size="24px" class="mr-1" />
+        <Icon name="scavenger" class="w-6 mr-1" />
         <h3 class="font-bold">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h3>
       </div>
       <p class="mt-1 text-xl font-medium leading-snug">
@@ -34,12 +34,12 @@ const props = defineProps<{
   item: Item
 }>()
 
-const interactionStore = useInteractionStore()
+const itemStore = useItemStore()
 const bucketlistStore = useBucketlistStore()
 const bucketlist = ref<Bucketlist>()
 
 const found = computed(() =>
-  bucketlist.value?.items.filter((item) => interactionStore.isItemViewed(item.id))
+  bucketlist.value?.items.filter((item) => itemStore.isItemViewed(item.id))
 )
 
 const unlocked = computed(() => found.value?.length === bucketlist.value?.items.length)
@@ -56,4 +56,3 @@ onMounted(async () => {
   }
 })
 </script>
-

@@ -3,7 +3,6 @@
     <TransitionGroup name="interactions">
       <template v-for="(interaction, i) in interactionStore.interactions" :key="i">
         <InteractionStory
-          v-if="interaction.type === 'story'"
           :ref="(component) => setStoryRef(component!, interaction)"
           :story="storyStore.get(interaction.id)!"
           :link-id="interaction.linkId!"
@@ -12,26 +11,6 @@
           class="my-8"
           @navigate="(link) => navigate(interaction, link)"
           @undo="undo(interaction)"
-        />
-        <InteractionItemFavourited
-          v-else-if="interaction.type === 'itemFavourited'"
-          :item="itemStore.get(interaction.id)!"
-          class="my-4"
-        />
-        <InteractionItemViewed
-          v-else-if="interaction.type === 'itemViewed'"
-          :item="itemStore.get(interaction.id)!"
-          class="my-4"
-        />
-        <InteractionSectionViewed
-          v-else-if="interaction.type === 'sectionViewed'"
-          :section="sectionStore.get(interaction.id)!"
-          class="my-4"
-        />
-        <InteractionPlaceViewed
-          v-else-if="interaction.type === 'placeViewed'"
-          :place="placeStore.get(interaction.id)!"
-          class="my-4"
         />
       </template>
     </TransitionGroup>
@@ -44,19 +23,12 @@ import { watchDebounced } from '@vueuse/core'
 import type { ILink } from '@/models/_Interfaces'
 import type { Component } from 'vue'
 
-import InteractionItemFavourited from '@/components/interactions/InteractionItemFavourited.vue'
-import InteractionItemViewed from '@/components/interactions/InteractionItemViewed.vue'
-import InteractionSectionViewed from '@/components/interactions/InteractionSectionViewed.vue'
-import InteractionPlaceViewed from '@/components/interactions/InteractionPlaceViewed.vue'
 import InteractionStory from '@/components/interactions/InteractionStory.vue'
 import Interaction from '@/models/Interaction'
 
-const interactionStore = useInteractionStore()
-const itemStore = useItemStore()
-const sectionStore = useSectionStore()
-const storyStore = useStoryStore()
-const placeStore = usePlaceStore()
 const { id } = useParams()
+const interactionStore = useInteractionStore()
+const storyStore = useStoryStore()
 
 const storyMap = new Map()
 
@@ -97,7 +69,7 @@ const scrollActiveIntoView = () => {
 const loadStory = async (id: string) => {
   const story = storyStore.get(id) || (await storyStore.load(id))
   interactionStore.addStory(story.id)
-  await nextTick(scrollActiveIntoView)
+  nextTick(scrollActiveIntoView)
 }
 
 onMounted(async () => {

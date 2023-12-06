@@ -55,16 +55,16 @@ import Lists from '@/components/bucketlist/Lists.vue'
 const { id } = useParams()
 
 const bucketlistStore = useBucketlistStore()
-const interactionStore = useInteractionStore()
+const itemsStore = useItemStore()
 const bucketlist = ref<BucketlistModel | null>(null)
 
 // TODO: move this logic to store?
 const found = computed(() => {
-  return bucketlist.value?.items.filter((item) => interactionStore.isItemViewed(item.id)) ?? []
+  return bucketlist.value?.items.filter((item) => itemsStore.isItemViewed(item.id)) ?? []
 })
 
 const notFound = computed(() => {
-  return bucketlist.value?.items.filter((item) => !interactionStore.isItemViewed(item.id)) ?? []
+  return bucketlist.value?.items.filter((item) => !itemsStore.isItemViewed(item.id)) ?? []
 })
 
 const width = computed(
