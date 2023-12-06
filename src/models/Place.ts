@@ -25,6 +25,26 @@ export default class Place extends BaseModel {
   public declare story_id: string | null
   public declare location_formatted: string
 
+  public get image_src() {
+    return this.image.src
+  }
+
+  public get image_srcset() {
+    return this.image.srcset
+  }
+
+  public get image_aspect_ratio() {
+    return this.image.aspect_ratio
+  }
+
+  public get image_alt() {
+    return this.title
+  }
+
+  public get link() {
+    return `/place/${this.id}`
+  }
+
   static load = async (id: string) => {
     const response = await axios.get(`/api/places/${id}`)
     return new this(response.data.data)

@@ -16,13 +16,7 @@
       <template v-else>
         <div v-for="(item, i) in relatedItems" :key="`slide${item.id}`" class="ml-3">
           <div class="min-w-full" @click="openPreview(item)">
-            <ItemImage
-              class="mb-1 rounded-lg"
-              :offset-top="item.offset_top"
-              :alt="item.title"
-              :src="item.image_src"
-              :srcset="item.image_srcset"
-            ></ItemImage>
+            <ItemImage class="mb-1 rounded-lg overflow-hidden" :data="item" />
             <div class="text-left">
               <h5 class="truncate font-bold">{{ item.title }}</h5>
               <div class="text-sm text-gray-dark">{{ item.dating_short }}</div>
@@ -32,16 +26,19 @@
       </template>
     </Carousel>
 
-    <ItemPreview v-if="previewItem" :item="previewItem" @close="closePreview" />
+    <TransitionSlide>
+      <ItemPreview v-if="previewItem" :item="previewItem" @close="closePreview" />
+    </TransitionSlide>
   </div>
 </template>
 
 <script setup lang="ts">
 import axios from 'axios'
+import { TransitionSlide } from '@morev/vue-transitions'
 
 import Carousel from '@/components/misc/Carousel.vue'
-import ItemPreview from '@/components/general/ItemPreview.vue'
-import ItemImage from '@/components/general/ItemImage.vue'
+import ItemPreview from '@/components/item/ItemPreview.vue'
+import ItemImage from '@/components/item/ItemImage.vue'
 import Authority from '@/models/Authority'
 import Item from '@/models/Item'
 

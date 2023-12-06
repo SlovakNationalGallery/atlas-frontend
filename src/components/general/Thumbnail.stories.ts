@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 
 import Thumbnail from '@/components/general/Thumbnail.vue'
 import ResponsiveImageWithSizes from '@/components/general/ResponsiveImageWithSizes.vue'
-import Icon from '@/components/general/Icon.vue'
 import Item from '@/models/Item'
 
 const meta = {
@@ -25,7 +24,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: (args) => ({
-    components: { Thumbnail, ResponsiveImageWithSizes, Icon },
+    components: { Thumbnail, ResponsiveImageWithSizes },
     async setup() {
       const item = await Item.load('SVK:SNG.UP-F_1202')
 
@@ -50,7 +49,7 @@ export const WithBorder: Story = {
     border: true,
   },
   render: (args) => ({
-    components: { Thumbnail, ResponsiveImageWithSizes, Icon },
+    components: { Thumbnail, ResponsiveImageWithSizes },
     async setup() {
       const item = await Item.load('SVK:SNG.UP-F_1202')
 
@@ -75,7 +74,7 @@ export const WithBgColor: Story = {
     bgColor: 'E8E8E8',
   },
   render: (args) => ({
-    components: { Thumbnail, ResponsiveImageWithSizes, Icon },
+    components: { Thumbnail, ResponsiveImageWithSizes },
     async setup() {
       const item = await Item.load('SVK:SNG.UP-F_1202')
 

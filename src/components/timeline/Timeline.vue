@@ -27,7 +27,7 @@
         </Thumbnail>
       </router-link>
       <ItemLoader v-for="id in itemStore.viewedItemsIds" :id="id" v-slot="{ item }" :key="id">
-        <router-link :to="`/item/${id}`">
+        <router-link :to="item.link">
           <ItemThumbnail :item="item" />
         </router-link>
       </ItemLoader>
@@ -37,8 +37,8 @@
 
 <script setup lang="ts">
 import Thumbnail from '@/components/general/Thumbnail.vue'
-import ItemLoader from '@/components/general/ItemLoader.vue'
-import ItemThumbnail from '@/components/general/ItemThumbnail.vue'
+import ItemLoader from '@/components/item/ItemLoader.vue'
+import ItemThumbnail from '@/components/item/ItemThumbnail.vue'
 
 const itemStore = useItemStore()
 </script>

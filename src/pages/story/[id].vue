@@ -15,7 +15,6 @@
       </template>
     </TransitionGroup>
   </div>
-  <CodePanel />
 </template>
 
 <script setup lang="ts">
@@ -24,10 +23,10 @@ import { watchDebounced } from '@vueuse/core'
 import type { ILink } from '@/models/_Interfaces'
 import type { Component } from 'vue'
 
-import CodePanel from '@/components/layout/CodePanel.vue'
 import InteractionStory from '@/components/interactions/InteractionStory.vue'
 import Interaction from '@/models/Interaction'
 
+const { id } = useParams()
 const interactionStore = useInteractionStore()
 const storyStore = useStoryStore()
 
@@ -74,8 +73,6 @@ const loadStory = async (id: string) => {
 }
 
 onMounted(async () => {
-  const { id } = useParams()
-
   if (id) {
     interactionStore.clear()
     await loadStory(id)

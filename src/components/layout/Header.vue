@@ -24,7 +24,7 @@
         <div v-else>{{ $t('Atlas SNG') }}</div>
       </TransitionSlide>
     </h1>
-    <ViewedItemsCount class="border-l-2 border-l-transparent px-4 py-2" :show-tooltip="isActive" />
+    <ViewedItemsCount class="border-l-2 border-l-transparent px-4 py-2" />
   </div>
 
   <About :opened="isOpenedAbout" />
@@ -42,26 +42,11 @@ const props = defineProps<{
 }>()
 
 const route = useRoute()
-const itemStore = useItemStore()
 
 const isOpenedAbout = ref(false)
-const isActive = ref(false)
 
 const isFrontpage = computed(() => route.path === '/')
 const title = computed(() => props.title ?? route.meta.title)
-
-const displayTooltip = () => {
-  isActive.value = true
-  setTimeout(() => {
-    isActive.value = false
-  }, 3000)
-}
-
-itemStore.$onAction(({ name }) => {
-  if (name === 'addItemViewed' && !itemStore.viewedItemsCount) {
-    displayTooltip()
-  }
-})
 </script>
 <style lang="scss" scoped>
 .header {

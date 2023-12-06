@@ -61,7 +61,7 @@
     <div v-if="found?.length">
       <h3 class="text-1.5xl font-medium leading-6">{{ $t('Found') }}</h3>
       <div class="mt-4 flex flex-col gap-y-4">
-        <router-link v-for="item in found" :key="item.id" :to="`/item/${item.id}`">
+        <router-link v-for="item in found" :key="item.id" :to="item.link">
           <ItemThumbnail :item="item" />
         </router-link>
       </div>
@@ -69,7 +69,7 @@
     <div>
       <h3 class="text-1.5xl font-medium leading-6">{{ $t('Not found yet') }}</h3>
       <div class="mt-4 flex flex-col gap-y-4">
-        <router-link v-for="item in notFound" :key="item.id" :to="`/locked/${item.id}`">
+        <router-link v-for="item in notFound" :key="item.id" :to="item.lockedLink">
           <LockedItemThumbnail :item="item" />
         </router-link>
       </div>
@@ -78,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import ItemThumbnail from '@/components/general/ItemThumbnail.vue'
+import ItemThumbnail from '@/components/item/ItemThumbnail.vue'
 import LockedItemThumbnail from '@/components/bucketlist/LockedItemThumbnail.vue'
 import ResponsiveImageWithSizes from '@/components/general/ResponsiveImageWithSizes.vue'
 import Thumbnail from '@/components/general/Thumbnail.vue'

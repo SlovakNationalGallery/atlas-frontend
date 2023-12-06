@@ -29,6 +29,12 @@ export const usePlaceStore = defineStore(
     }
   },
   {
-    persist: true,
+    persist: {
+      afterRestore: ({ store }) => {
+        Object.keys(store.places).forEach((id) => {
+          store.places[id] = new Place(store.places[id])
+        })
+      },
+    },
   }
 )

@@ -3,14 +3,21 @@
     <div class="w-24 flex-none">
       <slot name="image"></slot>
     </div>
-    <div class="min-w-0 grow p-3">
+    <div class="min-w-0 grow px-3 flex flex-col justify-center">
       <div class="flex items-center">
-        <h2 class="mr-2 grow truncate text-lg font-medium leading-6">
+        <h2 class="mr-2 grow text-lg font-medium leading-6 line-clamp-2">
           <slot name="title"></slot>
         </h2>
         <Icon v-if="props.icon" :name="props.icon" class="w-6" />
       </div>
-      <div class="text-sm" :class="{ truncate: truncateDescription }">
+      <div
+        class="text-sm pr-6"
+        :class="{
+          'truncate': truncateDescription,
+          'line-clamp-2': !truncateDescription,
+          'pr-6': !props.icon,
+        }"
+      >
         <slot name="description"></slot>
       </div>
     </div>

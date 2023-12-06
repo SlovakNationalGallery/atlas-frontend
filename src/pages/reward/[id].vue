@@ -1,10 +1,7 @@
 <template>
   <div v-if="bucketlist">
     <div class="relative w-full border-b-2 border-black bg-gray-softest">
-      <ImageLightbox
-        :alt="bucketlist.title"
-        :src="bucketlist.image.src"
-        :srcset="bucketlist.image.srcset"
+      <ImageLightbox :item="bucketlist" />
       />
     </div>
     <div class="relative h-full border-black p-4">
@@ -21,10 +18,11 @@ import ImageLightbox from '@/components/general/ImageLightbox.vue'
 import Bucketlist from '@/models/Bucketlist'
 
 const bucketlistStore = useBucketlistStore()
+const { id } = useParams()
+
 const bucketlist = ref<Bucketlist | null>(null)
 
 onMounted(async () => {
-  const { id } = useParams()
   bucketlist.value = await bucketlistStore.load(id)
 })
 </script>

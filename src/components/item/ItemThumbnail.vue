@@ -1,5 +1,5 @@
 <template>
-  <Thumbnail>
+  <Thumbnail icon="chevron-right">
     <template #image>
       <ResponsiveImageWithSizes
         class="h-full w-full rounded-xl object-cover"

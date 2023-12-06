@@ -99,6 +99,12 @@ export const useInteractionStore = defineStore(
     }
   },
   {
-    persist: true,
+    persist: {
+      afterRestore: ({ store }) => {
+        Object.keys(store.interactions).forEach((id) => {
+          store.interactions[id] = new Interaction(store.interactions[id])
+        })
+      },
+    },
   }
 )
