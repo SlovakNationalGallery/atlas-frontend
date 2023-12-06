@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { TransitionExpand } from '@morev/vue-transitions'
-import { useWindowScroll } from '@vueuse/core'
+import { useWindowScroll, watchDebounced } from '@vueuse/core'
 
 // TODO: translate btn label
 const props = defineProps<{
@@ -24,7 +24,9 @@ const { codePanelOpened } = toRefs(useInteractionStore())
 
 const openedState = ref(true)
 
-watch(y, (value, oldValue) => (openedState.value = value <= oldValue))
+watchDebounced(y, (value, oldValue) => (openedState.value = value <= oldValue), {
+  debounce: 100,
+})
 watch(
   () => props.isOpened,
   (value) => (openedState.value = value)

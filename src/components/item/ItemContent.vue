@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-full border-black px-4">
+  <div class="px-4">
     <div class="flex flex-col gap-1">
       <h3 v-if="item instanceof Section" class="text-lg">
         {{ $t('Group of :count artworks', { count: String(item.items.length) }) }}

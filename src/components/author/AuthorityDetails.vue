@@ -2,7 +2,7 @@
   <div class="whitespace-pre-line">{{ authority.biography }}</div>
   <div v-if="authority.related_items">
     <div class="my-3 font-bold">{{ $t('Other works by the artist') }}</div>
-    <Carousel class="-mx-3">
+    <Carousel class="-mx-3 pr-3">
       <template v-if="isLoading">
         <div v-for="itemId in authority.related_items" :key="`skeleton${itemId}`" class="ml-3">
           <div class="min-w-full pr-2">

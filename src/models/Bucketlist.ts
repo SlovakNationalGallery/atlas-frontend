@@ -36,6 +36,13 @@ export default class Bucketlist extends BaseModel {
     return this.title
   }
 
+  public get code() {
+    return ''
+  }
+
+  public get link() {
+    return `/bucketlist/${this.id}`
+  }
   static load = async (id: string) => {
     const response = await axios.get(`/api/bucketlists/${id}`)
     return new this(response.data.data)

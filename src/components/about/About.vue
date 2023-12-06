@@ -1,47 +1,26 @@
 <template>
   <Transition :duration="300">
     <div v-if="opened" class="fixed inset-0 z-10 overflow-hidden md:mx-auto md:max-w-lg">
-      <div class="h-full overflow-y-auto bg-white pt-[48px] duration-300">
-        <div class="border-b-1 border-gray-softest">
-          <div class="my-8 flex items-end justify-between">
-            <div class="self-items-end mx-4">
-              <SvgLogo class="mb-7 !h-[46px] !w-[46px]" viewBox="3.3 3.3 28.7 28.7" />
-              <h1 class="font-bold leading-10">
-                <span class="text-[52px]">Atlas</span><br />
-                <span class="text-[42px]">SNG</span>
-              </h1>
-            </div>
-            <div>
-              <img src="@/img/about-ester.png" />
-            </div>
+      <div class="h-full overflow-y-auto bg-white pt-12 duration-300 pb-24">
+        <Card class="bg-blue-softest" label="Pomôž nám zlepšiť Atlas">
+          <div>
+            Atlas neustále vyvíjame na základe odozvy od ľudí ako si aj ty! Máš nápad alebo
+            pripomienku? Daj nám vedieť pomocou krátkeho dotazníka nižšie.
           </div>
+          <Button w-full center class="mt-4" @click="toggleSurvey">
+            {{ isSurveyDone ? $t('Thank you!') : $t('Fill out a brief survey') }}
+          </Button>
+        </Card>
 
-          <div class="m-4 space-y-4 text-xl">
-            <div
-              v-if="!isSurveyDone"
-              class="flex rounded-xl border-2 border-black bg-green/30 p-2.5"
-            >
-              <div class="shrink-0">
-                <SvgInfo />
-              </div>
-              <div class="pl-2">
-                {{
-                  $t(
-                    'The development of the app is ongoing, we are improving it according to feedback. Do you want to help us?'
-                  )
-                }}
-                <a href="#" class="underline" @click="toggleSurvey">{{
-                  $t('Fill out a brief survey!')
-                }}</a>
-              </div>
-            </div>
-            <p v-html="$t('about_perex_1')"></p>
-            <p v-html="$t('about_perex_2')"></p>
+        <div class="px-4 py-2 text-xl border-b-1 border-gray-softest">
+          <div class="flex items-center">
+            <div class="font-bold text-xl grow">Language / Jazyk</div>
+            <LanguageSwitcher />
           </div>
         </div>
 
-        <AboutCollapsible :initial-open="true" class="scroll-mt-12 border-b-1 border-gray-softest">
-          <template #summary>{{ $t('How to?') }} </template>
+        <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
+          <template #summary>{{ $t('Help') }} </template>
 
           <div class="space-y-4">
             <ul class="ml-6 list-disc">
@@ -63,20 +42,6 @@
                 {{ $t('You can come back to your artworks later, Atlas remembers them.') }}
               </li>
             </ul>
-          </div>
-        </AboutCollapsible>
-        <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
-          <template #summary>{{ $t('Settings') }}</template>
-
-          <div class="items-center flex">
-            <div class="grow">{{ $t('Reload the conversation from the beginning') }}</div>
-            <button
-              type="button"
-              class="flex-none rounded-xl bg-black py-2 px-3 text-sm font-medium leading-4.5 text-white"
-              @click="shownResetModal = true"
-            >
-              {{ $t('Reset') }}
-            </button>
           </div>
         </AboutCollapsible>
         <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
@@ -126,46 +91,17 @@
       </div>
     </div>
   </Transition>
-
-  <CardModal :visible="shownResetModal" @close="shownResetModal = false">
-    <h3 class="my-4 text-2xl font-bold">{{ $t('Reset the conversation') }}</h3>
-    <div class="text-lg leading-7">
-      <p>
-        {{
-          $t(
-            'Are you sure you want to reset your conversation with Ester? It will start from the very beginning. This step can not be undone.'
-          )
-        }}
-      </p>
-      <p class="mt-2 font-bold">{{ $t('Your collection remains saved!') }}</p>
-    </div>
-    <div class="flex space-x-3">
-      <ConfirmButton class="my-4 bg-black text-white" @click="resetInteraction">{{
-        $t('Reset')
-      }}</ConfirmButton>
-      <ConfirmButton class="my-4" @click="shownResetModal = false">{{ $t('Close') }}</ConfirmButton>
-    </div>
-  </CardModal>
 </template>
 
 <script setup lang="ts">
 import AboutCollapsible from '@/components/about/AboutCollapsible.vue'
-import CardModal from '@/components/layout/CardModal.vue'
-import ConfirmButton from '@/components/forms/ConfirmButton.vue'
+import LanguageSwitcher from '@/components/layout/LanguageSwitcher.vue'
 
 defineProps<{
   opened: boolean
 }>()
 
-const interactionStore = useInteractionStore()
 const { toggle: toggleSurvey, isDone: isSurveyDone } = useSurvey()
-
-const shownResetModal = ref(false)
-
-const resetInteraction = () => {
-  interactionStore.clear()
-  window.location.reload()
-}
 </script>
 
 <style scoped>

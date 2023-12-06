@@ -1,8 +1,8 @@
 <template>
   <Header />
   <router-view />
-  <FAB is-opened class="fixed right-4 bottom-4 z-10" />
-  <CodePanel />
+  <FAB v-if="!isOnBoarding" is-opened class="fixed right-4 bottom-4 z-10" />
+  <CodePanel v-if="!isOnBoarding" />
 </template>
 
 <script setup lang="ts">
@@ -21,4 +21,7 @@ onMounted(async () => {
     setViewHeight()
   })
 })
+
+const router = useRouter()
+const isOnBoarding = computed(() => router.currentRoute.value.path === '/')
 </script>
