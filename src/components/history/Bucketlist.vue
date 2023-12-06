@@ -3,7 +3,7 @@
     <div class="text-lg">Nájdi diela v areáli SNG, odhaľ čo ich spája a získaj zľavu!</div>
 
     <Carousel class="-mx-4 my-4">
-      <div v-for="(col, i) in itemsSorted" :key="i" class="ml-4">
+      <div v-for="col in itemsSorted" :key="col.item.id" class="ml-4">
         <router-link :to="col.locked ? col.item.lockedLink : col.item.link">
           <ItemImage
             :data="col.item"
