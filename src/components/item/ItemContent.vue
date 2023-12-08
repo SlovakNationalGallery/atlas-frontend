@@ -5,13 +5,13 @@
         {{ $t('Group of :count artworks', { count: String(item.items.length) }) }}
       </h3>
 
-      <h2 class="text-2xl font-bold">{{ item.title }}</h2>
+      <h2 class="text-2xl font-bold font-sng">{{ item.title }}</h2>
 
       <h3 v-if="item instanceof Item && item.author" class="text-lg">
         {{ item.author }}, {{ item.dating }}
       </h3>
 
-      <div v-if="item.location_formatted" class="text-lg text-50-black italic">
+      <div v-if="item.location_formatted" class="text-lg text-black-soft italic">
         {{ $t('Location') }}: {{ item.location_formatted }}
       </div>
 

@@ -16,7 +16,14 @@
           <h2 class="text-lg font-medium grow">
             {{ $t('Scavenger hunt:') }} {{ bucketlist.title }}
           </h2>
-          <div>{{ found.length }}/{{ bucketlist.items.length }} nájdených</div>
+          <div>
+            {{
+              $t(':found/:all artworks found!', {
+                found: String(found.length),
+                all: String(bucketlist.items.length),
+              })
+            }}
+          </div>
         </div>
 
         <div class="border-2 h-3 rounded-xl mt-2">
@@ -25,7 +32,7 @@
       </div>
       <div class="px-4 pb-24 pt-6">
         <h2 class="text-2xl font-bold">{{ bucketlist.title }}</h2>
-        <h3 class="text-lg">Pátračka</h3>
+        <h3 class="text-lg">{{ $t('Scavenger hunt') }}</h3>
 
         <div v-if="unlocked" class="bg-yellow p-4 flex flex-col gap-3 rounded-xl my-4">
           <div class="flex items-center gap-2">
@@ -70,12 +77,6 @@ const width = computed(
 )
 
 const unlocked = computed(() => !notFound.value?.length)
-
-definePage({
-  meta: {
-    title: 'Pátračka',
-  },
-})
 
 useFetchDetail(async (id) => {
   bucketlist.value = await bucketlistStore.load(id)

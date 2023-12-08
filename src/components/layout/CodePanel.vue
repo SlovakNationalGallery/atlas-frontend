@@ -1,7 +1,7 @@
 <template>
   <div
-    class="fixed z-10 top-full overflow-hidden w-full bg-white ease-in-out rounded-t-xl md:mx-auto md:max-w-lg duration-500"
-    :class="[codePanelOpened ? '-translate-y-full' : 'translate-y-0']"
+    class="fixed z-10 bottom-0 overflow-hidden w-full bg-white ease-in-out rounded-t-xl md:mx-auto md:max-w-lg duration-500"
+    :class="[!codePanelOpened ? 'translate-y-full' : 'translate-y-0']"
   >
     <div
       class="flex w-full items-center overflow-hidden border-2 border-b-0 px-4 py-2 rounded-t-xl"
@@ -22,10 +22,10 @@
 
     <div class="p-3 border-2 border-t-0">
       <Button
-        icon="chat"
         class="w-full justify-center"
         :disabled="!active"
         :label="$t(wrong ? 'Try again' : 'Check the code')"
+        :color="wrong ? 'red' : 'default'"
         @click="verifyCode"
       />
     </div>

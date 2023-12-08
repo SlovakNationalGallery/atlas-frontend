@@ -1,7 +1,7 @@
 <template>
-  <Card label="História" icon="eye">
+  <Card :label="$t('History')" icon="eye">
     <template #actions>
-      <div class="text-blue font-bold text-lg">{{ viewedItemsIds.length }} diel</div>
+      <div class="text-blue font-bold text-lg">{{ viewedItemsIds.length }} {{ countLabel }}</div>
     </template>
 
     <Carousel v-if="viewedItemsIds.length" class="-mx-4 pr-4">
@@ -20,9 +20,9 @@
 
     <CTABanner
       v-else
-      link="#"
-      title="Pridaj nové dielo"
-      description="Všetky diela, ktorých kód zadáš sa automaticky uložia sem."
+      :title="$t('Add new artwork')"
+      :description="$t('All works you enter the code for will be automatically saved here.')"
+      @click="codePanelOpened = true"
     />
   </Card>
 </template>
@@ -33,7 +33,8 @@ import CTABanner from '@/components/general/CTABanner.vue'
 import Carousel from '@/components/misc/Carousel.vue'
 import ItemImage from '@/components/item/ItemImage.vue'
 
-// TODO: translations
 const { viewedItemsIds } = toRefs(useItemStore())
+const { codePanelOpened } = toRefs(useInteractionStore())
+const countLabel = tc('artwork|artworks', viewedItemsIds.value.length)
 </script>
 

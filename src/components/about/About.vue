@@ -2,10 +2,13 @@
   <Transition :duration="300">
     <div v-if="opened" class="fixed inset-0 z-10 overflow-hidden md:mx-auto md:max-w-lg">
       <div class="h-full overflow-y-auto bg-white pt-12 duration-300 pb-24">
-        <Card class="bg-blue-softest" label="Pomôž nám zlepšiť Atlas">
+        <Card class="bg-blue-softest" :label="$t('Help us improve Atlas SNG')">
           <div>
-            Atlas neustále vyvíjame na základe odozvy od ľudí ako si aj ty! Máš nápad alebo
-            pripomienku? Daj nám vedieť pomocou krátkeho dotazníka nižšie.
+            {{
+              $t(
+                "We're constantly developing the app based on feedback from people like you! Have an idea or comment? Let us know via the short questionnaire below."
+              )
+            }}
           </div>
           <Button class="w-full justify-center mt-4" @click="toggleSurvey">
             {{ isSurveyDone ? $t('Thank you!') : $t('Fill out a brief survey') }}
@@ -23,25 +26,31 @@
           <template #summary>{{ $t('Help') }} </template>
 
           <div class="space-y-4">
-            <ul class="ml-6 list-disc">
-              <li class="pl-2.5">
-                {{
-                  $t(
-                    'Enter the code next to the artwork into the grid in the app. Feel free to try a random one.'
-                  )
-                }}
-              </li>
-              <li class="pl-2.5">
-                {{
-                  $t(
-                    "You'll also find a link to other works by the artist in the artwork's profile."
-                  )
-                }}
-              </li>
-              <li class="pl-2.5">
-                {{ $t('You can come back to your artworks later, Atlas remembers them.') }}
-              </li>
-            </ul>
+            <p>
+              <strong>{{ $t('Can I use the gallery WiFi?') }}</strong
+              ><br />
+              <span v-html="$t('about_help_1')"></span>
+            </p>
+            <p>
+              <strong>{{ $t('How do I explore an artwork?') }}</strong
+              ><br />
+              <span v-html="$t('about_help_2')"></span>
+            </p>
+            <p>
+              <strong>{{ $t("What if I don't see a code?") }}</strong
+              ><br />
+              <span v-html="$t('about_help_3')"></span>
+            </p>
+            <p>
+              <strong>{{ $t("Can I revisit artworks I've already explored?") }}</strong
+              ><br />
+              <span v-html="$t('about_help_4')"></span>
+            </p>
+            <p>
+              <strong>{{ $t('How do I claim my reward for the Scavenger hunt?') }}</strong
+              ><br />
+              <span v-html="$t('about_help_5')"></span>
+            </p>
           </div>
         </AboutCollapsible>
         <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
@@ -68,25 +77,39 @@
         </AboutCollapsible>
         <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
           <template #summary>{{ $t('Made by') }} lab.SNG</template>
-          <ul>
-            <li>Gabriel Balkó: {{ $t('Production') }}</li>
-            <li>Michal Čudrnák: {{ $t('Project lead') }}</li>
-            <li>Dominika Čupková: {{ $t('Video') }}</li>
-            <li>Romana Halgošová: {{ $t('Video') }}</li>
-            <li>Rastislav Chynoranský: {{ $t('Development') }}</li>
-            <li>Mayo Horkovič: {{ $t('Development') }}</li>
-            <li>Zuzana Koblišková: {{ $t('Content, English translation') }}</li>
-            <li>Michaela Kováčová: {{ $t('Content') }}</li>
-            <li>Igor Rjabinin: {{ $t('Development') }}</li>
-            <li>Filip Ruisl: {{ $t('UX design, graphic design') }}</li>
-            <li>František Sebestyén: {{ $t('Development') }}</li>
-            <li>Lukáš Štepanovský: {{ $t('Content, UX design, concept') }}</li>
-            <li>Jana Šuchová: {{ $t('Artist research') }}</li>
-            <li>Barbora Tribulová: {{ $t('Content') }}</li>
-            <li>Katarína Vass: {{ $t('User research') }}</li>
-            <li>Karin Vicianová: {{ $t('Content') }}</li>
-            <li>Ernest Walzel: {{ $t('Development') }}</li>
-          </ul>
+          <p>
+            <strong>{{ $t('Project lead') }}</strong> <br />Michal Čudrnák
+          </p>
+          <p class="mt-4">
+            <strong>{{ $t('Content') }}</strong> <br />Lukáš Štepanovský, Viera Kleinová, Michaela
+            Kováčová, Romana Halgošová, Zuzana Koblišková, Karin Vicianová
+          </p>
+          <p class="mt-4">
+            <strong>{{ $t('Design') }}</strong> <br />Filip Ruisl
+          </p>
+          <p class="mt-4">
+            <strong>{{ $t('Development') }}</strong> <br />Igor Rjabinin, Mayo Horkovič, František
+            Sebestyén, Rastislav Chynoranský, Ernest Walzel
+          </p>
+          <p class="mt-4">
+            <strong>{{ $t('Research') }}</strong> <br />Katarína Vass, Jana Šuchová
+          </p>
+          <p class="mt-4">
+            <strong>{{ $t('Production') }}</strong> <br />Branislav Matis, Gabriel Balkó
+          </p>
+          <p class="mt-4">
+            <strong>{{ $t('Proofreading') }}</strong> <br />Soňa Hrúziková, Luďka Kratochvílová
+          </p>
+          <p class="mt-4">
+            <strong>{{ $t('English translation') }}</strong> <br />Lukáš Štepanovský, Michal
+            Frontczak
+          </p>
+        </AboutCollapsible>
+        <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
+          <template #summary>{{ $t('Used sources') }}</template>
+          <p>
+            {{ $t('Bibliography will be updated soon.') }}
+          </p>
         </AboutCollapsible>
       </div>
     </div>

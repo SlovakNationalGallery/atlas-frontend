@@ -1,11 +1,11 @@
 <template>
-  <div :class="{ 'animate-pulse': isLoading }" class="aspect-[4/3] w-full bg-15-blue">
+  <div :class="{ 'animate-pulse': isLoading }" class="aspect-[4/3] w-full bg-blue-softest">
     <TransitionFade appear>
       <img
         v-if="!isLoading"
         :class="{ hidden: isLoading }"
         class="aspect-[4/3] w-full object-cover object-top"
-        :style="{ objectPosition: 'center ' + offsetTop + 'px' }"
+        :style="{ objectPosition: 'center ' + offsetTop + '%' }"
         :alt="data.image_alt"
         sizes="1px"
         onload="window.requestAnimationFrame(function(){if(!(size=getBoundingClientRect().width))return;onload=null;sizes=Math.ceil(size/window.innerWidth*100)+'vw';});"
@@ -29,7 +29,7 @@ const props = defineProps<{
   offsetTop?: number
 }>()
 
-const offsetTop = computed(() => props.offsetTop ?? props.data.offset_top)
+const offsetTop = computed(() => props.offsetTop ?? props.data.offset_top_percent)
 
 const { isLoading } = preloadImage(props.data.image_src)
 </script>

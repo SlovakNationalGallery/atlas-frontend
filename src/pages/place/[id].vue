@@ -39,13 +39,6 @@ import ItemContent from '@/components/item/ItemContent.vue'
 const placeStore = usePlaceStore()
 const place = ref<Place | null>(null)
 
-// TODO: add translations
-definePage({
-  meta: {
-    title: 'Detail miesta',
-  },
-})
-
 useFetchDetail(async (id) => {
   place.value = null
   place.value = await placeStore.load(id)

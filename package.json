@@ -14,7 +14,8 @@
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "update-chromatic": "npx chromatic --project-token=chpt_9fbba5f82feb2a0"
+    "update-chromatic": "npx chromatic --project-token=chpt_9fbba5f82feb2a0",
+    "vue-i18n-extract": "vue-i18n-extract report --vueFiles './src/**/*.?(ts|vue)' --languageFiles './src/lang/*.?(json|yml|yaml|js)' --add --separator '^' --noEmptyTranslation --remove"
   },
   "dependencies": {
     "@morev/vue-transitions": "^2.3.6",
@@ -74,6 +75,7 @@
     "vite": "^4.5.0",
     "vite-plugin-rewrite-all": "^1.0.1",
     "vite-plugin-svg-icons": "^2.0.1",
+    "vue-i18n-extract": "^2.0.7",
     "vue-tsc": "^1.8.22"
   },
   "readme": "ERROR: No README data found!",

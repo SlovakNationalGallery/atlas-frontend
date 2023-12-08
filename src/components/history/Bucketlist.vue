@@ -1,6 +1,12 @@
 <template>
-  <Card v-if="bucketlist" label="Pátračka" icon="scavenger">
-    <div class="text-lg">Nájdi diela v areáli SNG, odhaľ čo ich spája a získaj zľavu!</div>
+  <Card v-if="bucketlist" :label="$t('Scavenger hunt')" icon="scavenger">
+    <div class="text-lg">
+      {{
+        $t(
+          'Discover artworks within the SNG premises, unveil what connects them, and get a discount!'
+        )
+      }}
+    </div>
 
     <Carousel class="-mx-4 my-4 pr-4">
       <div v-for="col in itemsSorted" :key="col.item.id" class="ml-4">
@@ -15,7 +21,14 @@
     </Carousel>
     <div class="flex items-center">
       <h2 class="text-lg font-medium grow">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h2>
-      <div>{{ found.length }}/{{ bucketlist.items.length }} nájdených</div>
+      <div>
+        {{
+          $t(':found/:all artworks found!', {
+            found: String(found.length),
+            all: String(bucketlist.items.length),
+          })
+        }}
+      </div>
     </div>
 
     <div class="border-2 h-3 rounded-xl mb-4 mt-2">
@@ -23,7 +36,7 @@
     </div>
 
     <router-link :to="bucketlist.link">
-      <Button label="Otvor pátračku" class="w-full justify-center" />
+      <Button :label="$t('Open scavenger hunt')" class="w-full justify-center" />
     </router-link>
   </Card>
 </template>

@@ -50,13 +50,11 @@
           />
         </Collapsible>
 
-        <StoryButton v-if="item.story_id" :story-id="item.story_id" class="my-4" />
-
         <Link
           external
           icon="magnifying-glass"
-          title="Viac o diele na Webe Umenia"
-          description="otvor archív SNG"
+          :title="$t('More about the artwork on webumenia.sk')"
+          :description="$t('Open the SNG archive')"
           :link="item.webumenia_url"
         />
       </ItemContent>
@@ -70,7 +68,6 @@ import { TransitionFade } from '@morev/vue-transitions'
 import Banner from '@/components/bucketlist/Banner.vue'
 import ItemHeader from '@/components/item/ItemHeader.vue'
 import ItemContent from '@/components/item/ItemContent.vue'
-import StoryButton from '@/components/forms/StoryButton.vue'
 import ResponsiveVideoEmbed from '@/components/general/ResponsiveVideoEmbed.vue'
 import VideoSummary from '@/components/general/VideoSummary.vue'
 import Collapsible from '@/components/general/Collapsible.vue'
@@ -82,14 +79,6 @@ import Item from '@/models/Item'
 
 const itemStore = useItemStore()
 const item = ref<Item | null>(null)
-
-// TODO: add translations
-
-definePage({
-  meta: {
-    title: 'Detail diela',
-  },
-})
 
 useFetchDetail(async (id) => {
   item.value = null

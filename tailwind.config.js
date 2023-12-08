@@ -56,7 +56,8 @@ export default {
       current: 'currentColor',
     },
     fontFamily: {
-      sans: ['GTWalsheim', 'sans-serif'],
+      sans: ['Circular', 'sans-serif'],
+      sng: ['SNG Sans', 'sans-serif'],
     },
     fontSize: {
       'xs': ['12px'],

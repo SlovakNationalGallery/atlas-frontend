@@ -1,10 +1,12 @@
 <template>
   <div>
-    <Card label="Language / Jazyk">
+    <Card label="Jazyk / Language">
       <template #actions>
         <LanguageSwitcher />
       </template>
-      <Button class="w-full justify-center" @click="emit('close')">Pokračuj do aplikácie</Button>
+      <Button class="w-full justify-center" @click="emit('close')">{{
+        $t('Continue to the app')
+      }}</Button>
     </Card>
   </div>
 </template>

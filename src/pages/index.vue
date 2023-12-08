@@ -1,6 +1,6 @@
 <template>
-  <div class="grow">
-    <HomepageHeader class="border-b-2" />
+  <div class="grow flex flex-col">
+    <HomepageHeader class="border-b-2 grow" :title="$t('Welcome to Atlas SNG!')" />
     <OnBoarding v-if="!onboarding" @close="onboarding = true" />
   </div>
 </template>

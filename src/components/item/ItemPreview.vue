@@ -6,7 +6,7 @@
     <div class="relative bg-white max-h-full w-full rounded-xl md:max-w-lg" @click="emit('close')">
       <div
         :class="{ 'animate-pulse': isLoading }"
-        class="w-full rounded-t-xl bg-15-blue"
+        class="w-full rounded-t-xl bg-blue-softest"
         :style="{ aspectRatio: item.image_aspect_ratio }"
       >
         <TransitionFade appear>

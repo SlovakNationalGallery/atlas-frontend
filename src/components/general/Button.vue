@@ -5,7 +5,7 @@
     :class="className"
   >
     <slot name="prefix"><Icon v-if="icon" :name="icon" :class="{ 'mr-2': !isIconOnly }" /></slot>
-    <div class="text-lg">
+    <div class="text-lg font-[500]">
       <slot>{{ label }}</slot>
     </div>
     <slot name="suffix"></slot>
@@ -19,7 +19,7 @@ const props = withDefaults(
   defineProps<{
     icon?: string
     variant?: 'primary' | 'outline'
-    color?: 'default' | 'black'
+    color?: 'default' | 'black' | 'red'
     label?: string
   }>(),
   {
@@ -61,6 +61,14 @@ const isIconOnly = computed(() => {
     --color-disabled: theme('colors.black.softest');
     --text-color: theme('colors.white');
     --text-color-disabled: theme('colors.black.soft');
+  }
+
+  &.color-red {
+    --color: theme('colors.red');
+    --color-active: theme('colors.red');
+    --color-disabled: theme('colors.red');
+    --text-color: theme('colors.white');
+    --text-color-disabled: theme('colors.red');
   }
 
   &:active {
