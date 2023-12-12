@@ -10,4 +10,6 @@ import Bucketlist from '@/components/history/Bucketlist.vue'
 import History from '@/components/history/History.vue'
 
 const bucketlistId = import.meta.env.VITE_DEFAULT_BUCKETLIST
+
+useDefineTitle(t('My history'))
 </script>

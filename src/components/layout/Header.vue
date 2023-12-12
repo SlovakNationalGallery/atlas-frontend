@@ -50,11 +50,12 @@ const props = defineProps<{
 }>()
 
 const route = useRoute()
+const { title: localeTitle } = toRefs(useLocaleStore())
 
 const isOpenedAbout = ref(false)
 
 const isFrontpage = computed(() => route.path === '/homepage' || route.path === '/')
-const title = computed(() => props.title ?? route.meta.title)
+const title = computed(() => props.title ?? localeTitle.value)
 
 // this is a hack to make the title centered
 const backRef = ref<HTMLElement | null>(null)

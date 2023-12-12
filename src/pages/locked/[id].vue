@@ -34,5 +34,7 @@ useFetchDetail(async (id) => {
   item.value = await itemStore.load(id)
 })
 
+useDefineTitle(t('Bucketlist artwork'))
+
 const { codePanelOpened } = toRefs(useInteractionStore())
 </script>

@@ -43,4 +43,6 @@ useFetchDetail(async (id) => {
   place.value = null
   place.value = await placeStore.load(id)
 })
+
+useDefineTitle(t('Place'))
 </script>

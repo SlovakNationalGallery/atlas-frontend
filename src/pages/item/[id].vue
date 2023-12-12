@@ -85,4 +85,6 @@ useFetchDetail(async (id) => {
   item.value = await itemStore.load(id)
   itemStore.addItemViewed(id)
 })
+
+useDefineTitle(t('Artwork detail'))
 </script>

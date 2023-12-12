@@ -93,4 +93,6 @@ const unlocked = computed(() => !notFound.value?.length)
 useFetchDetail(async (id) => {
   bucketlist.value = await bucketlistStore.load(id)
 })
+
+useDefineTitle(t('Bucketlist'))
 </script>
