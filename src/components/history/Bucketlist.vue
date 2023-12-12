@@ -1,11 +1,14 @@
 <template>
   <Card v-if="bucketlist" :label="$t('Scavenger hunt')" icon="scavenger">
-    <div class="text-lg">
+    <div v-if="!unlocked" class="text-lg">
       {{
         $t(
           'Discover artworks within the SNG premises, unveil what connects them, and get a discount!'
         )
       }}
+    </div>
+    <div v-else class="text-lg">
+      {{ $t('All artworks found! Open the Scavenger hunt and claim your reward.') }}
     </div>
 
     <Carousel class="-mx-4 my-4 pr-4">
@@ -36,7 +39,10 @@
     </div>
 
     <router-link :to="bucketlist.link">
-      <Button :label="$t('Open scavenger hunt')" class="w-full justify-center" />
+      <Button
+        :label="!unlocked ? $t('Open scavenger hunt') : $t('See reward')"
+        class="w-full justify-center"
+      />
     </router-link>
   </Card>
 </template>
@@ -72,6 +78,10 @@ const itemsSorted = computed(() => {
 const width = computed(
   () => (found.value.length / (bucketlist.value?.items.length ?? 1)) * 100 + '%'
 )
+
+const unlocked = computed(() => {
+  return found.value.length === bucketlist.value?.items.length
+})
 
 onMounted(async () => {
   bucketlist.value = bucketlistStore.get(props.id)!

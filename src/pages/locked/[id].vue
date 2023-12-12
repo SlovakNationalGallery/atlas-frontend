@@ -9,8 +9,8 @@
         :description="item.locked_bucketlist_description"
       >
         <CTABanner
-          title="Nájdi kód diela v budove"
-          description="Nájdi kód diela v budove"
+          :title="$t('Find and enter the artwork\'s code')"
+          :description="$t('You\'ll unlock its story')"
           @click="codePanelOpened = true"
         />
       </ItemContent>

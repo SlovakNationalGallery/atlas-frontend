@@ -6,7 +6,7 @@
     <div
       class="flex w-full items-center overflow-hidden border-2 border-b-0 px-4 py-2 rounded-t-xl"
     >
-      <div class="text-2xl font-medium grow">Zadaj kód objektu</div>
+      <div class="text-2xl font-medium grow">{{ $t('Enter object code') }}</div>
       <Icon name="close" class="cursor-pointer" @click="codePanelOpened = false" />
     </div>
 
@@ -16,7 +16,7 @@
         :key="position"
         class="border-0 bg-white"
         :is-checked="!!code[position - 1]"
-        @click="code[position - 1] = (code[position - 1] + 1) % 2"
+        @mousedown="code[position - 1] = (code[position - 1] + 1) % 2"
       />
     </div>
 

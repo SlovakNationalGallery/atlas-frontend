@@ -5,12 +5,14 @@
       <div v-else class="py-6 px-4 bg-yellow border-b-2">
         <div class="flex items-center gap-2 mb-2">
           <Icon name="scavenger" />
-          <div class="text-xl font-bold">Zbieraj diela a vyhraj!</div>
+          <div class="text-xl font-bold">{{ $t('Collect artworks and win!') }}</div>
         </div>
         <div class="text-lg mb-6">
-          Umelecké diela v Pátračke niečo spája. Nájdi ich všetky v areáli SNG a dozvieš sa viac. Po
-          odomknutí textu uvidíš kód, za ktorý získaš 10% zľavu v kníhkupectve Ex Libris alebo v
-          kaviarni SNG.
+          {{
+            $t(
+              'Artworks in Scavenger hunt share a common motif. Find them all in the gallery and learn more. \n Exploring all the artworks unlocks a text with a code that grants you a 10% discount at the Ex Libris bookstore or a free coffee in the SNG café.'
+            )
+          }}
         </div>
         <div class="flex items-center">
           <h2 class="text-lg font-medium grow">
@@ -37,15 +39,25 @@
         <div v-if="unlocked" class="bg-yellow p-4 flex flex-col gap-3 rounded-xl my-4">
           <div class="flex items-center gap-2">
             <Icon name="confetti" />
-            <div class="text-xl font-bold">Pátračka dokončená!</div>
+            <div class="text-xl font-bold">{{ $t('Scavenger hunt completed!') }}</div>
           </div>
           <div class="text-lg">
-            Preukáž sa týmto textom v kníhkupectve Ex Libris alebo v kaviarni Sväg in SNG a získaš
-            10% zľavu.
+            {{
+              $t(
+                'Show this code at the Ex Libris bookstore and get 10% discount. In the SNG café you will get a free coffee for the code.'
+              )
+            }}
           </div>
         </div>
 
-        <div class="my-4 space-y-4 markdown text-lg" v-html="bucketlist.text"></div>
+        <div v-if="unlocked" class="my-4 space-y-4 markdown text-lg" v-html="bucketlist.text"></div>
+        <div v-else class="my-4 space-y-4 markdown text-lg">
+          {{
+            $t(
+              "Find all the artworks in the list and unlock the text about the Scavenger hunt's current theme."
+            )
+          }}
+        </div>
         <Lists :found="found" :not-found="notFound" />
       </div>
     </div>
