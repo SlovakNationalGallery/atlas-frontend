@@ -24,7 +24,7 @@
       <Button
         class="w-full justify-center"
         :disabled="!active"
-        :label="$t(wrong ? 'Try again' : 'Check the code')"
+        :label="wrong ? $t('Try again') : $t('Check the code')"
         :color="wrong ? 'red' : 'default'"
         @click="verifyCode"
       />
