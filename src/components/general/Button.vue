@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="button leading-7 rounded-xl p-3 flex items-center grow transition-all ease-in-out duration-300 border-2 disabled:cursor-not-allowed"
+    class="button leading-7 rounded-xl p-3 flex items-center grow transition-all ease-in-out duration-300 border-2 disabled:cursor-not-allowed active:duration-0"
     :class="className"
   >
     <slot name="prefix"><Icon v-if="icon" :name="icon" :class="{ 'mr-2': !isIconOnly }" /></slot>

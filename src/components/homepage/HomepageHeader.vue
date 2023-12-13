@@ -9,8 +9,8 @@
       />
     </TransitionFade>
     <div class="font-sng py-6 px-4 gap-4 flex flex-col absolute inset-0 top-auto text-white">
-      <div class="text-[44px] leading-[52px] font-medium">{{ title }}</div>
-      <div v-if="subtitle" class="text-2xl leading-8">{{ subtitle }}</div>
+      <div class="text-[44px] leading-[52px] font-medium whitespace-pre-line">{{ title }}</div>
+      <div v-if="subtitle" class="text-2xl leading-8 whitespace-pre-line">{{ subtitle }}</div>
     </div>
   </div>
 </template>

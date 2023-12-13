@@ -16,7 +16,7 @@
         :key="position"
         class="border-0 bg-white"
         :is-checked="!!code[position - 1]"
-        @mousedown="code[position - 1] = (code[position - 1] + 1) % 2"
+        @touchstart="code[position - 1] = (code[position - 1] + 1) % 2"
       />
     </div>
 

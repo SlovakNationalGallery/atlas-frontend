@@ -19,7 +19,7 @@
   "Content": "Obsah",
   "Found": "Nájdené diela",
   "Not found yet": "Zostávajúce diela",
-  "Scavenger hunt:": "Pátračka:",
+  "Scavenger hunt:": "Téma:",
   ":found/:all artworks found!": ":found/:all diel nájdených!",
   "Location": "Lokácia",
   "Other works by the artist": "Ďalšie diela od autora",
@@ -30,7 +30,7 @@
   "Copy": "Skopírovať",
   "History": "História",
   "Enter the code": "Zadaj kód",
-  "All works you enter the code for will be automatically saved here.": "Všetky diela, ktorých kód zadáš, sa uložia sem.",
+  "All works you enter the code for will be automatically saved here.": "Všetky diela, ktorých kód zadáš, \nsa uložia sem.",
   "Bucketlist artwork": "Dielo v Pátračke",
   "Section": "Detail skupiny diel",
   "Place": "Detail miesta",
@@ -58,7 +58,7 @@
   "Open scavenger hunt": "Otvor Pátračku",
   "artwork|artworks": "dielo|[2,4]diela|[5,*]diel",
   "Explore SNG at your own pace": "Spoznávaj SNG vlastným tempom",
-  "Enter the artwork code and discover its story": "Zadaj kód diela a objav jeho príbeh",
+  "Enter the artwork code and discover its story": "Zadaj kód diela a objav \njeho príbeh",
   "Welcome to Atlas SNG!": "Vitaj v Atlase SNG",
   "More about the artwork on webumenia.sk": "Viac o diele na Webumenia.sk",
   "Open the SNG archive": "Otvor online katalóg",
@@ -74,5 +74,7 @@
   "Find and enter the artwork's code": "Nájdi a zadaj kód diela",
   "You'll unlock its story": "Odomkneš tak jeho príbeh",
   "Try again": "Nesprávny kód. Skús znova.",
-  "Check the code": "Overiť kód"
+  "Check the code": "Overiť kód",
+  "list": "zoznam",
+  "reward": "odmena"
 }

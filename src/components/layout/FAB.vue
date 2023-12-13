@@ -1,7 +1,7 @@
 <template>
-  <Button class="!rounded-full" @mousedown="codePanelOpened = true">
+  <Button class="!rounded-full border-2 !border-white" @mousedown="codePanelOpened = true">
     <div class="flex font-medium leading-[28px]">
-      <Icon name="code" class="w-7" />
+      <Icon name="code" class="!w-7" />
       <TransitionExpand axis="x">
         <div v-if="openedState" class="whitespace-nowrap ml-2 flex items-center">
           {{ $t('Enter the code') }}

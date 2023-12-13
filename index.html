@@ -35,6 +35,10 @@
         {{-- /GTM --}}
     @endif
     -->
+    <script>
+        // TODO: find better solution for iOS
+        document.addEventListener("touchstart", function() {}, false);
+    </script>
 </head>
 
 <body ontouchstart>

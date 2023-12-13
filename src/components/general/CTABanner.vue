@@ -9,7 +9,7 @@
         </div>
         <div class="text-center">
           <div class="text-2xl font-bold font-sng">{{ title }}</div>
-          <div class="mt-2">{{ description }}</div>
+          <div class="mt-2 whitespace-pre-line">{{ description }}</div>
         </div>
         <Button
           v-if="buttonLabel"
