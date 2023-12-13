@@ -74,6 +74,12 @@ const marginLeft = computed(() => {
 
   return `${Math.abs(backWidth - counterWidth)}px`
 })
+
+defineExpose({
+  closeAbout: () => {
+    isOpenedAbout.value = false
+  },
+})
 </script>
 <style lang="scss" scoped>
 .header {

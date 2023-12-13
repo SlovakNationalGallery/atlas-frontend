@@ -37,6 +37,10 @@ import axios from 'axios'
 
 import CircleButton from '@/components/forms/CircleButton.vue'
 
+const emit = defineEmits<{
+  close: []
+}>()
+
 const { codePanelOpened } = toRefs(useInteractionStore())
 const router = useRouter()
 const route = useRoute()
@@ -44,11 +48,16 @@ const code = reactive(Array(9).fill(0))
 const wrong = ref(false)
 
 const active = computed(() => {
-  return code.some((bit) => bit)
+  return isBusy.value || code.some((bit) => bit)
 })
 
+const isBusy = ref(false)
+
 const verifyCode = () => {
+  isBusy.value = true
+
   const digit = parseInt(code.join(''), 2)
+
   axios
     .get('/api/verify/' + digit)
     .then(({ data }) => {
@@ -71,12 +80,16 @@ const verifyCode = () => {
     .catch(() => {
       wrong.value = true
     })
+    .finally(() => {
+      isBusy.value = false
+    })
 }
 
 function reset() {
   code.fill(0)
   wrong.value = false
   codePanelOpened.value = false
+  emit('close')
 }
 
 watch(code, () => {
