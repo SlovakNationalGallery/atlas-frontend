@@ -5,9 +5,9 @@
       <div v-else class="py-6 px-4 bg-yellow border-b-2">
         <div class="flex items-center gap-2 mb-2">
           <Icon name="scavenger" />
-          <div class="text-xl font-bold">{{ $t('Collect artworks and win!') }}</div>
+          <div class="text-xl font-bold leading-7">{{ $t('Collect artworks and win!') }}</div>
         </div>
-        <div class="text-lg mb-6">
+        <div class="text-lg mb-6 leading-[26px]">
           {{
             $t(
               'Artworks in Scavenger hunt share a common motif. Find them all in the gallery and learn more. \n Exploring all the artworks unlocks a text with a code that grants you a 10% discount at the Ex Libris bookstore or a free coffee in the SNG café.'
@@ -16,7 +16,7 @@
         </div>
         <div class="flex items-center font-bold">
           <h2 class="grow">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h2>
-          <div>
+          <div class="text-right">
             {{
               $t(':found/:all artworks found!', {
                 found: String(found.length),
@@ -31,8 +31,8 @@
         </div>
       </div>
       <div class="px-4 pb-24 pt-6">
-        <h2 class="text-2xl font-bold">{{ bucketlist.title }}</h2>
-        <h3 class="text-lg">{{ $t('Scavenger hunt') }}</h3>
+        <h2 class="text-2xl font-bold font-sng leading-8">{{ bucketlist.title }}</h2>
+        <h3 class="text-lg leading-[26px]">{{ $t('Scavenger hunt') }}</h3>
 
         <div v-if="unlocked" class="bg-yellow p-4 flex flex-col gap-3 rounded-xl my-4">
           <div class="flex items-center gap-2">

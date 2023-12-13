@@ -17,7 +17,7 @@
 
         <div class="px-4 py-2 text-xl border-b-1 border-gray-softest">
           <div class="flex items-center">
-            <div class="font-bold text-xl grow leading-7">Language / Jazyk</div>
+            <div class="font-bold text-xl grow leading-7">Jazyk / Language</div>
             <LanguageSwitcher />
           </div>
         </div>

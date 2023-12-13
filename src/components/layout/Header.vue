@@ -18,11 +18,11 @@
       </button>
     </HistoryBack>
 
-    <h1 id="title" class="grow px-2.5 text-1.5xl font-medium font-sng">
+    <h1 class="grow px-2.5 text-1.5xl font-medium font-sng leading-8">
       <TransitionSlide mode="out-in" :duration="300" :delay="0" appear>
         <div v-if="isOpenedAbout">{{ $t('About the App') }}</div>
         <div v-else-if="title" class="text-center" :style="{ marginLeft: marginLeft }">
-          <div>{{ title }}</div>
+          <div class="truncate grow-0">{{ title }}</div>
         </div>
         <div v-else>{{ $t('Atlas SNG') }}</div>
       </TransitionSlide>

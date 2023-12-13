@@ -26,7 +26,7 @@
         :disabled="!active"
         :label="wrong ? $t('Try again') : $t('Check the code')"
         :color="wrong ? 'red' : 'default'"
-        @click="verifyCode"
+        @mousedown="verifyCode"
       />
     </div>
   </div>

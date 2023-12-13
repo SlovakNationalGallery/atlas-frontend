@@ -1,6 +1,6 @@
 <template>
   <Card v-if="bucketlist" :label="$t('Scavenger hunt')" icon="scavenger">
-    <div v-if="!unlocked" class="text-lg">
+    <div v-if="!unlocked" class="text-lg leading-[26px]">
       {{
         $t(
           'Discover artworks within the SNG premises, unveil what connects them, and get a discount!'
@@ -23,8 +23,8 @@
       </div>
     </Carousel>
     <div class="flex items-center">
-      <h2 class="text-lg font-medium grow">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h2>
-      <div>
+      <h2 class="font-medium grow">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h2>
+      <div class="text-right">
         {{
           $t(':found/:all artworks found!', {
             found: String(found.length),
