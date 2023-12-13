@@ -3,20 +3,18 @@
     class="header sticky top-0 z-20 flex w-full items-center whitespace-nowrap border-2 border-black bg-white"
     :class="{ subpage: title && !isOpenedAbout }"
   >
-    <HistoryBack v-slot="{ back }">
-      <button
-        ref="backRef"
-        type="button"
-        class="button border-r-2 border-black bg-blue p-2 text-white box-border"
-        @click="isFrontpage ? (isOpenedAbout = !isOpenedAbout) : back()"
-      >
-        <TransitionScale mode="out-in" :duration="300" :delay="0" appear>
-          <Icon v-if="!isFrontpage" name="chevron-left" />
-          <Icon v-else-if="isOpenedAbout" name="close" />
-          <Icon v-else name="sng" />
-        </TransitionScale>
-      </button>
-    </HistoryBack>
+    <button
+      ref="backRef"
+      type="button"
+      class="button border-r-2 border-black bg-blue p-2 text-white box-border"
+      @click="isFrontpage ? (isOpenedAbout = !isOpenedAbout) : router.push('/homepage')"
+    >
+      <TransitionScale mode="out-in" :duration="300" :delay="0" appear>
+        <Icon v-if="!isFrontpage" name="home" />
+        <Icon v-else-if="isOpenedAbout" name="close" />
+        <Icon v-else name="sng" />
+      </TransitionScale>
+    </button>
 
     <h1 class="grow px-2.5 text-1.5xl font-medium font-sng leading-8">
       <TransitionSlide mode="out-in" :duration="300" :delay="0" appear>
@@ -43,13 +41,13 @@ import { TransitionScale, TransitionSlide } from '@morev/vue-transitions'
 
 import ViewedItemsCount from '@/components/misc/ViewedItemsCount.vue'
 import About from '@/components/about/About.vue'
-import HistoryBack from '@/components/misc/HistoryBack.vue'
 
 const props = defineProps<{
   title?: string
 }>()
 
 const route = useRoute()
+const router = useRouter()
 const { title: localeTitle } = toRefs(useLocaleStore())
 
 const isOpenedAbout = ref(false)

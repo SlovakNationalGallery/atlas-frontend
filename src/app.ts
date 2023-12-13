@@ -12,11 +12,9 @@ import * as Sentry from '@sentry/vue'
 
 import App from '@/App.vue'
 import { useLocaleStore } from '@/stores/LocaleStore'
-import { useHistoryStore } from '@/stores/HistoryStore'
 
-const history = createWebHistory()
 const router = createRouter({
-  history,
+  history: createWebHistory(),
   scrollBehavior(to, from, savedPosition) {
     if (to.path === '/') {
       return savedPosition as any
@@ -41,8 +39,5 @@ app.use(i18nVue, {
   lang: localeStore.locale,
   resolve: (lang: string) => import(`./lang/${lang}.json`),
 })
-
-const { history: historyState } = toRefs(useHistoryStore())
-historyState.value = history
 
 app.mount('#app')
