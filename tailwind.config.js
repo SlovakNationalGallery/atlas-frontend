@@ -69,6 +69,9 @@ export default {
       '2xl': ['24px'],
       '3xl': ['30px'],
     },
+    leading: {
+      6.5: '26px',
+    },
     fontWeight: {
       normal: '400',
       medium: '500',

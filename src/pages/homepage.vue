@@ -32,4 +32,6 @@ watchDebounced(
   },
   { immediate: true, debounce: 1000 }
 )
+
+useDefineTitle('')
 </script>

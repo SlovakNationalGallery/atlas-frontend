@@ -2,7 +2,7 @@
   <div class="py-6 px-4 flex flex-col gap-4">
     <div class="flex items-center gap-1 font-sng">
       <Icon v-if="icon" :name="icon" />
-      <div class="grow text-2xl font-bold">{{ label }}</div>
+      <div class="grow text-2xl font-bold leading-8">{{ label }}</div>
       <slot name="actions" />
     </div>
     <div>

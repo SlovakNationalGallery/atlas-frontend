@@ -30,7 +30,7 @@
 
     <ViewedItemsCount
       ref="counterRef"
-      class="border-l-2 border-l-transparent px-4 py-2"
+      class="border-l-2 border-l-transparent px-4"
       @close="isOpenedAbout = false"
     />
   </div>

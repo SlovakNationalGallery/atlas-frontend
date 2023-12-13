@@ -14,10 +14,8 @@
             )
           }}
         </div>
-        <div class="flex items-center">
-          <h2 class="text-lg font-medium grow">
-            {{ $t('Scavenger hunt:') }} {{ bucketlist.title }}
-          </h2>
+        <div class="flex items-center font-bold">
+          <h2 class="grow">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h2>
           <div>
             {{
               $t(':found/:all artworks found!', {

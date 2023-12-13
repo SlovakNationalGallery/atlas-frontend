@@ -3,7 +3,7 @@
     <div v-if="opened" class="fixed inset-0 z-10 overflow-hidden md:mx-auto md:max-w-lg">
       <div class="h-full overflow-y-auto bg-white pt-12 duration-300 pb-24">
         <Card class="bg-blue-softest" :label="$t('Help us improve Atlas SNG')">
-          <div>
+          <div class="text-lg leading-[26px]">
             {{
               $t(
                 "We're constantly developing the app based on feedback from people like you! Have an idea or comment? Let us know via the short questionnaire below."
@@ -17,7 +17,7 @@
 
         <div class="px-4 py-2 text-xl border-b-1 border-gray-softest">
           <div class="flex items-center">
-            <div class="font-bold text-xl grow">Language / Jazyk</div>
+            <div class="font-bold text-xl grow leading-7">Language / Jazyk</div>
             <LanguageSwitcher />
           </div>
         </div>
@@ -25,32 +25,27 @@
         <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">
           <template #summary>{{ $t('Help') }} </template>
 
-          <div class="space-y-4">
-            <p>
-              <strong>{{ $t('Can I use the gallery WiFi?') }}</strong
-              ><br />
-              <span v-html="$t('about_help_1')"></span>
-            </p>
-            <p>
-              <strong>{{ $t('How do I explore an artwork?') }}</strong
-              ><br />
-              <span v-html="$t('about_help_2')"></span>
-            </p>
-            <p>
-              <strong>{{ $t("What if I don't see a code?") }}</strong
-              ><br />
-              <span v-html="$t('about_help_3')"></span>
-            </p>
-            <p>
-              <strong>{{ $t("Can I revisit artworks I've already explored?") }}</strong
-              ><br />
-              <span v-html="$t('about_help_4')"></span>
-            </p>
-            <p>
-              <strong>{{ $t('How do I claim my reward for the Scavenger hunt?') }}</strong
-              ><br />
-              <span v-html="$t('about_help_5')"></span>
-            </p>
+          <div class="space-y-6">
+            <div>
+              <strong>{{ $t('Can I use the gallery WiFi?') }}</strong>
+              <p class="mt-6" v-html="$t('about_help_1')"></p>
+            </div>
+            <div>
+              <strong>{{ $t('How do I explore an artwork?') }}</strong>
+              <p class="mt-6" v-html="$t('about_help_2')"></p>
+            </div>
+            <div>
+              <strong>{{ $t("What if I don't see a code?") }}</strong>
+              <p class="mt-6" v-html="$t('about_help_3')"></p>
+            </div>
+            <div>
+              <strong>{{ $t("Can I revisit artworks I've already explored?") }}</strong>
+              <p class="mt-6" v-html="$t('about_help_4')"></p>
+            </div>
+            <div>
+              <strong>{{ $t('How do I claim my reward for the Scavenger hunt?') }}</strong>
+              <p class="mt-6" v-html="$t('about_help_5')"></p>
+            </div>
           </div>
         </AboutCollapsible>
         <AboutCollapsible class="scroll-mt-12 border-b-1 border-gray-softest">

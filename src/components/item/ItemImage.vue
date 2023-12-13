@@ -31,5 +31,5 @@ const props = defineProps<{
 
 const offsetTop = computed(() => props.offsetTop ?? props.data.offset_top_percent)
 
-const { isLoading } = preloadImage(props.data.image_src)
+const { isLoading } = usePreloadImage(props.data.image_src)
 </script>

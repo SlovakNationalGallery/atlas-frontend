@@ -30,4 +30,5 @@ onMounted(() => {
     router.push('/homepage')
   }
 })
+useDefineTitle('')
 </script>

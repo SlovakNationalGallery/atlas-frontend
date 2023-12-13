@@ -23,10 +23,9 @@ defineProps<{
   subtitle?: string
 }>()
 
-// TODO: get the right images
 const images = Array.from(Array(4).keys())
   .map((i) => `/banner/banner${i}.png`)
   .sort(() => 0.5 - Math.random())
 
-const { isLoading } = preloadImage(images[0])
+const { isLoading } = usePreloadImage(images[0])
 </script>

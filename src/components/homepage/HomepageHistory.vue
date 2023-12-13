@@ -8,7 +8,7 @@
       <ItemLoader v-for="id in viewedItemsIds" :id="id" v-slot="{ item }" :key="id">
         <router-link :to="item.link" class="mr-4 block">
           <div class="min-w-full ml-4">
-            <ItemImage class="mb-1 rounded-lg overflow-hidden" :data="item" />
+            <ItemImage class="mb-1 rounded-xl overflow-hidden" :data="item" />
             <div class="text-left">
               <h5 class="truncate font-bold">{{ item.title }}</h5>
               <div class="text-sm text-gray-dark">{{ item.dating_short }}</div>

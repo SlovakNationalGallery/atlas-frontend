@@ -16,7 +16,7 @@
         <router-link :to="col.locked ? col.item.lockedLink : col.item.link">
           <ItemImage
             :data="col.item"
-            class="rounded-lg overflow-hidden"
+            class="rounded-xl overflow-hidden"
             :class="{ grayscale: col.locked }"
           />
         </router-link>
