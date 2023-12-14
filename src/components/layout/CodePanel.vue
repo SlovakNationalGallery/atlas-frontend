@@ -16,7 +16,8 @@
         :key="position"
         class="border-0 bg-white"
         :is-checked="!!code[position - 1]"
-        @touchstart="code[position - 1] = (code[position - 1] + 1) % 2"
+        @touchstart="onSetCode(position - 1, $event)"
+        @click="onSetCode(position - 1, $event)"
       />
     </div>
 
@@ -26,7 +27,7 @@
         :disabled="!active"
         :label="wrong ? $t('Try again') : $t('Check the code')"
         :color="wrong ? 'red' : 'default'"
-        @mousedown="verifyCode"
+        @mousedown="onVerifyCode"
       />
     </div>
   </div>
@@ -53,7 +54,18 @@ const active = computed(() => {
 
 const isBusy = ref(false)
 
-const verifyCode = () => {
+// TODO: this will be replaced with library to be able to detect/handle touch devices
+// quick fix to prevent firing event twice on touch devices
+const isTouchCapable = 'ontouchstart' in window || (navigator as any).msMaxTouchPoints > 0
+const onSetCode = (position: number, $event: any) => {
+  if (isTouchCapable) {
+    $event.preventDefault()
+  }
+
+  code[position] = (code[position] + 1) % 2
+}
+
+const onVerifyCode = () => {
   isBusy.value = true
 
   const digit = parseInt(code.join(''), 2)
