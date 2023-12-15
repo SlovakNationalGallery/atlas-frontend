@@ -1,68 +1,67 @@
 @font-face {
-    font-family: 'GTWalsheim';
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Regular.eot');
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Regular.woff2') format('woff2'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Regular.woff') format('woff'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GTWalsheim';
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Medium.eot');
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Medium.woff2') format('woff2'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Medium.woff') format('woff'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Medium.ttf') format('truetype');
+    font-family: 'SNG Sans';
+    src: url('/fonts/SNGSans/SNGSans-Medium.woff2') format('woff2'),
+    url('/fonts/SNGSans/SNGSans-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: 'GTWalsheim';
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Bold.eot');
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Bold.woff2') format('woff2'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Bold.woff') format('woff'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Bold.ttf') format('truetype');
-    font-weight: 700;
+    font-family: 'SNG Sans';
+    src: url('/fonts/SNGSans/SNGSans-Regular.woff2') format('woff2'),
+    url('/fonts/SNGSans/SNGSans-Regular.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: 'GTWalsheim';
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Regular-Oblique.eot');
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Regular-Oblique.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Regular-Oblique.woff2') format('woff2'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Regular-Oblique.woff') format('woff'),
-        url('../fonts/GT-Walsheim/GT-Walsheim-Regular-Oblique.ttf') format('truetype');
-    font-weight: 400;
-    font-style: oblique;
-}
-
-/*
-
-@font-face {
-    font-family: 'GTWalsheim';
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Light.eot');
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Light.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/GT-Walsheim/GT-Walsheim-Light.woff2') format('woff2'),
-         url('../fonts/GT-Walsheim/GT-Walsheim-Light.woff') format('woff'),
-         url('../fonts/GT-Walsheim/GT-Walsheim-Light.ttf') format('truetype');
-    font-weight: 300;
+    font-family: 'SNG Sans';
+    src: url('/fonts/SNGSans/SNGSans-Bold.woff2') format('woff2'),
+    url('/fonts/SNGSans/SNGSans-Bold.woff') format('woff');
+    font-weight: bold;
     font-style: normal;
+    font-display: swap;
+}
+
+
+
+@font-face {
+    font-family: 'Circular';
+    src: url('/fonts/Circular/Circular-Book.woff2') format('woff2'),
+    url('/fonts/Circular/Circular-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: 'GTWalsheim';
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Thin.eot');
-    src: url('../fonts/GT-Walsheim/GT-Walsheim-Thin.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/GT-Walsheim/GT-Walsheim-Thin.woff2') format('woff2'),
-         url('../fonts/GT-Walsheim/GT-Walsheim-Thin.woff') format('woff'),
-         url('../fonts/GT-Walsheim/GT-Walsheim-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
+    font-family: 'Circular';
+    src: url('/fonts/Circular/Circular-BookItalic.woff2') format('woff2'),
+    url('/fonts/Circular/Circular-BookItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
 }
-*/
+
+@font-face {
+    font-family: 'Circular';
+    src: url('/fonts/Circular/Circular-Bold.woff2') format('woff2'),
+    url('/fonts/Circular/Circular-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Circular';
+    src: url('/fonts/Circular/Circular-Medium.woff2') format('woff2'),
+    url('/fonts/Circular/Circular-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+

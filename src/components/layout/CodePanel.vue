@@ -1,12 +1,12 @@
 <template>
   <div
-    class="fixed z-10 top-full overflow-hidden w-full bg-white ease-in-out rounded-t-xl md:mx-auto md:max-w-lg duration-500"
-    :class="[codePanelOpened ? '-translate-y-full' : 'translate-y-0']"
+    class="fixed z-10 bottom-0 overflow-hidden w-full bg-white ease-in-out rounded-t-xl md:mx-auto md:max-w-lg duration-500"
+    :class="[!codePanelOpened ? 'translate-y-full' : 'translate-y-0']"
   >
     <div
       class="flex w-full items-center overflow-hidden border-2 border-b-0 px-4 py-2 rounded-t-xl"
     >
-      <div class="text-2xl font-medium grow">Zadaj kód objektu</div>
+      <div class="text-2xl font-medium grow">{{ $t('Enter object code') }}</div>
       <Icon name="close" class="cursor-pointer" @click="codePanelOpened = false" />
     </div>
 
@@ -16,17 +16,19 @@
         :key="position"
         class="border-0 bg-white"
         :is-checked="!!code[position - 1]"
-        @click="code[position - 1] = (code[position - 1] + 1) % 2"
+        @touchstart.prevent="onSetCode(position - 1, $event)"
+        @touchend.prevent
+        @click="onSetCode(position - 1, $event)"
       />
     </div>
 
     <div class="p-3 border-2 border-t-0">
       <Button
-        icon="chat"
         class="w-full justify-center"
         :disabled="!active"
-        :label="$t(wrong ? 'Try again' : 'Check the code')"
-        @click="verifyCode"
+        :label="wrong ? $t('Try again') : $t('Check the code')"
+        :color="wrong ? 'red' : 'default'"
+        @mousedown="onVerifyCode"
       />
     </div>
   </div>
@@ -37,6 +39,10 @@ import axios from 'axios'
 
 import CircleButton from '@/components/forms/CircleButton.vue'
 
+const emit = defineEmits<{
+  close: []
+}>()
+
 const { codePanelOpened } = toRefs(useInteractionStore())
 const router = useRouter()
 const route = useRoute()
@@ -44,11 +50,20 @@ const code = reactive(Array(9).fill(0))
 const wrong = ref(false)
 
 const active = computed(() => {
-  return code.some((bit) => bit)
+  return isBusy.value || code.some((bit) => bit)
 })
 
-const verifyCode = () => {
+const isBusy = ref(false)
+
+const onSetCode = (position: number, $event: any) => {
+  code[position] = (code[position] + 1) % 2
+}
+
+const onVerifyCode = () => {
+  isBusy.value = true
+
   const digit = parseInt(code.join(''), 2)
+
   axios
     .get('/api/verify/' + digit)
     .then(({ data }) => {
@@ -71,12 +86,16 @@ const verifyCode = () => {
     .catch(() => {
       wrong.value = true
     })
+    .finally(() => {
+      isBusy.value = false
+    })
 }
 
 function reset() {
   code.fill(0)
   wrong.value = false
   codePanelOpened.value = false
+  emit('close')
 }
 
 watch(code, () => {

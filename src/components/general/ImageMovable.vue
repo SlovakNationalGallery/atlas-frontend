@@ -22,6 +22,7 @@ import Section from '@/models/Section'
 import Place from '@/models/Place'
 import Bucketlist from '@/models/Bucketlist'
 
+// TODO: make this work
 const props = defineProps<{
   data: Item | Section | Place | Bucketlist
 }>()

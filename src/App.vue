@@ -1,8 +1,8 @@
 <template>
-  <Header />
+  <Header ref="headerRef" />
   <router-view />
   <FAB v-if="!isOnBoarding" is-opened class="fixed right-4 bottom-4 z-10" />
-  <CodePanel v-if="!isOnBoarding" />
+  <CodePanel v-if="!isOnBoarding" @close="headerRef?.closeAbout" />
 </template>
 
 <script setup lang="ts">
@@ -23,5 +23,6 @@ onMounted(async () => {
 })
 
 const router = useRouter()
+const headerRef = ref<InstanceType<typeof Header>>()
 const isOnBoarding = computed(() => router.currentRoute.value.path === '/')
 </script>

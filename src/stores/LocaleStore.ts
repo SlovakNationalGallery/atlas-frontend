@@ -15,9 +15,11 @@ export const useLocaleStore = defineStore(
   'LocaleStore',
   () => {
     const locale = ref(getBrowserLocale())
+    const title = ref('')
 
     return {
       locale,
+      title,
     }
   },
   {

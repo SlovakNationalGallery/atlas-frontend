@@ -1,7 +1,10 @@
 <template>
   <div ref="el">
-    <div class="flex cursor-pointer p-4 text-xl transition-transform" @click="isOpened = !isOpened">
-      <div class="grow font-bold text-xl">
+    <div
+      class="flex cursor-pointer p-4 text-xl content-between transition-transform"
+      @click="isOpened = !isOpened"
+    >
+      <div class="grow font-bold text-xl leading-7">
         <slot name="summary"></slot>
       </div>
       <Icon
@@ -11,7 +14,7 @@
       />
     </div>
     <TransitionExpand>
-      <div v-show="isOpened" class="px-4 pb-4">
+      <div v-show="isOpened" class="px-4 pb-4 text-lg leading-[26px]">
         <slot />
       </div>
     </TransitionExpand>

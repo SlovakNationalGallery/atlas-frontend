@@ -1,5 +1,5 @@
 <template>
-  <Thumbnail icon="chevron-right">
+  <Thumbnail icon="chevron-right" :truncate-description="!location">
     <template #image>
       <ResponsiveImageWithSizes
         class="h-full w-full rounded-xl object-cover"
@@ -8,7 +8,12 @@
       />
     </template>
     <template #title>{{ item.title }}</template>
-    <template #description>{{ item.author }}<br />{{ item.dating }}</template>
+    <template #description>
+      <template v-if="location">
+        {{ item.location_formatted }}
+      </template>
+      <template v-else>{{ item.author }}<br />{{ item.dating }}</template>
+    </template>
   </Thumbnail>
 </template>
 
@@ -20,5 +25,6 @@ import Item from '@/models/Item'
 defineProps<{
   item: Item
   locked?: boolean
+  location?: boolean
 }>()
 </script>

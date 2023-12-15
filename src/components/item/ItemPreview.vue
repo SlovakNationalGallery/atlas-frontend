@@ -6,7 +6,7 @@
     <div class="relative bg-white max-h-full w-full rounded-xl md:max-w-lg" @click="emit('close')">
       <div
         :class="{ 'animate-pulse': isLoading }"
-        class="w-full rounded-t-xl bg-15-blue"
+        class="w-full rounded-t-xl bg-blue-softest"
         :style="{ aspectRatio: item.image_aspect_ratio }"
       >
         <TransitionFade appear>
@@ -30,8 +30,8 @@
           class="mt-4"
           external
           icon="magnifying-glass"
-          title="Viac o diele na Webe Umenia"
-          description="otvor archív SNG"
+          :title="$t('More about the artwork on webumenia.sk')"
+          :description="$t('Open the SNG archive')"
           :link="item.webumenia_url"
         />
       </ItemContent>
@@ -53,5 +53,5 @@ const emit = defineEmits<{
   close: []
 }>()
 
-const { isLoading } = preloadImage(props.item.image_src)
+const { isLoading } = usePreloadImage(props.item.image_src)
 </script>

@@ -11,8 +11,8 @@
       <Icon v-if="external" class="text-blue w-6" name="external" />
     </div>
     <div>
-      <div class="text-xl font-bold">{{ title }}</div>
-      <div v-if="description" class="text text-blue">{{ description }}</div>
+      <div class="text-lg font-bold leading-[26px]">{{ title }}</div>
+      <div v-if="description" class="text text-blue mt-1">{{ description }}</div>
     </div>
   </div>
 </template>

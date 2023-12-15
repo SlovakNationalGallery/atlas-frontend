@@ -32,6 +32,10 @@ export default class Bucketlist extends BaseModel {
     return 0
   }
 
+  public get offset_top_percent() {
+    return 0
+  }
+
   public get image_alt() {
     return this.title
   }

@@ -56,7 +56,8 @@ export default {
       current: 'currentColor',
     },
     fontFamily: {
-      sans: ['GTWalsheim', 'sans-serif'],
+      sans: ['Circular', 'sans-serif'],
+      sng: ['SNG Sans', 'sans-serif'],
     },
     fontSize: {
       'xs': ['12px'],
@@ -67,6 +68,9 @@ export default {
       '1.5xl': ['22px'],
       '2xl': ['24px'],
       '3xl': ['30px'],
+    },
+    leading: {
+      6.5: '26px',
     },
     fontWeight: {
       normal: '400',

@@ -12,6 +12,7 @@ export default class Place extends BaseModel {
   public declare image: IImage
 
   public declare offset_top: number
+  public declare offset_top_percent: number // TODO: temp name
 
   public declare video_embed: string | null
   public declare video_aspect_ratio: {

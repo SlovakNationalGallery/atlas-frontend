@@ -18,6 +18,7 @@ export default class Section extends BaseModel {
   public declare image: IImage
   public declare items: Item[]
   public declare offset_top: number
+  public declare offset_top_percent: number // TODO: temp name
 
   public get image_src() {
     return this.image.src

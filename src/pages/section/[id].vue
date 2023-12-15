@@ -29,4 +29,6 @@ useFetchDetail(async (id) => {
   section.value = null
   section.value = await sectionStore.load(id)
 })
+
+useDefineTitle(t('Section'))
 </script>

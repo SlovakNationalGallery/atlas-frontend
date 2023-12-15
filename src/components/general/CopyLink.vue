@@ -8,15 +8,14 @@
     </template>
     <div>
       <TransitionSlide mode="out-in" :duration="300" :delay="0" appear>
-        <div v-if="!done" class="font-bold">Skopírovať</div>
-        <div v-else class="font-bold">Link skopírovaný</div>
+        <div v-if="!done" class="font-bold">{{ $t('Copy') }}</div>
+        <div v-else class="font-bold">{{ $t('Link copied') }}</div>
       </TransitionSlide>
     </div>
   </Button>
 </template>
 
 <script setup lang="ts">
-// TODO: translations
 import { TransitionSlide } from '@morev/vue-transitions'
 
 const props = defineProps<{

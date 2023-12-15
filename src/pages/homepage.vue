@@ -1,7 +1,11 @@
 <template>
   <TransitionFade appear>
     <div class="grow pb-24">
-      <HomepageHeader class="border-b-2" />
+      <HomepageHeader
+        class="border-b-2 aspect-[3/4]"
+        :title="$t('Explore SNG at your own pace')"
+        :subtitle="$t('Enter the artwork code and discover its story')"
+      />
       <Bucketlist :id="bucketlistId" class="border-b-2" />
       <History />
     </div>
@@ -28,4 +32,6 @@ watchDebounced(
   },
   { immediate: true, debounce: 1000 }
 )
+
+useDefineTitle('')
 </script>
