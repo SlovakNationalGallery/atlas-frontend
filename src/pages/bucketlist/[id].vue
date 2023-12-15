@@ -42,7 +42,7 @@
           <div class="text-lg">
             {{
               $t(
-                'Show this code at the Ex Libris bookstore and get 10% discount. In the SNG café you will get a free coffee for the code.'
+                'Show this text in the Ex Libris Bookstore and get 10% off your purchase. Show it in the SNG Café and get a free coffee.'
               )
             }}
           </div>
