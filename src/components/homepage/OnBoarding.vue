@@ -6,7 +6,7 @@
     </div>
     <div>
       <Button class="w-full justify-center" @click="emit('close')">{{
-        $t('Continue to the app')
+        $t('Continue to Atlas')
       }}</Button>
     </div>
   </div>
