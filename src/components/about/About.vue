@@ -11,7 +11,7 @@
             }}
           </div>
           <Button class="w-full justify-center mt-4" @click="toggleSurvey">
-            {{ isSurveyDone ? $t('Thank you!') : $t('Fill out a brief survey') }}
+            {{ $t('Fill out a brief survey') }}
           </Button>
         </Card>
 
