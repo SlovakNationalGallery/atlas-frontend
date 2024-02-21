@@ -8,7 +8,7 @@
       type="button"
       class="button uppercase px-3 py-2"
       :class="{ 'text-white': locale === 'sk' }"
-      @click="switchLanguage('sk')"
+      @click="toggleLanguage()"
     >
       SK
     </button>
@@ -16,7 +16,7 @@
       type="button"
       class="button uppercase px-3 py-2"
       :class="{ 'text-white': locale === 'en' }"
-      @click="switchLanguage('en')"
+      @click="toggleLanguage()"
     >
       EN
     </button>
@@ -61,14 +61,14 @@ watch(locale, setBg, {
   immediate: true,
 })
 
-const switchLanguage = (locale: string) => {
+const toggleLanguage = () => {
+  localeStore.locale = locale.value === 'sk' ? 'en' : 'sk'
   interactionStore.clear()
   itemStore.clearCache()
   sectionStore.clearCache()
   storyStore.clearCache()
   placeStore.clearCache()
   bucketlistStore.clearCache()
-  localeStore.locale = locale
 
   // TODO: this reload is unnecessary brutal
   window.location.reload()

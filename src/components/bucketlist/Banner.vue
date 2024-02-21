@@ -20,7 +20,7 @@
           color="black"
           class="capitalize"
           variant="outline"
-          :label="$t(unlocked ? 'reward' : 'list')"
+          :label="unlocked ? $t('reward') : $t('list')"
       /></router-link>
     </div>
   </article>

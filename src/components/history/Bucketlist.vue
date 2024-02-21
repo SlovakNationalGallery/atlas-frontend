@@ -1,21 +1,37 @@
 <template>
-  <Card v-if="bucketlist" label="Pátračka" icon="scavenger">
-    <div class="text-lg">Nájdi diela v areáli SNG, odhaľ čo ich spája a získaj zľavu!</div>
+  <Card v-if="bucketlist" :label="$t('Scavenger hunt')" icon="scavenger">
+    <div v-if="!unlocked" class="text-lg leading-[26px]">
+      {{
+        $t(
+          'Discover artworks within the SNG premises, unveil what connects them, and get a discount!'
+        )
+      }}
+    </div>
+    <div v-else class="text-lg">
+      {{ $t('All artworks found! Open the Scavenger hunt and claim your reward.') }}
+    </div>
 
     <Carousel class="-mx-4 my-4 pr-4">
       <div v-for="col in itemsSorted" :key="col.item.id" class="ml-4">
         <router-link :to="col.locked ? col.item.lockedLink : col.item.link">
           <ItemImage
             :data="col.item"
-            class="rounded-lg overflow-hidden"
+            class="rounded-xl overflow-hidden"
             :class="{ grayscale: col.locked }"
           />
         </router-link>
       </div>
     </Carousel>
     <div class="flex items-center">
-      <h2 class="text-lg font-medium grow">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h2>
-      <div>{{ found.length }}/{{ bucketlist.items.length }} nájdených</div>
+      <h2 class="font-medium grow">{{ $t('Scavenger hunt:') }} {{ bucketlist.title }}</h2>
+      <div class="text-right">
+        {{
+          $t(':found/:all artworks found!', {
+            found: String(found.length),
+            all: String(bucketlist.items.length),
+          })
+        }}
+      </div>
     </div>
 
     <div class="border-2 h-3 rounded-xl mb-4 mt-2">
@@ -23,7 +39,10 @@
     </div>
 
     <router-link :to="bucketlist.link">
-      <Button label="Otvor pátračku" class="w-full justify-center" />
+      <Button
+        :label="!unlocked ? $t('Open scavenger hunt') : $t('See reward')"
+        class="w-full justify-center"
+      />
     </router-link>
   </Card>
 </template>
@@ -59,6 +78,10 @@ const itemsSorted = computed(() => {
 const width = computed(
   () => (found.value.length / (bucketlist.value?.items.length ?? 1)) * 100 + '%'
 )
+
+const unlocked = computed(() => {
+  return found.value.length === bucketlist.value?.items.length
+})
 
 onMounted(async () => {
   bucketlist.value = bucketlistStore.get(props.id)!

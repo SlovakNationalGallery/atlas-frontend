@@ -11,10 +11,5 @@ import History from '@/components/history/History.vue'
 
 const bucketlistId = import.meta.env.VITE_DEFAULT_BUCKETLIST
 
-// TODO: translate
-definePage({
-  meta: {
-    title: 'Moja história',
-  },
-})
+useDefineTitle(t('My history'))
 </script>

@@ -11,11 +11,11 @@
         <Icon v-if="props.icon" :name="props.icon" class="min-w-[32px]" />
       </div>
       <div
-        class="text-sm pr-6"
+        class="text-sm"
         :class="{
           'truncate': truncateDescription,
           'line-clamp-2': !truncateDescription,
-          'pr-6': !props.icon,
+          'pr-7': props.icon,
         }"
       >
         <slot name="description"></slot>

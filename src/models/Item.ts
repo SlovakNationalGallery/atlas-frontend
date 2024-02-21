@@ -26,6 +26,7 @@ export default class Item extends BaseModel {
   public declare image_srcset: string
   public declare image_aspect_ratio: number
   public declare offset_top: number
+  public declare offset_top_percent: number // TODO: temp name
 
   public declare images: IImage[]
   public declare webumenia_url: string

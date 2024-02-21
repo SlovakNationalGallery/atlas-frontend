@@ -4,7 +4,7 @@
       <img class="rounded-full w-20" :src="authority.image_url" />
     </div>
     <div class="mx-3 self-center">
-      <div class="font-bold text-lg">{{ authority.name }}</div>
+      <div class="font-bold text-lg leading-[26px]">{{ authority.name }}</div>
       <div>
         {{ authority.birth_date }} {{ authority.birth_place }}
         <template v-if="authority.death_date">

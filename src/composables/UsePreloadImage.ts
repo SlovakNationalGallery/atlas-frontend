@@ -1,4 +1,4 @@
-export function preloadImage(imageUrl: string) {
+export function usePreloadImage(imageUrl: string) {
   const isLoading = ref(true)
 
   onMounted(() => {
