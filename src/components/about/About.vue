@@ -57,7 +57,7 @@
             <p>
               <a
                 class="underline hover:no-underline"
-                href="https://www.sng.sk/sk/vyskum/projekty/ako-porozumiet-digitalnym-zbierkam"
+                :href="$t('https://sng.sk/en/slovak-national-gallery/page/projects/making-meaning-of-digital-collections')"
                 target="_blank"
                 >{{ $t('More about the project') }}</a
               >
